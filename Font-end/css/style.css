@@ -1,0 +1,164 @@
+/* define primary color and background */
+.bg-main{
+    background: #1E0A3C !important;
+}
+.color-main{
+    color:#E27F0B !important;
+}
+.mt-50{
+   margin-top: 50px; 
+}
+/* custom here */
+
+/* index.html start */
+.navbar .name-page{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.btn-search{
+    background: transparent;
+    border: none;
+    color: rgb(27, 25, 25);
+    position: absolute;
+    right: 12px;
+    z-index: 100;
+    border-radius: none;
+}
+.feature{
+    padding-right: 10%;
+}
+.feature a{
+    padding: 0px 10px;
+}
+.feature, .feature a{
+    width: 100%;
+    text-align: right;
+    color: white;
+    font-weight: 500;
+    font-size: 16px
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    /* Remove default */
+    -webkit-appearance: none;
+  }
+@media only screen and (min-width: 1024px){
+    .logo{
+        margin-left: 50px !important;
+    }
+    .search-form{
+        margin-left: 10%;
+    }
+    .search-input{
+        width: 420px !important;
+    }
+}
+
+@media only screen  and (max-width: 1024px){
+    .search-box{
+        width: 100%;
+    }
+}
+
+/* carousel */
+@media only screen and (min-width: 1024px){
+    .slide-intro .carousel-item{
+        height: 500px;
+    }
+    .slide-intro .carousel-indicators li{
+        width: 50px !important;
+    }
+}
+
+.carousel-control-next-icon {
+    background-image: url("../img/icon/next.png")
+}
+
+.carousel-control-prev-icon {
+    background-image: url("../img/icon/previous.png")
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    width: 32px;
+    height: 32px;
+}
+.slide-intro .carousel-indicators li{
+    width: 40px;
+}
+
+/* comming */
+
+@media only screen  and (max-width: 620px){
+    .date-box{
+        display: none;
+    }
+}
+.comming-box{
+    margin-top: 30px;
+}
+.title-cate{
+    font-weight: bold;
+    text-align: center;
+}
+.card{
+    margin: 40px 0px;
+    box-shadow: 5px 5px rgb(241, 240, 240);
+}
+.date-box{
+    box-shadow: 3px 3px rgb(245, 245, 245);
+    border: 0.4px solid rgb(223, 223, 223);
+}
+.date-box .date-header{
+    background: rgb(230, 11, 11);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 0px;
+}
+.date-box .date-body{
+    text-align: center;
+    font-size: 24px;
+    padding: 18px 0px;
+    font-weight: 600
+}
+.card-title{
+    font-weight: bold
+}
+.card-text{
+    margin-bottom: 0px;
+    font-size: 13px;
+    font-weight: 450
+}
+.btn-more{
+    color: white;
+    background: #E27F0B;
+    padding: 6px 30px;
+    border: none;
+}
+
+/* suggest */
+
+.title-suggest{
+    color: white;
+    padding: 10px;
+    text-align: center
+}
+.blog .carousel-indicators {
+	left: 0;
+	top: auto;
+    bottom: -40px;
+
+}
+
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.blog .carousel-indicators .active {
+    background: #707070;
+}
+/* index.html end */

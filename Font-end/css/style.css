@@ -387,3 +387,46 @@ color: #FFFFFF;
 /*Footer end*/
 
 /* index.html end */
+
+
+/*a2-trangchitietsp.html start*/
+#content-a2-trangchitiet{
+    background: white  fixed;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+   margin-top:100px;
+
+}
+
+
+#content-a2-trangchitiet #img-title{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#content-a2-trangchitiet #ticket-button{
+    background: rgba(226, 127, 11, 0.94);
+    border-radius: 3px;
+    width: 280px;
+    height: 60px;
+    text-align: center;
+   
+}
+
+#content-a2-trangchitiet #ticket-button p{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 36px;
+
+}
+
+.center-content{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+/*a2-trangchitietsp.html end*/

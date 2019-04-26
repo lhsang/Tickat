@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=428969107659764&autoLogAppEvents=1"></script>
+
     <!-- nav start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
       <a class="navbar-brand" href="#">
@@ -43,11 +46,11 @@
 <!--Body start-->
 <div class="container-fluid" style="background:#F2EFF6;margin-top:30px">
     <div class="container" id="content-a2-trangchitiet">
-        <div class="row"  >
+        <div class="row" >
             <div class="col-8">
                 <img src="../img/event/event_img.PNG" alt="" id="img-title">
             </div>
-            <div class="col-4">
+            <div class="col-3" style="margin-left: 20px" >
                 <div class="row">
                         <p style="color:#E27F0B;font-weight: bold;font-size:36px ">Apr</p>
                 </div>
@@ -57,14 +60,14 @@
                 </div>
 
                 <div class="row">
-                        <p style="font-size:24px;font-weight:bold">Electricfy VietNam 2019</p>
+                        <p class="text-header2">Electricfy VietNam 2019</p>
                 </div>
 
                 <div class="row">
                         <p style="color:#636363;font-weight: bold;font-size: 18px;">by Confexhub Sdn, Bhd.</p>
                 </div>
                 <div class="row">
-                    <p style="font-size:24px;font-weight:bold">$1,036.59 - $1,864.59</p>
+                    <p  class="text-header2">$1,036.59 - $1,864.59</p>
                 </div>
                 <div class="row">
                     <button id="ticket-button"><p>Tickets</p> </button>
@@ -76,24 +79,24 @@
 
         <div class="row" style="margin-left: 5px;margin-right: 5px;margin-top:5px">
             <div class="col-8">
-                <div class="row" style="font-weight: bold;font-size: 30px">
+                <div class="row text-header1" >
                     <p>ELECTRIFYING VIETNAM THROUGH SUSTAINABLE ENERGY PLANS</p>
                 </div>
 
-                <div class="row"  style="font-weight: bold;font-size: 30px">
+                <div class="row text-header1" >
                     <p>About this Event</p>
                 </div>
 
-                <div class="row" style="color:#616161;font-size: 18px">
+                <div class="row text-content" >
                     <p>According to the revised Power Development Plan (PDP 7), Vietnam requires total investment of $143.5 billion (excluding privately financed BOT power generation projects) for meeting its double-digital annual growth of energy in demand. The Vietnam government is broadening their strategic approaches to fully tap the huge potential of its energy sector by unlocking private investment potentials; inviting foreign technical expertise and foreign investment for participation in its energy projects. It is estimated that Vietnam requires investment of 15billion per year, which 75% is earmarked for generation and 25% for development of the transmission and distribution network.
                     <br>
                         <br> The hosting of the Electrify Vietnam 2019 (EVN2019) is to provide an interactive platform for potential investors and key players of the industry from over 25 countries to get updated on the new directions, investment policies and market potential of the energy and power sector in Vietnam; at the same time discuss strategies and share insights to support the National Power Development Plan in order to fulfill the demand of 515Twh in 2030.</p>
                 </div>
             </div>
-            <div class="col-4"  style="color:#616161;font-size: 18px;">
+            <div class="col-3  text-content" >
                 <div style="margin-left: 20px">
                     <div class="row">
-                            <p>Date And Time</p><br>
+                            <p  class="text-header2">Date And Time</p><br>
                             <p>Thu, Mar 28, 2019, 7:30 AM –
                                     Fri, Mar 29, 2019, 4:30 PM Indochina Time Vietnam Time</p>
                             
@@ -102,7 +105,7 @@
                     </div>
 
                     <div class="row">
-                        <p>Location</p><br>
+                        <p  class="text-header2">Location</p><br>
                         <p>Rex Hotel
                                 141 Nguyễn Huệ
                                  Ho Chi Minh, ho chi minh 700000
@@ -124,29 +127,51 @@
         </div>
         <hr/>
 
-        <div class="row">
-            <div class="center-content">
-                    <div class="row">
-                            <img src="../img/event/company.PNG" alt="">
-                        </div>
-                        <div class="row">
-                                <a href="#">Confexhub Sdn</a>
-                        </div>
-                        <div class="row">
-                            <p  class="center-block" >Organier of electrify VN</p>
-                        </div>
-                        <div class="row">
-                            <div >
-                                <button>Follow</button>
-                            </div>
-                            <div >
-                                    <button>Contact</button>
-                            </div>
-                        </div>
-            </div>
-            
+
+        <div class="row  d-flex justify-content-center">
+            <img src="../img/event/company.PNG" alt="">
         </div>
+        <div class="row  d-flex justify-content-center">
+            <a href="#">Confexhub Sdn</a>
+        </div>
+        <div class="row  d-flex justify-content-center">
+            <p  class="center-block" >Organier of electrify VN</p>
+        </div>
+        <div class="row  d-flex justify-content-center" style="margin-bottom: 20px">
+            <div style="margin-right: 50px">
+                <button>Follow</button>
+            </div>
+            <div >
+                <button>Contact</button>
+            </div>
+        </div>
+  
+
+        <div class="row">
+            <div id="googleMap" style="width:100%;height:400px;"></div>
+        </div>
+
+        
+        <div class="row d-flex justify-content-center" >
+            <p class="text-header2">Electricfy VietNam 2019</p>
+        </div>
+        <div class="row  d-flex justify-content-center">
+            <p>at</p>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <p class="text-header2">Rex Hotel</p>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <p>141 Nguyễn Huệ, HCM</p>
+        </div>
+
+        
+<div class="fb-comments" data-href="https://D:/Github/PTUDW-CNTN2016-Nhom05/Font-end/html/a2-trangchitietsp.html" data-width="" data-numposts="5"></div>
+
+
+
     </div>
+
 
 </div>
 
@@ -290,11 +315,30 @@
   <br>
 </div>
 <!--footer end-->
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
+
+     <!--start map script -->
+     <script>
+        function myMap() {
+            var mapProp= {
+            center:new google.maps.LatLng(10.762940, 106.682257),
+            zoom:15,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(10.762940, 106.682257)
+            });
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGTfU97JHRG9n2U29EAojIhFll2RE09I&callback=myMap"></script>
+    <!--end map script -->
+    
   </body>
 </html>

@@ -423,10 +423,18 @@ color: #FFFFFF;
 
 }
 
-.center-content{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+#content-a2-trangchitiet .text-header1{
+    font-weight: bold;
+    font-size: 30px
+}
+
+#content-a2-trangchitiet .text-header2{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#content-a2-trangchitiet .text-content{
+    color:#616161;font-size: 18px;
 }
 
 /*a2-trangchitietsp.html end*/

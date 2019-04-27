@@ -1,0 +1,129 @@
+
+/*a2-trangchitietsp.html start*/
+#content-a2-trangchitiet{
+    background: white  fixed;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+   margin-top:100px;
+
+}
+
+
+#content-a2-trangchitiet #img-title{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#content-a2-trangchitiet #ticket-button{
+    background: rgba(226, 127, 11, 0.94);
+    border-radius: 3px;
+    width: 280px;
+    height: 60px;
+    text-align: center;
+   
+}
+
+#content-a2-trangchitiet #ticket-button p{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 36px;
+
+}
+
+#content-a2-trangchitiet .text-header1{
+    font-weight: bold;
+    font-size: 30px
+}
+
+#content-a2-trangchitiet .text-header2{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#content-a2-trangchitiet .text-content{
+    color:#616161;font-size: 18px;
+}
+
+/*a2-trangchitietsp.html end*/
+
+
+/* profile admin start*/
+
+#profile-admin .social-btn-holder{
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+#profile-admin   .social-btn-holder .btn-social{
+    font-size:12px;
+    font-weight:bold;
+  }
+  
+  #profile-admin  .btn-social{
+    color: white;
+    opacity:0.9;
+  }
+  #profile-admin  .btn-social:hover {
+    color: white;
+    opacity:1;
+  }
+ 
+
+  
+  #profile-admin .centered-text{
+    text-align: center;
+  }
+
+
+  #profile-admin #btnchangepass{
+    background: #1E0A3C;
+    width: 200px;
+    height: 40px;
+    color:white;
+    font-size: 16px;
+    border: none;
+
+
+  }
+
+  #profile-admin #btnchangepass:hover{
+    background: rgb(63, 20, 128);
+  }
+
+
+
+  #profile-admin .btn-ticketevent{
+    background-color:  #E27F0B;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    margin:0% 5% 0% 5%;
+  }
+  
+  /* Darker background on mouse-over */
+  #profile-admin .btn-ticketevent:hover {
+    background-color: rgb(255, 158, 47);
+  }
+
+  #profile-admin .icon{
+    font-size: 18px;
+    color:  #1E0A3C;
+    
+  }
+
+  #profile-admin hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.336);
+}
+/* profile admin end*/

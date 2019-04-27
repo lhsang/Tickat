@@ -14,6 +14,9 @@
 .mt-50{
    margin-top: 50px; 
 }
+.mt-100{
+    margin-top: 100px; 
+ }
 .mt-30{
     margin-top: 30px; 
  }
@@ -790,3 +793,61 @@ img.banner-card{
     margin-bottom:30px;
 }
 /* about.html end */
+
+
+/* admin-detail-event.html start */
+.detail .feature .filter select{
+    width:fit-content;
+    display: inline;;
+}
+
+.detail .title{
+    color:black;
+    width:fit-content;
+}
+
+.detail .type{
+    float: left;
+    margin-bottom:10px
+}
+
+.detail .pag{
+    float: right;
+    margin-top:25px;
+}
+.color-red{
+    color:red;
+}
+
+.detail .card{
+    box-shadow: none;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+
+.detail .ticket{
+    border: 0.5px solid rgb(224, 222, 222);
+    padding:30px 10px;
+    background-color: rgb(255, 89, 60);
+background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    
+    color:white;
+    border-radius:3px;
+}
+
+.detail .ticket .name-ticket{
+    text-align: center;
+    font-weight: 700;
+    font-size:22px;
+}
+
+.detail .ticket .info{
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center
+}
+/* admin-detail-event.html end */

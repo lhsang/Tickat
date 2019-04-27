@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Tickat</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../img/logo/logo_2x_no_bg.png" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- nav start -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin">
+      <a class="navbar-brand" href="#">
+          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat">
+          <a class="navbar-brand color-main name-page" href="index.html">Tickat</a>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0 search-form">
+          <div class="input-group">
+              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
+              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </div>
+        </form>
+        <div class="feature">
+            <img src="../img/avatar/tramanh.jpg" class="avatar">
+            <a href="" class="logout">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <!-- nav end -->
+
+    <!-- body start -->
+    <div class="dashboard-body" id="dashboard-event">
+      <ul class="nav nav-pills nav-fill bg-main">
+        <li class="nav-item">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <a class="nav-link" href="./dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+          <a class="nav-link active" href="./dashboard-event.html">Event</a>
+        </li>
+        <li class="nav-item">
+          <i class="fa fa-line-chart" aria-hidden="true"></i>
+          <a class="nav-link" href="./dashboard-chart.html">Statistics</a>
+        </li>
+        <li class="nav-item">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <a class="nav-link" href="./dashboard-setting.html">Setting</a>
+        </li>
+      </ul>
+
+        <div class="row event">
+              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-9" style="padding-left:60px;">
+                <div class="filter">
+                  <div style="text-align: -webkit-right; margin-right:10px; ">
+                    <span class="filter-box" title="Filter" data-toggle="modal" data-target="#modalFilter"><i class="fa fa-filter" aria-hidden="true"></i></span>
+
+                    <select name="" id="input" class="form-control sort" required="required">
+                      <option value="">Sort by</option>
+                      <option value="">Price: Low to high</option>
+                      <option value="">Price: High to low</option>
+                      <option value="">Time: Newest</option>
+                      <option value="">Time: Oldest</option>
+                    </select>                    
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-1.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/ana.jpeg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Anna Tran</span>
+                                  <p class="time">10 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-2.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">MSI LEAGUE OF LEGEND</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/aly.jpeg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park Hang Seo</span>
+                                  <p class="time">15 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-3.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Sport</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/timcook.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Timcook</span>
+                                  <p class="time">45 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-4.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Chia sẻ trong một buổi giao lưu với sinh viên trường Đại học Harlow</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Anh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-2.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-1.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-4.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-2.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="card text-center">
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
+                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                              </div>
+                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
+                                  <span>Park JinYoung</span>
+                                  <p class="time">5 minute ago</p>
+                              </div>
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <img src="../img/data/event-1.jpg" class="banner-card">
+                          <div class="content-event">
+                              <span class="event-name">Đêm nhạc phim</span>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                  <span>Date</span>
+                                  <p>Apr 14, 2019</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Location</span>
+                                <p>Ho Chi Minh</p>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                <span>Status</span>
+                                <p>100/250</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+              
+              
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 border-left" style="text-align: -webkit-center;">
+                <div class="right-box">
+                  <div>
+                    <span class="total-event">Total events</span>
+                  <p>135</p>
+                  </div>
+                  <hr>
+                  <span class="total-event">Active</span>
+                  <div class="circle-wrap">
+                    <div class="circle">
+                      
+                      <div class="mask full">
+                        <div class="fill"></div>
+                      </div>
+                     
+                      <div class="mask half">
+                        <div class="fill"></div>
+                      </div>
+                      
+                      <div class="inside-circle">
+                        70%
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div>
+                  <div class="title-top">Top events</div>
+                  <div class="top-event">
+                    <table class="table table-hover table-inverse table-responsive">
+                      <thead class="thead-inverse">
+                        <tr>
+                          <th>Top</th>
+                          <th>Status</th>
+                          <th>Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td scope="row">1</td>
+                            <td>520</td>
+                            <td>Đêm nhạc phim</td>
+                          </tr>
+                          <tr>
+                            <td scope="row">2</td>
+                            <td>490</td>
+                            <td>MSI LEAGUE OF LEGEND
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">3</td>
+                            <td>484</td>
+                            <td>CRAZY Water Festival - V Wave 2019
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">4</td>
+                            <td>370</td>
+                            <td>Buffet Equatorial
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">5</td>
+                            <td>200</td>
+                            <td>MSI LEAGUE OF LEGEND
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                
+              </div>
+
+        </div>
+
+        <div class="pag">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+    
+      
+    </div>
+    
+
+    </div>
+
+    <!-- body end -->
+
+    <!-- modal filter start-->
+    <!-- Button trigger modal -->    
+    <!-- Modal -->
+    <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Filter events</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              
+              
+              <div class="form-group" style="display: -webkit-inline-box;">
+                <label for="input" class="col-sm-2 control-label label-datepicker">Start:</label>
+                <div class="col-sm-10">
+                  <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+                </div>
+              </div>
+
+              <div class="form-group" style="display: -webkit-inline-box;margin-left: 30px;">
+                  <label for="input" class="col-sm-2 control-label label-datepicker">End:</label>
+                  <div class="col-sm-10">
+                    <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+                  </div>
+              </div>
+              
+              <div class="form-check form-check-inline ml-100" >
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="by" id="" value="checkedValue"> By time created
+                </label>
+
+                <label class="form-check-label ml-30">
+                    <input class="form-check-input" type="radio" name="by" id="" value="checkedValue"> By time occurs
+                  </label>
+              </div>
+              
+              <div class="form-group mt-20 ml-20">
+                <label class="label-datepicker">Status</label>
+                <select class="custom-select ml-20" name="" id="" style="width: fit-content;">
+                  <option value="">Active</option>
+                  <option value="">Stopped</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning bg-primary color-white">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <!-- modal filter end-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

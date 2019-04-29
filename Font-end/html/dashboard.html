@@ -8,15 +8,21 @@
     <link rel="shortcut icon" href="../img/logo/logo_2x_no_bg.png" /> 
  
     <!-- Bootstrap CSS --> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-    <link rel="stylesheet" href="../css/style.css"> 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 
-    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" /> 
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script> 
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
+
+  
+  
   </head> 
-  <body> 
+  <body  onload="loadchart()"> 
     <!-- nav start --> 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
       <a class="navbar-brand" href="#"> 
@@ -44,100 +50,249 @@
     <!-- nav end --> 
  
     <!-- body start --> 
-    <div class="dashboard-body"> 
-      <ul class="nav nav-pills nav-fill bg-main"> 
-        <li class="nav-item"> 
-          <i class="fa fa-home" aria-hidden="true"></i> 
-          <a class="nav-link active" href="#">Dashboard</a> 
-        </li> 
-        <li class="nav-item"> 
-          <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 
-          <a class="nav-link" href="./dashboard-event.html">Event</a> 
-        </li> 
-        <li class="nav-item"> 
-          <i class="fa fa-envelope" aria-hidden="true"></i> 
-          <a class="nav-link" href="#">Message</a> 
-        </li> 
-        <li class="nav-item"> 
-          <i class="fa fa-cog" aria-hidden="true"></i> 
-          <a class="nav-link" href="#">Setting</a> 
-        </li> 
-      </ul> 
- 
-     
-     
-      <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-8"> 
-                <div class="card "> 
-                    <div class="card-header"> 
-                        <h3>Revenue and Cost Graph in March 2019</h3> 
-                    </div> 
-                    <div class="card-block"> 
-                        <div id="chart1"></div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="col-md-4"> 
-                <div class="card "> 
-                    <div class="card-header"> 
-                        <h3>Multiple Line Series</h3> 
-                    </div> 
-                    <div id="chart2" class="card-block"> 
-                    </div> 
-                </div> 
-            </div> 
-        </div>    
-    </div> 
-     
-    <style> 
-     
-    </style> 
-     
-    <script type="text/javascript"> 
-        $(document).ready(function () { 
-            $("#chart1").shieldChart({ 
-                theme: "light", 
-                primaryHeader: { 
-                    text: "2019" 
-                }, 
-                exportOptions: { 
-                    image: false, 
-                    print: false 
-                }, 
-                axisX: { 
-                    categoricalValues: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15","16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"] 
-                }, 
-                tooltipSettings: { 
-                    chartBound: true, 
-                    axisMarkers: { 
-                        enabled: true, 
-                        mode: 'xy' 
-                    }                     
-                }, 
-                dataSeries: [{ 
-                    seriesType: 'line', 
-                    applyAnimation: true, 
-                    data: [100, 320, 453, 234, 553, 665, 345, 123, 432, 545, 654, 345, 332, 456, 234,222] 
-                }], 
-                backgroundColor: '#f9f9f8' 
-            }); 
- 
-            $("tspan").each(function (index, element) { 
-              if($(this).text()=="Demo Version") 
-                $(this).hide(); 
-            }); 
-        }); 
-    </script> 
-    </div> 
- 
+    <div class="dashboard-body" style="background:white"> 
+        <ul class="nav nav-pills nav-fill bg-main">
+                 <li class="nav-item">
+                   <i class="fa fa-home" aria-hidden="true"></i>
+                   <a class="nav-link  active" href="./dashboard.html">Dashboard</a>
+                 </li>
+                 <li class="nav-item">
+                   <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                   <a class="nav-link" href="./dashboard-event.html">Event</a>
+                 </li>
+                 <li class="nav-item">
+                   <i class="fa fa-line-chart" aria-hidden="true"></i>
+                   <a class="nav-link" href="./dashboard-chart.html">Statistics</a>
+                 </li>
+                 <li class="nav-item">
+                   <i class="fa fa-cog" aria-hidden="true"></i>
+                   <a class="nav-link" href="./dashboard-setting.html">Setting</a>
+                 </li>
+               </ul>
+           
+       </div> 
+
+<div class="container-fuild">
+  <div class="row  d-flex justify-content-center">
+      <div class="col-9 ">                 
+        <div class="row d-flex justify-content-center">
+                <form action="" >
+                  <b>Revenue and Cost from day:</b> 
+                  <input type="text" name="from" value="31/3/2019">
+                  
+                  <b> to day:</b>
+                  <input type="text" name="to" value="11/4/2019">
+                  
+                  <input type="submit" value="Submit" class="btndashboard">
+                </form> 
+                <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
+                <hr>
+                <form action="" class="formchart">
+                    <b>Sales in:</b> 
+                   <input type="text" name="year" value="2019">
+                
+                   <input type="submit" value="Submit" class="btndashboard">
+                 </form> 
+                <div id="columnchart_values" style="width: 1100px; height: 300px;margin-left:3%" ></div>
+         
+          </div>
+      </div>
+
+      <div class="col-3">
+          <div class="row  circle-bar card" >
+              <div class="row d-flex justify-content-center">
+                  <h3>Total sales in 2019</h3>
+              </div>
+              <div class="row progress yellow">
+                  <span class="progress-left">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value">90%</div>
+              </div>
+              <div class="row  d-flex justify-content-center">
+                  <h3 style="margin-top:2%">$1000</h3>
+              </div>
+              
+          </div>
+          <div class="row  circle-bar card">
+              <div class="row d-flex justify-content-center">
+                  <h3>Sales in March</h3>
+              </div>
+              <div class="row progress red">
+                  <span class="progress-left">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value">75%</div>
+              </div>
+              <div class="row  d-flex justify-content-center">
+                  <h3 style="margin-top:2%">$1000</h3>
+              </div>
+          </div>
+          <div class="row card circle-bar">
+              <div class="row d-flex justify-content-center">
+                  <h3>Total seats in March</h3>
+              </div>
+              <div class="progress green">
+                  <span class="progress-left">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                      <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value">90%</div>
+              </div>
+              <div class="row  d-flex justify-content-center">
+                  <h3 style="margin-top:2%">$1000</h3>
+              </div>
+          </div>
+      </div>
+  </div>  
+</div>
+
+<div class="container-fluid">
+    <hr style="margin-top:8%;margin-bottom: -2%">
+    <div class="row " style="margin-top:5%" >        
+              <div class="row ratingbox">                
+                  <div class="col-sm-12 col-md-6">
+                      <div class="review-block">
+                          <div class="row headerReview">
+                              <h2><b> Recent reviews</b></h2>                            
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-sm-3">
+                                  <div class="review-block-img">
+                                      <img src="../img/avatar/jinyoung.jpg" class="img-rounded" alt="">
+                                  </div>
+                                  <div class="review-block-name"><a href="#">Park Jin Young</a></div>
+                                  <div class="review-block-date">January 29, 2016<br>1 day ago</div>
+                              </div>
+                              <div class="col-sm-7">
+                                  <div class="review-block-rate">
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                  </div>
+                                  <div class="review-block-title">this was nice in buy</div>
+                                  <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <button class="btndashboard">Reply</button>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-sm-3">
+                                  <div class="review-block-img">
+                                      <img src="../img/avatar/mark.jpg" class="img-rounded" alt="">
+                                  </div>
+                                  <div class="review-block-name"><a href="#">Mark</a></div>
+                                  <div class="review-block-date">January 29, 2016<br>1 day ago</div>
+                              </div>
+                              <div class="col-sm-7">
+                                  <div class="review-block-rate">
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                  </div>
+                                  <div class="review-block-title">this was nice in buy</div>
+                                  <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <button class="btndashboard">Reply</button>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-sm-3">
+                                  <div class="review-block-img">
+                                      <img src="../img/avatar/youngjae.jpg" class="img-rounded" alt="">
+                                  </div>
+                                  <div class="review-block-name"><a href="#">Choi Young Jae</a></div>
+                                  <div class="review-block-date">January 29, 2016<br>1 day ago</div>
+                              </div>
+                              <div class="col-sm-7">
+                                  <div class="review-block-rate">
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                        </button>
+                                      <button type="button" class="btn btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star checked starchecked"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                          <span class="fa fa-star star"></span>
+                                      </button>
+                                  </div>
+                                  <div class="review-block-title">this was nice in buy</div>
+                                  <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
+                              </div>
+                              <div class="col-sm-2">
+                                  <button class="btndashboard">Reply</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                 
+            <div class="col-6">
+                <h6><b> Visitors Map in 2019</b></h2> 
+                <div id="mapChart" style="width: 500px; height: 500px;"></div>
+            </div>
+         
+              
+      </div>
+</div>
+
+
+
+
+
+
+
+
     <!-- body end --> 
  
     <!-- Optional JavaScript --> 
     <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
     <script src="../js/script.js"></script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </body> 
 </html>

@@ -1,14 +1,24 @@
 
 /*a2-trangchitietsp.html start*/
 #content-a2-trangchitiet{
-    background: white  fixed;
-    background-position: center;
-    background-size: cover;
+    background-image: url(../img/event/event_background.jpg) ;
     width: 100%;
     height: auto;
-   margin-top:100px;
+   
 
 }
+
+#content-a2-trangchitiet .container{
+  background: white  fixed;
+  
+  background-position: center;
+  background-size: cover;
+  
+  height: auto;
+  margin-top:5%;
+
+}
+
 
 
 #content-a2-trangchitiet #img-title{
@@ -20,16 +30,26 @@
 #content-a2-trangchitiet #ticket-button{
     background: rgba(226, 127, 11, 0.94);
     border-radius: 3px;
-    width: 280px;
-    height: 60px;
+    width: 250px;
+    height: 50px;
     text-align: center;
+    border:none;
    
 }
 
+#content-a2-trangchitiet #ticket-button:hover{
+  background: rgba(250, 186, 114, 0.94);
+  border-radius: 3px;
+  width: 250px;
+  height: 50px;
+  text-align: center;
+  border:none;
+ 
+}
 #content-a2-trangchitiet #ticket-button p{
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 36px;
+    font-size: 30px;
 
 }
 
@@ -46,6 +66,24 @@
 #content-a2-trangchitiet .text-content{
     color:#616161;font-size: 18px;
 }
+
+#content-a2-trangchitiet .sharebtn{
+  background: none;
+  border: none;
+  color:gray;
+
+}
+
+#content-a2-trangchitiet .sharebtn:hover{
+  background: none;
+  border: none;
+  color: rgba(128, 128, 128, 0.37);
+}
+
+#content-a2-trangchitiet .sharebtn i{
+  font-size: 32px;
+}
+
 
 /*a2-trangchitietsp.html end*/
 
@@ -361,21 +399,55 @@ body{margin-top:20px;}
     margin: 0 2px
 }
 
+.dropdown-menu{
+  background: #E27F0B;
+  width: 170px;
+  border: none;
+}
+
+.dropdown-menu a{
+  font-size:14px;
+}
+
+.dropdown-menu hr{
+  margin: 2% 0% 0% 0%;
+  color: rgb(71, 10, 71) !important;
+  height:   5% !important;
+}
+
+.show-on-hover:hover > ul.dropdown-menu {
+  display: block;    
+}
+
+#profile-admin .btneditprofile{
+  background: #E27F0B;
+  width: 200px;
+  height: 40px;
+  color:white;
+  font-size: 16px;
+  border: none;
+  margin:1% 5% 2% 5%
+
+}
+
+#profile-admin .btneditprofile:hover{
+  background: rgb(255, 170, 72);
+}
 
 
-
-  #profile-admin #btnchangepass{
+  #profile-admin .btnchangepass{
     background: #1E0A3C;
     width: 200px;
     height: 40px;
     color:white;
     font-size: 16px;
     border: none;
+    margin:1% 5% 2% 5%
 
 
   }
 
-  #profile-admin #btnchangepass:hover{
+  #profile-admin .btnchangepass:hover{
     background: rgb(63, 20, 128);
   }
 

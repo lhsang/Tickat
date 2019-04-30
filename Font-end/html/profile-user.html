@@ -38,174 +38,197 @@
           </div>
         </form>
         <div class="feature">
-            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
-            <a class="create-event" href="">Tạo sự kiện</a>
+            <a href="profile-user.html" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">
+                <img src="../img/avatar/youngjae.jpg" style="width: 42px;height: 42px;border-radius:50%;border: white 2px solid ;" alt="">
+            </a> 
+
+
+            <div class="btn-group  show-on-hover">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" >
+                      <li><a href="#" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
+                      <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
+                      <li><a href="#"><i class="fas fa-calendar-alt"></i> Sự kiện đã tạo</a></li>
+                      <li class="divider"> <hr></li>
+                      <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                    </ul>
+                  </div>
+            <a class="create-event" href="">| Tạo sự kiện</a>
         </div>
       </div>
     </nav>
     <!-- nav end -->
 
 <!--Body start-->
-<div class="container-fuild" id="content-a2-trangchitiet" >
-    <div class="container" >
-        <div class="row" >
-            <div class="col-8">
-                <img src="../img/event/event_img.PNG" alt="" id="img-title">
-            </div>
-            <div class="col-3" style="margin-left: 20px" >
-                <div class="row">
-                        <p style="color:#E27F0B;font-weight: bold;font-size:36px ">Apr</p>
-                </div>
 
-                <div class="row">
-                        <p style="font-size: 20px">23</p>
-                </div>
-
-                <div class="row">
-                        <p class="text-header2">Electricfy VietNam 2019</p>
-                </div>
-
-                <div class="row">
-                        <p style="color:#636363;font-weight: bold;font-size: 18px;">by Confexhub Sdn, Bhd.</p>
-                </div>
-                <div class="row">
-                    <p  class="text-header2">$1,036.59 - $1,864.59</p>
-                </div>
-                <div class="row">
-                    <button id="ticket-button"><p>Tickets</p> </button>
-                </div>
-                <hr/>
-
-            </div>
-        </div>
-
-        <div class="row" style="margin-left: 5px;margin-right: 5px;margin-top:5px">
-            <div class="col-8">
-                <div class="row text-header1" >
-                    <p>ELECTRIFYING VIETNAM THROUGH SUSTAINABLE ENERGY PLANS</p>
-                </div>
-
-                <div class="row text-header1" >
-                    <p>About this Event</p>
-                </div>
-
-                <div class="row text-content" >
-                    <p>According to the revised Power Development Plan (PDP 7), Vietnam requires total investment of $143.5 billion (excluding privately financed BOT power generation projects) for meeting its double-digital annual growth of energy in demand. The Vietnam government is broadening their strategic approaches to fully tap the huge potential of its energy sector by unlocking private investment potentials; inviting foreign technical expertise and foreign investment for participation in its energy projects. It is estimated that Vietnam requires investment of 15billion per year, which 75% is earmarked for generation and 25% for development of the transmission and distribution network.
-                    <br>
-                        <br> The hosting of the Electrify Vietnam 2019 (EVN2019) is to provide an interactive platform for potential investors and key players of the industry from over 25 countries to get updated on the new directions, investment policies and market potential of the energy and power sector in Vietnam; at the same time discuss strategies and share insights to support the National Power Development Plan in order to fulfill the demand of 515Twh in 2030.</p>
-                </div>
-            </div>
-            <div class="col-3  text-content" >
-                <div style="margin-left: 20px">
-                    <div class="row">
-                            <p  class="text-header2">Date And Time</p><br>
-                            <p>Thu, Mar 28, 2019, 7:30 AM –
-                                    Fri, Mar 29, 2019, 4:30 PM Indochina Time Vietnam Time</p>
+<div class="container" style="margin-top:6%" id="profile-admin">
+    <div class="row  d-flex justify-content-center">
+        <div id="user-profile-2" class="user-profile" >
+            <div class="tabbable">
+              <ul class="nav nav-tabs padding-18">
+                <li class="active">
+                  <a data-toggle="tab" href="#home" style="color: rgba(226, 127, 11, 0.94)">
+                    <i class="ace-icon fa fa-user bigger-120" style="color: rgba(226, 127, 11, 0.94)"></i>
+                    Profile user
+                  </a>
+                </li>
+        
+              </ul>
+        
+              <div class="tab-content no-border padding-24">
+                <div id="home" class="tab-pane in active"  style="margin-top:2%">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-5 center">    
+                        <img class="editable img-responsive" style="width: 200px;height: 200px;border-radius: 50%;margin-top:7%" src="../img/avatar/youngjae.jpg">    
+                    </div><!-- /.col -->
+        
+                    <div class="col-xs-12 col-sm-7" >
+                      <h4 style="color: rgba(226, 127, 11, 0.94)">
+                        <span class="middle">Choi Young Jae</span>
+        
+                        <span class="label label-purple arrowed-in-right">
+                          <i class="fa fa-circle" style="font-size:14px"></i>
+                          online
+                        </span>
+                      </h4>
+        
+                      <div class="profile-user-info">
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Username </div>
+        
+                          <div class="profile-info-value">
+                            <span>Choi Young Jae</span>
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Location </div>
+        
+                          <div class="profile-info-value">
+                            <span>Mokpo, South Korean</span>
                             
-                           
-                    </div>
-
-                    <div class="row">
-                            <a href="#" style="color:#636363;margin-bottom:5%">Add to Calendar
-                                </a>
-                    </div>
-
-                    <div class="row">
-                        <p  class="text-header2">Location</p><br>
-                        <p>Rex Hotel
-                                141 Nguyễn Huệ
-                                 Ho Chi Minh, ho chi minh 700000
-                                </p>
-                        <a href="#googleMap" style="color:#636363;margin-bottom:5%">View Map</a>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="row">
-                                <span>Share with friend</span><br>
+                          </div>
                         </div>
-                        <div class="row">
-                                <div class="col-3">
-                                        <button class="sharebtn"> 
-                                                <i class="fab fa-facebook "></i>
-                                        </button>
-                                </div>
         
-                                <div class="col-3">
-                                    <button class="sharebtn">
-                                        <i class="fab fa-twitter-square"></i>   
-                                    </button>  
-                                </div>
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Age </div>
         
-                                <div class="col-3">
-                                        <button class="sharebtn">
-                                            <i class="fas fa-envelope-square"></i>
-                                        </button> 
-                                </div>
-             
-                                <div class="col-3">
-                                    <button class="sharebtn">
-                                        <i class="fab fa-instagram"></i>
-                                    </button>
-                                </div>
-        
+                          <div class="profile-info-value">
+                            <span>23</span>
+                          </div>
                         </div>
-                       
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-
-
-        <div class="row  d-flex justify-content-center">
-            <img src="../img/event/company.PNG" alt="">
-        </div>
-        <div class="row  d-flex justify-content-center">
-            <a href="#">Confexhub Sdn</a>
-        </div>
-        <div class="row  d-flex justify-content-center">
-            <p  class="center-block" >Organier of electrify VN</p>
-        </div>
-        <div class="row  d-flex justify-content-center" style="margin-bottom: 20px">
-            <div style="margin-right: 50px">
-                <button>Follow</button>
-            </div>
-            <div >
-                <button>Contact</button>
-            </div>
-        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Joined </div>
+        
+                          <div class="profile-info-value">
+                            <span>2010/06/20</span>
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Last Online </div>
+        
+                          <div class="profile-info-value">
+                            <span>3 hours ago</span>
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="hr hr-8 dotted"></div>
+        
+                      <div class="profile-user-info">
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Website </div>
+        
+                          <div class="profile-info-value">
+                            <a href="#" target="_blank" style="color: rgba(226, 127, 11, 0.94)">www.ars.com</a>
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name">
+                              <i class="fab fa-facebook-square" style="color: rgba(226, 127, 11, 0.94)"></i>                            </div>
   
-
-        <div class="row">
-            <div id="googleMap" style="width:100%;height:400px;"></div>
-        </div>
-
+                          <div class="profile-info-value">
+                            <a href="#" style="color: rgba(226, 127, 11, 0.94)">Find me on Facebook</a>
+                          </div>
+                        </div>
         
-        <div class="row d-flex justify-content-center" >
-            <p class="text-header2">Electricfy VietNam 2019</p>
-        </div>
-        <div class="row  d-flex justify-content-center">
-            <p>at</p>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <p class="text-header2">Rex Hotel</p>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <p>141 Nguyễn Huệ, HCM</p>
-        </div>
-
+                        <div class="profile-info-row">
+                          <div class="profile-info-name">
+                              <i class="fab fa-twitter-square" style="color: rgba(226, 127, 11, 0.94)"></i>                            </div>
         
-<div class="fb-comments" data-href="https://D:/Github/PTUDW-CNTN2016-Nhom05/Font-end/html/a2-trangchitietsp.html" data-width="" data-numposts="5"></div>
-
-
-
+                          <div class="profile-info-value">
+                            <a href="#" style="color: rgba(226, 127, 11, 0.94)">Follow me on Twitter</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+        
+                  <div class="space-20"></div>
+        
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                      <div class="widget-box transparent">
+                        <div class="widget-header widget-header-small">
+                          <h4 class="widget-title smaller" style="color: rgba(226, 127, 11, 0.94)">
+                              <i class="far fa-check-square" style="color: rgba(226, 127, 11, 0.94)"></i>                             
+                              Little About Me
+                            </h4>
+                        </div>
+        
+                        <div class="widget-body">
+                          <div class="widget-main">
+                            <p>
+                              My job is mostly lorem ipsuming and dolor sit ameting as long as consectetur adipiscing elit.
+                            </p>
+                            <p>
+                              Sometimes quisque commodo massa gets in the way and sed ipsum porttitor facilisis.
+                            </p>
+                            <p>
+                              The best thing about my job is that vestibulum id ligula porta felis euismod and nullam quis risus eget urna mollis ornare.
+                            </p>
+                            <p>
+                              Thanks for visiting my profile.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /#home -->
+        
+              </div>
+            </div>
+          </div>
     </div>
+   
+  <div class="row  d-flex justify-content-center">
+    <button  class="btneditprofile"><i class="far fa-edit" style="color:white;font-size: 18px"></i> Edit profile</button>
+  </div>
 
+  <hr>
+  <div  class="row  d-flex justify-content-center">
+    <button class="btnchangepass"><i class="far fa-calendar-alt" style="margin-right:10%"></i><b></b> Events created</b> </button>
+    <button class="btnchangepass"><i class="fas fa-ticket-alt" style="margin-right:10%"></i><b></b> Ticket bought</b> </button>
+
+  </div>
+
+
+
+<br>
 
 </div>
 
 
+
+
+
+  </div> 
 <!--body end-->
 
 <!--footer start-->
@@ -353,22 +376,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
 
-     <!--start map script -->
-     <script>
-        function myMap() {
-            var mapProp= {
-            center:new google.maps.LatLng(10.762940, 106.682257),
-            zoom:15,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(10.762940, 106.682257)
-            });
-            marker.setMap(map);
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGTfU97JHRG9n2U29EAojIhFll2RE09I&callback=myMap"></script>
-    <!--end map script -->
-    
+     
   </body>
 </html>

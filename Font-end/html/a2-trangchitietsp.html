@@ -49,8 +49,8 @@
 
 <!--Body start-->
 <div class="container-fuild" id="content-a2-trangchitiet" >
-    <div class="container" >
-        <div class="row" >
+    <div class="container"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="row">
             <div class="col-8">
                 <img src="../img/event/event_img.PNG" alt="" id="img-title">
             </div>
@@ -68,13 +68,13 @@
                 </div>
 
                 <div class="row">
-                        <p style="color:#636363;font-weight: bold;font-size: 18px;">by Confexhub Sdn, Bhd.</p>
+                        <p style="color:#636363;font-weight: bold;font-size: 18px;">NTC: Confexhub Sdn, Bhd.</p>
                 </div>
                 <div class="row">
-                    <p  class="text-header2">$1,036.59 - $1,864.59</p>
-                </div>
+                    <p class="text-header2">50.000VNĐ - 700.000VNĐ</p>
+                </div>  
                 <div class="row">
-                    <button id="ticket-button"><p>Tickets</p> </button>
+                    <button id="ticket-button"><p>Mua vé ngay</p> </button>
                 </div>
                 <hr/>
 
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="row text-header1" >
-                    <p>About this Event</p>
+                    <p>Thông tin sự kiện</p>
                 </div>
 
                 <div class="row text-content" >
@@ -100,7 +100,7 @@
             <div class="col-3  text-content" >
                 <div style="margin-left: 20px">
                     <div class="row">
-                            <p  class="text-header2">Date And Time</p><br>
+                            <p  class="text-header2">Thời gian</p><br>
                             <p>Thu, Mar 28, 2019, 7:30 AM –
                                     Fri, Mar 29, 2019, 4:30 PM Indochina Time Vietnam Time</p>
                             
@@ -108,22 +108,22 @@
                     </div>
 
                     <div class="row">
-                            <a href="#" style="color:#636363;margin-bottom:5%">Add to Calendar
+                            <a href="#" style="color:#636363;margin-bottom:5%">Thêm lịch
                                 </a>
                     </div>
 
                     <div class="row">
-                        <p  class="text-header2">Location</p><br>
+                        <p  class="text-header2">Địa điểm</p><br>
                         <p>Rex Hotel
                                 141 Nguyễn Huệ
                                  Ho Chi Minh, ho chi minh 700000
                                 </p>
-                        <a href="#googleMap" style="color:#636363;margin-bottom:5%">View Map</a>
+                        <a href="#googleMap" style="color:#636363;margin-bottom:5%">Xem bản đồ</a>
                     </div>
                     
                     <div class="row">
                         <div class="row">
-                                <span>Share with friend</span><br>
+                                <span>Chia sẻ:</span><br>
                         </div>
                         <div class="row">
                                 <div class="col-3">
@@ -171,10 +171,10 @@
         </div>
         <div class="row  d-flex justify-content-center" style="margin-bottom: 20px">
             <div style="margin-right: 50px">
-                <button>Follow</button>
+                <button>Theo dõi</button>
             </div>
             <div >
-                <button>Contact</button>
+                <button>Liên hệ</button>
             </div>
         </div>
   
@@ -361,7 +361,7 @@
         function myMap() {
             var mapProp= {
             center:new google.maps.LatLng(10.762940, 106.682257),
-            zoom:15,
+            zoom:16,
             };
             var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
             var marker = new google.maps.Marker({
@@ -370,7 +370,7 @@
             marker.setMap(map);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGTfU97JHRG9n2U29EAojIhFll2RE09I&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqTCmGrK4J42n7pDMy1yAl9JYNiDTdeaQ&callback=myMap"></script>
     <!--end map script -->
     
   </body>

@@ -23,31 +23,33 @@
   
   </head> 
   <body  onload="loadchart()"> 
-    <!-- nav start --> 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
-      <a class="navbar-brand" href="#"> 
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='./dashboard.html'"> 
-          <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
-      </a> 
-       
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
-        <span class="navbar-toggler-icon"></span> 
-      </button> 
-     
-      <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-        <form class="form-inline my-2 my-lg-0 search-form"> 
-          <div class="input-group"> 
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
-          </div> 
-        </form> 
-        <div class="feature"> 
-            <img src="../img/avatar/tramanh.jpg" class="avatar"> 
-            <a href="" class="logout">Logout</a> 
-        </div> 
-      </div> 
-    </nav> 
-    <!-- nav end --> 
+        <!-- nav start --> 
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
+            <a class="navbar-brand" href="#"> 
+                <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat"> 
+                <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
+            </a> 
+             
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
+              <span class="navbar-toggler-icon"></span> 
+            </button> 
+           
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+              <form class="form-inline my-2 my-lg-0 search-form"> 
+                <div class="input-group"> 
+                    <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
+                    <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
+                </div> 
+              </form> 
+              <div class="feature"> 
+                  <img src="../img/avatar/tramanh.jpg" class="avatar"> 
+                  <a href="" class="logout">Logout</a> 
+                  <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
+                  <a href="#" class="logout">Create event</a>
+              </div> 
+            </div> 
+          </nav> 
+          <!-- nav end --> 
  
     <!-- body start --> 
     <div class="dashboard-body" style="background:white"> 
@@ -74,7 +76,7 @@
 
 <div class="container-fuild">
   <div class="row  d-flex justify-content-center">
-      <div class="col-9 ">                 
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">                 
         <div class="row d-flex justify-content-center">
                 <form action="" >
                   <b>Revenue and Cost from day:</b> 
@@ -98,7 +100,7 @@
           </div>
       </div>
 
-      <div class="col-3">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <div class="row  circle-bar card" >
               <div class="row d-flex justify-content-center">
                   <h3>Total sales in 2019</h3>
@@ -166,14 +168,14 @@
                           </div>
                           <hr>
                           <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                   <div class="review-block-img">
                                       <img src="../img/avatar/jinyoung.jpg" class="img-rounded" alt="">
                                   </div>
                                   <div class="review-block-name"><a href="#">Park Jin Young</a></div>
                                   <div class="review-block-date">January 29, 2016<br>1 day ago</div>
                               </div>
-                              <div class="col-sm-7">
+                              <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                                   <div class="review-block-rate">
                                       <button type="button" class="btn  btn-xs" aria-label="Left Align">
                                           <span class="fa fa-star checked starchecked"></span>
@@ -194,78 +196,78 @@
                                   <div class="review-block-title">this was nice in buy</div>
                                   <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
                               </div>
-                              <div class="col-sm-2">
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                   <button class="btndashboard">Reply</button>
                               </div>
                           </div>
                           <hr>
                           <div class="row">
-                              <div class="col-sm-3">
-                                  <div class="review-block-img">
-                                      <img src="../img/avatar/mark.jpg" class="img-rounded" alt="">
-                                  </div>
-                                  <div class="review-block-name"><a href="#">Mark</a></div>
-                                  <div class="review-block-date">January 29, 2016<br>1 day ago</div>
-                              </div>
-                              <div class="col-sm-7">
-                                  <div class="review-block-rate">
-                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
-                                        </button>
-                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
-                                        </button>
-                                      <button type="button" class="btn btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="review-block-img">
+                                    <img src="../img/avatar/youngjae.jpg" class="img-rounded" alt="">
+                                </div>
+                                <div class="review-block-name"><a href="#">Choi Young Jae</a></div>
+                                <div class="review-block-date">January 29, 2016<br>1 day ago</div>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                                <div class="review-block-rate">
+                                    <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
                                       </button>
-                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star star"></span>
+                                    <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
                                       </button>
-                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star star"></span>
-                                      </button>
-                                  </div>
-                                  <div class="review-block-title">this was nice in buy</div>
-                                  <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <button class="btndashboard">Reply</button>
-                              </div>
-                          </div>
+                                    <button type="button" class="btn btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star star"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star star"></span>
+                                    </button>
+                                </div>
+                                <div class="review-block-title">this was nice in buy</div>
+                                <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button class="btndashboard">Reply</button>
+                            </div>
+                        </div>
                           <hr>
                           <div class="row">
-                              <div class="col-sm-3">
-                                  <div class="review-block-img">
-                                      <img src="../img/avatar/youngjae.jpg" class="img-rounded" alt="">
-                                  </div>
-                                  <div class="review-block-name"><a href="#">Choi Young Jae</a></div>
-                                  <div class="review-block-date">January 29, 2016<br>1 day ago</div>
-                              </div>
-                              <div class="col-sm-7">
-                                  <div class="review-block-rate">
-                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
-                                        </button>
-                                      <button type="button" class="btn  btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
-                                        </button>
-                                      <button type="button" class="btn btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star checked starchecked"></span>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="review-block-img">
+                                    <img src="../img/avatar/mark.jpg" class="img-rounded" alt="">
+                                </div>
+                                <div class="review-block-name"><a href="#">Mark</a></div>
+                                <div class="review-block-date">January 29, 2016<br>1 day ago</div>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                                <div class="review-block-rate">
+                                    <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
                                       </button>
-                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star star"></span>
+                                    <button type="button" class="btn  btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
                                       </button>
-                                      <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                          <span class="fa fa-star star"></span>
-                                      </button>
-                                  </div>
-                                  <div class="review-block-title">this was nice in buy</div>
-                                  <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <button class="btndashboard">Reply</button>
-                              </div>
-                          </div>
+                                    <button type="button" class="btn btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star checked starchecked"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star star"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                        <span class="fa fa-star star"></span>
+                                    </button>
+                                </div>
+                                <div class="review-block-title">this was nice in buy</div>
+                                <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button class="btndashboard">Reply</button>
+                            </div>
+                        </div>
                       </div>
                   </div>
                  

@@ -21,31 +21,44 @@
 
 
 
-    <!-- nav start -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
-      <a class="navbar-brand" href="#">
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='../index.html'">
-          <a class="navbar-brand color-main name-page" href="../index.html">Tickat</a>
-      </a>
+     <!-- nav start -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='../index.html'">
+            <a class="navbar-brand color-main name-page" href="../index.html">Tickat</a>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 search-form">
-          <div class="input-group">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0 search-form">
+            <div class="input-group">
+                <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
+                <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </form>
+          <div class="feature">
+              <a href="profile-user.html" data-toggle="modal" data-target=".bd-example-modal-lg" class="login" style="text-decoration: none">
+                  <img src="../img/avatar/youngjae.jpg" class="avatar" alt="">
+              </a> 
+              <div class="btn-group  show-on-hover">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" >
+                        <li><a href="profile-user.html" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
+                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i> Sự kiện đã tạo</a></li>
+                        <li class="divider"> <hr></li>
+                        <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                      </ul>
+                    </div>
           </div>
-        </form>
-        <div class="feature">
-            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
-            <a class="create-event" href="">Tạo sự kiện</a>
         </div>
-      </div>
-    </nav>
-    <!-- nav end -->
+      </nav>
+      <!-- nav end -->
 
 <!--Body start-->
 <div class="container-fuild" id="content-a2-trangchitiet" >
@@ -68,13 +81,13 @@
                 </div>
 
                 <div class="row">
-                        <p style="color:#636363;font-weight: bold;font-size: 18px;">NTC: Confexhub Sdn, Bhd.</p>
+                        <p style="color:#636363;font-weight: bold;font-size: 18px;">NTC: <a href="./about.html">Confexhub Sdn, Bhd.</a></p>
                 </div>
                 <div class="row">
                     <p class="text-header2">50.000VNĐ - 700.000VNĐ</p>
                 </div>  
                 <div class="row">
-                    <button onclick="location.href='./booking.html'"id="ticket-button"><p>Mua vé ngay</p> </button>
+                    <button onclick="location.href='./booking.html'"id="ticket-button" class="btn-buy-now">Mua vé ngay</button>
                 </div>
                 <hr/>
 
@@ -174,7 +187,7 @@
                 <button>Theo dõi</button>
             </div>
             <div >
-                <button>Liên hệ</button>
+                <button onclick ="window.location.href='./about.html'">Liên hệ</button>
             </div>
         </div>
   
@@ -354,7 +367,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="./js/script.js"></script>
+    <script src="../js/script.js"></script>
 
      <!--start map script -->
      <script>

@@ -11,34 +11,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
-    <!-- nav start -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin">
-      <a class="navbar-brand" href="#">
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='./dashboard.html'">
-          <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a>
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 search-form">
-          <div class="input-group">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
-        </form>
-        <div class="feature">
-            <img src="../img/avatar/tramanh.jpg" class="avatar">
-            <a href="./admin-login.html" class="logout">Logout</a>
-        </div>
-      </div>
-    </nav>
-    <!-- nav end -->
+       <!-- nav start --> 
+       <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
+        <a class="navbar-brand" href="#"> 
+            <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat"> 
+            <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
+        </a> 
+         
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
+          <span class="navbar-toggler-icon"></span> 
+        </button> 
+       
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+          <form class="form-inline my-2 my-lg-0 search-form"> 
+            <div class="input-group"> 
+                <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
+                <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
+            </div> 
+          </form> 
+          <div class="feature"> 
+              <img src="../img/avatar/tramanh.jpg" class="avatar"> 
+              <a href="" class="logout">Logout</a> 
+              <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
+              <a href="#" class="logout">Create event</a>
+          </div> 
+        </div> 
+      </nav> 
+      <!-- nav end --> 
 
     <!-- body start -->
     <div class="dashboard-body" id="dashboard-event">
@@ -78,14 +81,14 @@
                 </div>
                 <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                                  <img src="../img/avatar/jb.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
+                                  <span>JB</span>
                                   <p class="time">5 minute ago</p>
                               </div>
                               
@@ -118,14 +121,14 @@
                 </div>
                 
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/ana.jpeg" class="avatar">
+                                  <img src="../img/avatar/mark.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Anna Tran</span>
+                                  <span>Mark Tuan</span>
                                   <p class="time">10 minute ago</p>
                               </div>
                               
@@ -158,14 +161,14 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/aly.jpeg" class="avatar">
+                                  <img src="../img/avatar/jinyoung.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park Hang Seo</span>
+                                  <span>Park Jin Young</span>
                                   <p class="time">15 minute ago</p>
                               </div>
                               
@@ -198,14 +201,14 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/timcook.jpg" class="avatar">
+                                  <img src="../img/avatar/jackson.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Timcook</span>
+                                  <span>Jackson</span>
                                   <p class="time">45 minute ago</p>
                               </div>
                               
@@ -217,7 +220,7 @@
                       <div class="card-body">
                         <img src="../img/data/event-4.jpg" class="banner-card">
                           <div class="content-event">
-                              <span class="event-name">Chia sẻ trong một buổi giao lưu với sinh viên trường Đại học Harlow</span>
+                              <span class="event-name">Giao lưu ở Đại học Harlow</span>
                           </div>
                           <div class="row">
                               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
@@ -238,14 +241,14 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                                  <img src="../img/avatar/youngjae.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
+                                  <span>Choi Young Jae</span>
                                   <p class="time">5 minute ago</p>
                               </div>
                               
@@ -278,14 +281,14 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                                  <img src="../img/avatar/bambam.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
+                                  <span>Bam Bam</span>
                                   <p class="time">5 minute ago</p>
                               </div>
                               
@@ -318,14 +321,14 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
+                                  <img src="../img/avatar/yugyeom.jpg" class="avatar">
                               </div>
                               <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
+                                  <span>Kim Yu Gyeom</span>
                                   <p class="time">5 minute ago</p>
                               </div>
                               
@@ -358,7 +361,7 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
@@ -398,7 +401,7 @@
                 </div>
   
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center"   onclick="location.href='../html/admin-event-detail.html'">
+                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
                       <div class="card-header">
                           <div class="row">
                               <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
@@ -469,7 +472,7 @@
                 <hr>
                 <div>
                   <div class="title-top">Top events</div>
-                  <div class="top-event">
+                  <div class="top-event wow bounceInUp">
                     <table class="table table-hover table-inverse table-responsive">
                       <thead class="thead-inverse">
                         <tr>
@@ -614,5 +617,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
   </body>
 </html>

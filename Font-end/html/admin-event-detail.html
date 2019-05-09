@@ -15,31 +15,33 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   </head>
   <body>
-    <!-- nav start -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin">
-      <a class="navbar-brand" href="./dashboard.html">
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='./dashboard.html'">
-          <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a>
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 search-form">
-          <div class="input-group">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
-        </form>
-        <div class="feature">
-            <img src="../img/avatar/tramanh.jpg" class="avatar">
-            <a href="./admin-login.html" class="logout">Logout</a>
-        </div>
-      </div>
-    </nav>
-    <!-- nav end -->
+    <!-- nav start --> 
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
+      <a class="navbar-brand" href="#"> 
+          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat"> 
+          <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
+      </a> 
+       
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+      </button> 
+     
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+        <form class="form-inline my-2 my-lg-0 search-form"> 
+          <div class="input-group"> 
+              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
+              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
+          </div> 
+        </form> 
+        <div class="feature"> 
+            <img src="../img/avatar/tramanh.jpg" class="avatar"> 
+            <a href="" class="logout">Logout</a> 
+            <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
+            <a href="#" class="logout">Create event</a>
+        </div> 
+      </div> 
+    </nav> 
+    <!-- nav end --> 
     <!-- body start -->
     <div class="container detail mt-100">
       <div class="ticket">
@@ -54,8 +56,8 @@
             <div class="card-header" role="tab" id="section1HeaderId">
               <h5 class="mb-0">
                 <button class="btn btn-link" style="width:100%" type="button" data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
-                    <span class="float-left">Total</span>
-                    <span class="color-red float-right">26.700.000</span>
+                    <span class="float-left"><i class="fa fa-chevron-right ic-collapse" aria-hidden="true"></i> Total</span>
+                    <span class="color-red float-right">26.000.000</span>
                 </button>
               </h5>
             </div>
@@ -276,9 +278,12 @@
     <script src="../js/script.js"></script>
 
     <script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
+    $('#section1ContentId').on('show.bs.collapse', function () {
+      $('.ic-collapse').addClass('rotate-collapse');
+    })
+    $('#section1ContentId').on('hide.bs.collapse', function () {
+      $('.ic-collapse').removeClass('rotate-collapse');
+    })
     </script>
   </body>
 </html>

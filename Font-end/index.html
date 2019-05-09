@@ -11,34 +11,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="./css/animate.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
-    <!-- nav start -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
-      <a class="navbar-brand" href="#">
-          <img src="./img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat">
-          <a class="navbar-brand color-main name-page" href="index.html">Tickat</a>
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 search-form">
-          <div class="input-group">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
-        </form>
-        <div class="feature">
-            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
-            <a class="create-event" href="">Tạo sự kiện</a>
-        </div>
+<!-- nav start -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
+  <a class="navbar-brand" href="#">
+      <img src="./img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='../index.html'">
+      <a class="navbar-brand color-main name-page" href="index.html">Tickat</a>
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="form-inline my-2 my-lg-0 search-form">
+      <div class="input-group">
+          <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
+          <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
-    </nav>
-    <!-- nav end -->
+    </form>
+    <div class="feature">
+        <a href="./html/profile-user.html"  style="text-decoration: none">
+            <img src="img/avatar/youngjae.jpg" class="avatar" alt="">
+        </a> 
+        <div class="btn-group  show-on-hover">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" >
+                  <li><a href="./html/profile-user.html" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
+                  <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
+                  <li><a href="#"><i class="fas fa-calendar-alt" ></i> Sự kiện đã tạo</a></li>
+                  <li class="divider"> <hr></li>
+                  <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                </ul>
+              </div>
+    </div>
+  </div>
+</nav>
+<!-- nav end -->
 
     <!-- carousel intro start -->
     <div class="slide-intro">
@@ -81,10 +97,10 @@
     
     <!-- comming event start -->
     <div class="container comming-box">
-      <h1 class="title-cate">Sự kiện sắp diễn ra</h1>
+      <h1 class="title-cate" style="margin-top:3%;margin-bottom: 5%">Sự kiện sắp diễn ra</h1>
       <div class="row">
         
-        <div class=" col-sm-12 col-lg-6">
+        <div class=" col-sm-12 col-lg-6 wow bounceInLeft">
             <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
                 <img class="card-img-top" src="./img/data/event-1.jpg" alt="Card image cap">
                  <span class="badge-price">100000 VNĐ</span>
@@ -109,7 +125,7 @@
               </div>
         </div>
         
-        <div class=" col-sm-12 col-lg-6">
+        <div class=" col-sm-12 col-lg-6 wow bounceInRight">
             <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
                 <img class="card-img-top" src="./img/data/event-2.jpg" alt="Card image cap">
                 <span class="badge-price">200000 VNĐ</span>
@@ -134,7 +150,7 @@
               </div>
         </div>
 
-        <div class=" col-sm-12 col-lg-6">
+        <div class=" col-sm-12 col-lg-6 wow bounceInLeft">
             <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
                 <img class="card-img-top" src="./img/data/event-3.jpg" alt="Card image cap">
                 <span class="badge-price">150000 VNĐ</span>
@@ -150,7 +166,7 @@
                     </div>
                   </div>
                   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                    <h5 class="card-title">CRAZY Water Festival - V Wave 2019</h5>
+                    <h5 class="card-title">CRAZY Water Festival</h5>
                     <hr>
                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Ngày 25-5-2019 </p>
                     <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> SÂN VẬN ĐỘNG HOA LƯ, QUẬN 1</p>
@@ -159,7 +175,7 @@
               </div>
         </div>
 
-        <div class=" col-sm-12 col-lg-6">
+        <div class=" col-sm-12 col-lg-6 wow bounceInRight">
             <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
                 <img class="card-img-top" src="./img/data/event-4.jpg" alt="Card image cap">
                 <span class="badge-price">Free</span>
@@ -178,7 +194,7 @@
                     <h5 class="card-title">Buffet Equatorial</h5>
                     <hr>
                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 4, 03 Tháng 4 2019 - Thứ 3, 30 Tháng 4 2019 </p>
-                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> Khách sạn Equatorial 242 Trần Bình Trọng, Phường 4, Q.5, Thành Phố Hồ Chí Minh</p>
+                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> Khách sạn Equatorial Phường 4, Q.5, Thành Phố Hồ Chí Minh</p>
                   </div>
                 </div>
               </div>
@@ -186,25 +202,19 @@
 
       </div>
 
-      <div style="text-align: center">
-        <button class="btn-more" onclick="location.href='./html/all-events.html'">Xem thêm</button>
+      <div style="text-align: center" >
+        <button class="btn-more" onclick="location.href='./html/all-events.html'" style="margin-top:2%;">Xem thêm</button>
       </div>
     </div>
     <!-- comming event end -->
 
     <!-- suggest event start -->
-    <div class="mt-50 suggest">
-      <h1 class="title-suggest bg-main">Sự kiện đề xuất</h1>
+    <div class="mt-50 suggest" style="margin-top:5%;margin-bottom: 3%">
+      <h1 class="title-suggest bg-main" style="margin-top:5%;margin-bottom: 3%">Sự kiện đề xuất</h1>
       <div class="container">
           <div class="row blog">
               <div class="col-md-12">
                   <div id="blogCarousel" class="carousel slide" data-ride="carousel">
-
-                      <!-- <ol class="carousel-indicators">
-                          <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                          <li data-target="#blogCarousel" data-slide-to="1"></li>
-                      </ol> -->
-
                       <!-- Carousel items -->
                       <div class="carousel-inner">
 
@@ -229,7 +239,7 @@
                                               <h5 class="card-title">Đêm nhạc phim</h5>
                                               <hr>
                                               <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                              <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                              <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> Phòng A8, Lầu 6, HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
                                             </div>
                                           </div>
                                         </div>
@@ -281,7 +291,7 @@
                                               </div>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                              <h5 class="card-title">CRAZY Water Festival - V Wave 2019</h5>
+                                              <h5 class="card-title">CRAZY Water Festival</h5>
                                               <hr>
                                               <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i>Ngày 25-5-2019 </p>
                                               <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> SÂN VẬN ĐỘNG HOA LƯ, QUẬN 1</p>
@@ -308,7 +318,7 @@
                                               <h5 class="card-title">Buffet Equatorial</h5>
                                               <hr>
                                               <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 4, 03 Tháng 4 2019 - Thứ 3, 30 Tháng 4 2019 </p>
-                                              <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> Khách sạn Equatorial 242 Trần Bình Trọng, Phường 4, Q.5, Thành Phố Hồ Chí Minh</p>
+                                              <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> Khách sạn Equatorial Phường 4, Q.5, Thành Phố Hồ Chí Minh</p>
                                             </div>
                                           </div>
                                         </div>
@@ -452,7 +462,7 @@
           </div>
       </div>
     </div>
-    <div class="col-5">
+    <div class="col-4">
       <div>
                 <p class="texth3">Văn phòng làm việc</p>
       </div>
@@ -480,8 +490,8 @@
         </div>
 
     </div>
-    <div class="col-2">
-        <div class="row texth3" style="text-align: center" >Follow us</div>
+    <div class="col-3">
+        <div class="row texth3" style="text-align: center;" >Follow us</div>
         <div class="row">
               <img src="img/icon/facebook.png" alt="" class="footericon" >
               <img src="img/icon/instagram.png" alt="" class="footericon">
@@ -508,5 +518,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+     <script>
+        new WOW().init();
+    </script>
   </body>
 </html>

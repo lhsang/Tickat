@@ -21,31 +21,33 @@
   
   </head> 
   <body  onload="loadchart()"> 
-    <!-- nav start --> 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
-      <a class="navbar-brand" href="#"> 
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='./dashboard.html'"> 
-          <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
-      </a> 
+       <!-- nav start --> 
+       <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
+        <a class="navbar-brand" href="#"> 
+            <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat"> 
+            <a class="navbar-brand color-main name-page" href="./dashboard.html">Tickat</a> 
+        </a> 
+         
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
+          <span class="navbar-toggler-icon"></span> 
+        </button> 
        
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
-        <span class="navbar-toggler-icon"></span> 
-      </button> 
-     
-      <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-        <form class="form-inline my-2 my-lg-0 search-form"> 
-          <div class="input-group"> 
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+          <form class="form-inline my-2 my-lg-0 search-form"> 
+            <div class="input-group"> 
+                <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword"> 
+                <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button> 
+            </div> 
+          </form> 
+          <div class="feature"> 
+              <img src="../img/avatar/tramanh.jpg" class="avatar"> 
+              <a href="" class="logout">Logout</a> 
+              <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
+              <a href="#" class="logout">Create event</a>
           </div> 
-        </form> 
-        <div class="feature"> 
-            <img src="../img/avatar/tramanh.jpg" class="avatar"> 
-            <a href="" class="logout">Logout</a> 
         </div> 
-      </div> 
-    </nav> 
-    <!-- nav end --> 
+      </nav> 
+      <!-- nav end --> 
  
     <!-- body start --> 
     <div class="dashboard-body" style="background:white"> 

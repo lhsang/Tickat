@@ -11,40 +11,57 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/animate.css">
+
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 </head>
   <body>
     <!-- nav start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-main fixed-top">
-      <a class="navbar-brand" href="#">
-          <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='../index.html'">
-          <a class="navbar-brand color-main name-page" href="../index.html">Tickat</a>
-      </a>
+        <a class="navbar-brand" href="#">
+            <img src="../img/logo/logo_4x.png" width="30" height="30" class="d-inline-block align-top logo" alt="Tickat" onclick="location.href='../index.html'">
+            <a class="navbar-brand color-main name-page" href="../index.html">Tickat</a>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 search-form">
-          <div class="input-group">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
-              <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0 search-form">
+            <div class="input-group">
+                <input class="form-control mr-sm-2 search-input" type="search" placeholder="Tìm kiếm" results=3 name="keyword">
+                <button class="btn btn-search my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </form>
+          <div class="feature">
+              <a href="profile-user.html" data-toggle="modal" data-target=".bd-example-modal-lg" class="login" style="text-decoration: none">
+                  <img src="../img/avatar/youngjae.jpg" class="avatar" alt="">
+              </a> 
+              <div class="btn-group  show-on-hover">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" >
+                        <li><a href="profile-user.html" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
+                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i> Sự kiện đã tạo</a></li>
+                        <li class="divider"> <hr></li>
+                        <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                      </ul>
+                    </div>
           </div>
-        </form>
-        <div class="feature">
-            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
-            <a class="create-event" href="">Tạo sự kiện</a>
         </div>
-      </div>
-    </nav>
-    <!-- nav end -->
+      </nav>
+      <!-- nav end -->
 
     
 
     <!-- all-events.html start-->
-      <div style="padding:80px;" class="all-events">
+      <div style="padding-top:80px;" class="all-events">
         <div class="row">
             
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 cate">
@@ -68,7 +85,7 @@
                         <hr>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
                           <label for="input" class="col-sm-2 control-label label-datepicker">Từ:</label>
                     </div>   
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -139,8 +156,33 @@
 
                 <div class="row bg-white box">
                     
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='../html/a2-trangchitietsp.html'">
+                            <img class="card-img-top" src="../img/data/event-2.jpg" alt="Card image cap">
+                            <span class="badge-price">200000 VNĐ</span>
+                            <div class="card-body row">
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                                <div class="date-box">
+                                    <div class="date-header">
+                                        April
+                                    </div>
+                                    <div class="date-body">
+                                        27
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
+                                <h6 class="card-title">MSI LEAGUE OF LEGEND</h6>
+                                <hr>
+                                <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 6, 20 Tháng 4 2019</p>
+                                <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>42 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -148,24 +190,24 @@
                                     <div class="date-box">
                                         <div class="date-header">
                                             April
-                                        </div>
+                                        </div>  
                                         <div class="date-body">
                                             27
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -180,17 +222,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -205,17 +247,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -230,17 +272,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -255,17 +297,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -280,17 +322,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -305,17 +347,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
+                    <div class="col-xs-11 col-sm-11 col-md-4 col-lg-4">
+                        <div class="card wow zoomIn" onclick="location.href='./a2-trangchitietsp.html'">
                             <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
                             <span class="badge-price">100000 VNĐ</span>
                             <div class="card-body row">
@@ -330,35 +372,10 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
+                                    <h6 class="card-title">Đêm nhạc phim</h6>
                                     <hr>
                                     <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="card" onclick="location.href='./a2-trangchitietsp.html'">
-                            <img class="card-img-top" src="../img/data/event-1.jpg" alt="Card image cap">
-                            <span class="badge-price">100000 VNĐ</span>
-                            <div class="card-body row">
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-                                    <div class="date-box">
-                                        <div class="date-header">
-                                            April
-                                        </div>
-                                        <div class="date-body">
-                                            27
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
-                                    <h5 class="card-title">Đêm nhạc phim</h5>
-                                    <hr>
-                                    <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> Thứ 7, 27 Tháng 4 2019 </p>
-                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> HBSO 07 Công trường Lam Sơn, P. Bến Nghé, Q.1</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Phòng 608, Lầu 6, Cao ốc 142 Lê Duẩn, phường Khâm Thiên, Quận Đống Đa, Hà Nội.</p>
                                 </div>
                             </div>
                         </div>
@@ -540,6 +557,9 @@
     <script src="../js/script.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+       new WOW().init();
+   </script>
   </body>
 </html>

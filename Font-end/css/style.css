@@ -47,6 +47,7 @@
 /* custom here */
 
 /* index.html start */
+
 .navbar .name-page{
     font-size: 26px;
     font-weight: bold;
@@ -124,6 +125,9 @@ input[type="search"]::-webkit-search-cancel-button {
 .slide-intro .carousel-indicators li{
     width: 40px;
 }
+.card{
+    cursor: pointer;
+}
 
 /* comming */
 
@@ -139,9 +143,10 @@ input[type="search"]::-webkit-search-cancel-button {
     font-weight: bold;
     text-align: center;
 }
-.card{
+.comming-box .card, .suggest .card{
+    height: 350px;
     margin: 40px 0px;
-    box-shadow: 5px 5px rgb(241, 240, 240);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .date-box{
     box-shadow: 3px 3px rgb(245, 245, 245);
@@ -198,7 +203,15 @@ input[type="search"]::-webkit-search-cancel-button {
     bottom: -40px;
 
 }
+@media (min-width: 768px){
+    .suggest .carousel-control-prev-icon{
+        margin-left: -150px
+    }
 
+    .suggest .carousel-control-next-icon{
+        margin-right: -150px
+    }
+}
 /* The colour of the indicators */
 .blog .carousel-indicators li {
     background: #a3a3a3;
@@ -519,7 +532,7 @@ img.avatar{
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    border: 3px solid #7c6753;
+    border: 3px solid #E27F0B;
 }
 
 .nav-admin .logout{
@@ -558,6 +571,10 @@ img.avatar{
 img.banner-card{
     width: 100%;
     height: 150px;
+}
+
+.event .card{
+    margin: 10px 0px;
 }
 
 .event .card-body{
@@ -642,6 +659,9 @@ img.banner-card{
     color: rgb(49, 49, 49);
 }
 
+#dashboard-event .pag{
+    margin: 30px auto;
+}
 /* circle progressbar */
 
 .circle-wrap {
@@ -757,6 +777,11 @@ img.banner-card{
     text-align: center;
     border-radius:4px;
 }
+@media(max-width: 620px){
+    .information{
+        padding: 40px 0px;
+    }
+}
 
 .information .title-main{
     font-weight:700;
@@ -799,6 +824,16 @@ img.banner-card{
 
 
 /* admin-detail-event.html start */
+
+.detail .ic-collapse{
+    font-size: 13px;
+    margin-right:10px
+}
+
+.rotate-collapse{
+    transform: rotate(90deg);
+}
+
 .detail .feature .filter select{
     width:fit-content;
     display: inline;;
@@ -858,6 +893,40 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 /* all-events.html start */
 .all-events .card{
     box-shadow: none;
+    margin-top:25px !important;
+    margin: 0px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
+    height: 295px;
+}
+
+.all-events .card .card-body{
+    padding: 10px 5px;
+}
+
+.all-events .card .card-body hr{
+    margin: 0px 0px;
+}
+
+.all-events .card .card-body div:first-child{
+    padding-right: 0px !important
+}
+.all-events .card .card-body .card-text{
+    max-lines: 1
+}
+
+.all-events .card .card-img-top{
+    height: 150px;
+}
+
+@media(min-width: 768px){
+    .all-events .card{
+        
+    }
+}
+.all-events .dropdown-menu{
+    background: white;
+    border: 0.5px solid rgb(219, 217, 217);
+    border-radius: 10px;
 }
 
 .all-events .cate{
@@ -865,6 +934,7 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 }
 .all-events .box{
     padding: 0px 0px 0px 0px;
+    margin-bottom:60px;
 }
 
 .all-events .pag{
@@ -908,6 +978,26 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 
 .all-events .date-box .date-body{
     padding: 5px 0px;
+}
+
+.all-events .pag{
+    margin-bottom: 50px !important
+}
+
+
+.all-events .card-text .fa-map-marker{
+    margin-right: 5px
+}
+
+.all-events .pag .page-link {
+    z-index: 1;
+    color: #E27F0B;
+    border-color: #E27F0B;
+}
+
+.all-events .pag li.active .page-link {
+    background: #E27F0B;
+    color:white
 }
 /* all-events.html end */
 

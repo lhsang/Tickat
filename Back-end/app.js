@@ -2,9 +2,10 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
+const session = require('express-session');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());

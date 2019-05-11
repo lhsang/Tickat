@@ -16,13 +16,5 @@ class Account {
         obj && Object.assign(this, obj);
     }
 }
-var user = {
-    username: "lhsang",
-    password: "123",
-    full_name: "Le Hoang Sang",
-    address:     "Tim Bao Ngoc",
-    lover: "Bao Ngoc"
-}
-var acc = new Account();
-acc.clone(user);
-console.log(acc);
+
+module.exports = Account;

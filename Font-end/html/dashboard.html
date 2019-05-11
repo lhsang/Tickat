@@ -78,24 +78,37 @@
   <div class="row  d-flex justify-content-center">
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">                 
         <div class="row d-flex justify-content-center">
-                <form action="" >
-                  <b>Revenue and Cost from day:</b> 
-                  <input type="text" name="from" value="31/3/2019">
-                  
-                  <b> to day:</b>
-                  <input type="text" name="to" value="11/4/2019">
-                  
-                  <input type="submit" value="Submit" class="btndashboard">
-                </form> 
-                <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
-                <hr>
-                <form action="" class="formchart">
-                    <b>Sales in:</b> 
-                   <input type="text" name="year" value="2019">
+            <div class="row">
+                    <form action="" >
+                            <b>Revenue and Cost from day:</b> 
+                            <input type="date" name="from" value="31/3/2019">
+                            
+                            <b> to day:</b>
+                            <input type="date" name="to" value="11/4/2019">
+                            
+                            <input type="submit" value="Submit" class="btndashboard">
+                          </form> 
+            </div>
                 
-                   <input type="submit" value="Submit" class="btndashboard">
-                 </form> 
-                <div id="columnchart_values" style="width: 1100px; height: 300px;margin-left:3%" ></div>
+            <div class="row">
+                    <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
+                    <hr>
+            </div>
+
+            <div class="row">
+                    <form action="" class="formchart">
+                            <b>Sales in:</b> 
+                           <input type="text" name="year" value="2019">
+                        
+                           <input type="submit" value="Submit" class="btndashboard">
+                         </form> 
+            </div>
+            <div class="row">
+                    <div id="columnchart_values" style="width: 1100px; height: 300px;margin-left:3%" ></div>
+
+            </div>
+               
+                
          
           </div>
       </div>

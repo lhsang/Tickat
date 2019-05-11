@@ -777,11 +777,6 @@ img.banner-card{
     text-align: center;
     border-radius:4px;
 }
-@media(max-width: 620px){
-    .information{
-        padding: 40px 0px;
-    }
-}
 
 .information .title-main{
     font-weight:700;

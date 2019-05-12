@@ -1,4 +1,5 @@
 const LocalStratery = require('passport-local').Strategy;
+var {hash_bcrypt,check_password} = require('../utils/bcrypt');
 
 var userRecord = {
     'username':'lhsang',

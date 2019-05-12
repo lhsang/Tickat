@@ -4,7 +4,6 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
-
 const app = express();
 
 app.use(logger('dev'));

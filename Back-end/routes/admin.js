@@ -1,68 +1,53 @@
 const express = require('express');
 const router = express.Router();
 const session = require('express-session');
-const Passport = require('passport');
 const LocalStratery = require('passport-local').Strategy;
-const {ensureAuthenticated} = require('../services/ensureAuthenticated');
+const Passport = require('passport');
+const {ensureAuthenticated, forwardAuthenticated} = require('../configs/ensureAuthenticated');
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+require('../configs/passport_admin')(Passport);
 
-router.use(Passport.initialize());
-router.use(Passport.session());
 router.use(session({
-    secret: 'mySecret',
-    name: 'tickat_cookie_name',
-    proxy: true,
+    secret: 'secret',
+    name: 'tickat_cookie',
     resave: true,
     saveUninitialized: true
 }));
-//require('../configs/passport_admin')(Passport);
-router.route('/login').post(Passport.authenticate('local',{
-    failureRedirect: '/admin/login',
-    successRedirect: '/admin/loginOK'
-}));
+router.use(Passport.initialize());
+router.use(Passport.session());
 
-Passport.use(new LocalStratery(
-    (username, password, done)=>{
-        if(username=='lhsang' && password=='123'){
-            done(null, {'username':'lhsang','password':'123'});
-        }else{
-            done(null,false);
-        }
-    }
-));
-
-Passport.serializeUser((user, done)=>{
-    done(null, user.username);
-});
-
-Passport.deserializeUser((user, done)=>{
-    if(user.username=='lhsang'){
-        done(null, {'username':'lhsang','password':'123'});
-    }else{
-        done(null,false);
-    }
-});
-
-router.get('/private',ensureAuthenticated,(req,res)=>{
-    res.send("hihi");
+router.all('*', ensureAuthenticated, (req, res, next)=>{
+    next();
 });
 
 router.get('/login',(req,res)=>{
-    console.log(req.isAuthenticated());
-    
+    var message ="";
+    if(req.query.error !=null)
+        message = "Invalid username or password";
     res.render('admin/login',{
         title : 'Admin login',
-        layout: 'empty'
+        layout: 'empty',
+        message: message
     });
 });
 
+router.route('/login').post(Passport.authenticate('local',{
+        failureRedirect: '/admin/login?error',
+        successRedirect: '/admin/dashboard'
+    }
+));
 
-router.get('/loginOK',(req, res)=>{
-    res.send("Login thanh cong");
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('admin/login');
 });
 
-
+router.get('/dashboard',(req,res)=>{
+    res.render('admin/dashboard',{
+        layout :'admin'
+    });
+});
 
 module.exports = router;

@@ -19,8 +19,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','handlebars');
 
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
 app.use('/accounts', require('./routes/accounts'));
 app.use('/admin',require('./routes/admin'));
+
 
 module.exports = app;

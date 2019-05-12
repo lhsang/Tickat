@@ -1,10 +1,16 @@
 const LocalStratery = require('passport-local').Strategy;
 
+var userRecord = {
+    'username':'lhsang',
+    'password':'123',
+    'role_id' : '2'
+};
+
 module.exports = function(Passport){
     Passport.use(new LocalStratery(
         (username, password, done)=>{
-            if(username=='lhsang' && password=='123'){
-                done(null, {'username':'lhsang','password':'123'});
+            if(username==userRecord.username && password==userRecord.password ){
+                done(null, userRecord);
             }else{
                 done(null,false);
             }
@@ -15,11 +21,12 @@ module.exports = function(Passport){
         done(null, user.username);
     });
     
-    Passport.deserializeUser((user, done)=>{
-        if(user.username=='lhsang'){
-            done(null, {'username':'lhsang','password':'123'});
+    Passport.deserializeUser((username, done)=>{
+        if(username==userRecord.username){
+            done(null, userRecord);
         }else{
             done(null,false);
         }
     });
+    
 };

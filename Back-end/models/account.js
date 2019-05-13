@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../configs/db');
-const Role = require('../models/role');
+
+//Sequelize Associations at ../configs/db.js
 
 class Account extends Sequelize.Model {}
 Account.init({
@@ -18,10 +19,9 @@ Account.init({
     address: Sequelize.STRING,
     date_of_birth: Sequelize.DATE,
     tel: Sequelize.STRING,
-    email: Sequelize.STRING,
+    mail: Sequelize.STRING,
     description: Sequelize.STRING,
+    role_id: Sequelize.INTEGER
 }, { sequelize, modelName: 'account' });
-
-//Account.belongsTo(Role,{foreignKey: 'role_id'});
 
 module.exports = Account;

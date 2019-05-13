@@ -3,8 +3,8 @@ const sequelize = require('../configs/db');
 
 //Sequelize Associations at ../configs/db.js
 
-class Role extends Sequelize.Model {}
-Role.init({
+class Category extends Sequelize.Model {}
+Category.init({
     id: {
         type:Sequelize.INTEGER,
         primaryKey: true,
@@ -14,6 +14,6 @@ Role.init({
         type: Sequelize.STRING,
         unique: true
     }
-}, { sequelize, modelName: 'role' });
+}, { sequelize, modelName: 'category' });
 
-module.exports = Role;
+module.exports = Category;

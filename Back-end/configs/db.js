@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 module.exports = new Sequelize({
 
     //db local
@@ -30,3 +29,49 @@ module.exports = new Sequelize({
         idle: 5000
     }
 });
+
+//associations
+const  Role = require('../models/role');
+const Account = require('../models/account');
+const Organization = require('../models/organization');
+const Event = require('../models/event');
+const Category = require('../models/category');
+const TypeTicket = require('../models/type_of_ticket');
+const Ticket = require('../models/ticket');
+
+Role.hasMany(Account,{
+    foreignKey: 'role_id'        
+});
+Account.belongsTo(Role,{
+    foreignKey: 'role_id'
+});
+
+Organization.hasMany(Event, {
+    foreignKey: 'organization_id'
+});
+Event.belongsTo(Organization,{
+    foreignKey: 'organization_id'
+});
+
+Category.hasMany(Event, {
+    foreignKey: 'category_id'
+});
+Event.belongsTo(Category, {
+    foreignKey: 'category_id'
+});
+
+Event.hasMany(Ticket, {
+    foreignKey: 'event_id'
+});
+Ticket.belongsTo(Event, {
+    foreignkey: 'event_id'
+});
+
+TypeTicket.hasMany(Ticket, {
+    foreignKey: 'type_id'
+});
+Ticket.belongsTo(TypeTicket, {
+    foreignKey: 'type_id'
+});
+
+

@@ -1,1 +1,128 @@
-<h1>Footer</h1>
+<style>
+    .footer .carousel-item img{
+        height: 280px;
+        width: 420px;
+    }
+</style>
+<!--footer start-->
+<div class="container-fluid footer">
+  <h1>Category</h1>
+
+  <!--carousel muilti item start-->
+  <div class="top-content">
+      <div class="container-fluid">
+          <div id="carousel-example" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                  {{#each categories}}
+                  <div class="carousel-item footer-carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                      <img src="{{img}}" class="img-fluid mx-auto d-block" alt="img8" title="{{name}}">
+                  </div>
+                  {{/each}}
+              </div>
+              <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </div>
+      </div>
+  </div>
+  <!--carousel muilti item end-->
+  <hr/>
+<div class="container">
+  <div class="row" style="align-content: center">
+    <div class="col-5">
+      <div >
+          <p class="texth3">Hotline hỗ trợ</p>
+      </div>
+      <div class="row">
+          <div class="row">
+              <div class="col-1" >
+                  <i class="fa fa-phone" style="font-size:24px;color:#c97718;margin-top:8px"></i>
+              </div>
+              <div class="col-10">
+                  <span class="text1">TP HCM : Thứ 2 - Thứ 6 (8:30 - 19:30) </span>
+                  <span class="text2">028.7300.7998</span>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="row">
+              <div class="col-1" class="footericon">
+                  <i class="fa fa-phone" style="font-size:24px;color:#c97718;margin-top:8px"></i>
+              </div>
+              <div class="col-10">
+                  <span class="text1" >TP HCM : Thứ 2 - Thứ 6 (8:30- 19:30) </span>
+                  <span class="text2">028.7300.7998</span>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="row">
+              <div class="col-1" class="footericon">
+                  <i class="fa fa-phone" style="font-size:24px;color:#c97718;margin-top:8px"></i>
+              </div>
+              <div class="col-10">
+                  <span class="text1">TP HCM : Thứ 2 - Thứ 6 (8:30 - 19:30) </span>
+                  <span class="text2">028.7300.7998</span>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div>
+                <p class="texth3">Văn phòng làm việc</p>
+      </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-1">
+                    <i class="fas fa-map-marker" style="font-size:24px;color:#c97718;margin-top:8px"></i>
+                  </div>
+                <div class="col-10">
+                    <span  class="text1">Văn phòng HCM </span> <br>
+                    <span class="text2">384 Hoàng Diệu, Q.4, TPHCM</span>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-1">
+                    <i class="fas fa-map-marker" style="font-size:24px;color:#c97718;margin-top:8px"></i>
+                  </div>
+                <div class="col-10">
+                    <span  class="text1">Văn phòng HN </span> <br>
+                    <span class="text2">384 Hoàng Diệu, Q.4, HN</span>    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-3">
+        <div class="row texth3" style="text-align: center;" >Follow us</div>
+        <div class="row">
+              <img src="img/icon/facebook.png" alt="" class="footericon" >
+              <img src="img/icon/instagram.png" alt="" class="footericon">
+              <img src="img/icon/linkedin.png" alt="" class="footericon">
+              <img src="img/icon/google-plus.png" alt="" class="footericon">
+        </div>
+
+        <div class="row texth3" style="text-align: center" > Ngôn ngữ </div>
+        <div class="row flat">
+              <img src="img/icon/vietnam.png" alt=""  class="footericon">
+              <img src="img/icon/united-kingdom.png" alt=""  class="footericon">    
+        </div>
+    </div>
+  </div> 
+  </div>
+  <br>
+  <div style="text-align: center" class="text1">Copyright © 2019 Tickat</d>
+  <br>
+</div>
+<!--footer end-->
+
+<script>
+    document.getElementsByClassName('footer-carousel-item')[0].classList.add('active');
+</script>

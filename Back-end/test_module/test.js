@@ -37,31 +37,36 @@ const bcrypt = require('../utils/bcrypt');
 //     },
 // ]);
 
-/*Event.bulkCreate([
-    {
-        name:'ELECTRIFYING VIETNAM THROUGH SUSTAINABLE ENERGY PLANS',
-        date: '2019-06-18 14:00:00',
-        description: 'According to the revised Power Development Plan (PDP 7), Vietnam requires total investment of $143.5 billion (excluding privately financed BOT power generation projects) for meeting its double-digital annual growth of energy in demand. The Vietnam government is broadening their strategic approaches to fully tap the huge potential of its energy sector by unlocking private investment potentials; inviting foreign technical expertise and foreign investment for participation in its energy projects. It is estimated that Vietnam requires investment of 15billion per year, which 75% is earmarked for generation and 25% for development of the transmission and distribution network. \n'
-        +'The hosting of the Electrify Vietnam 2019 (EVN2019) is to provide an interactive platform for potential investors and key players of the industry from over 25 countries to get updated on the new directions, investment policies and market potential of the energy and power sector in Vietnam; at the same time discuss strategies and share insights to support the National Power Development Plan in order to fulfill the demand of 515Twh in 2030.',
-        address: 'Rex Hotel 141 Nguyễn Huệ Ho Chi Minh, ho chi minh ',
-        organization_id: 1,
-        img: 'https://tkbvn-tokyo.s3.amazonaws.com/static-page/landingpages/ravolution-music-festival-arise/images/section-1-banner/banner@4x.jpg?v=3',
-        category_id: 2
-    },
-    {
-        name:'ĐẠI NHẠC HỘI HỮU NGHỊ VIỆT HÀN | WE*FRIEND CONCERT IN VIET NAM 2019',
-        date: '2019-04-28 18:00:00',
-        description: 'Đại nhạc hội hữu nghị Việt - Hàn là hoạt động giao lưu văn hóa thường kỳ, không chỉ mang đến những màn biểu diễn nghệ thuật truyền thống đặc trưng mà còn quy tụ dàn nghệ sĩ nổi tiếng của cả hai nước. Mỗi năm BTC sẽ mời các ngôi sao nổi tiếng Kpop biểu diễn với mục đích tiếp nối tinh thần hội nhập quốc tế \n Chương trình có sự tham gia của 5 ngôi sao nổi tiếng Hàn Quốc: Bi Rain, nhóm Mamamoo, SF9, Pentagon,N.Flying và 2 nghệ sỹ Việt Nam: Tóc Tiên và Noo Phước Thịnh.',
-        address: 'Sân Vận Động Quốc Gia Mỹ Đình Đường Lê Đức Thọ, Mỹ Đình, Quận Nam Từ Liêm, Thành Phố Hà Nội',
-        organization_id: 1,
-        img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/04/22/AAA9EE.jpg',
-        category_id: 2
-    }
-])
-*/
+// Event.bulkCreate([
+//     {
+//         name:'Rock’n’Share – Hoa Lư Rực Lửa',
+//         date: '2019-06-19 17:00:00',
+//         description: `Quỹ #VìTụiNhỏ được thành lập bởi Psychotramps13 từ năm 2015, nhằm giúp đỡ các trẻ em vùng cao có hoàn cảnh khó khăn, thiếu thốn.
+//         Toàn bộ số tiền bán vé và gây guỹ được từ các sản phẩm và đêm nhạc sẽ chuyển thành những nụ cười và ánh mắt này của Tụi Nhỏ, được chuyển đi bởi những gã lang thang trên những con xe, vượt đường xa, nắng gió, để trao tận tay Tụi Nhỏ.
+//         Để từ đó, tiếp thêm năng lượng cho anh em Psychotramps13 tiếp tục cuộc hành trình Rock'n'Share và rồi để lại đi buôn hạnh phúc.`,
+//         organization_id: 2,
+//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/05/18/0568AC.jpg',
+//         category_id: 3,
+//         address: `Sân Vận Động Hoa Lư
+//         Số 2 Đinh Tiên Hoàng, Quận 1, Thành Phố Hồ Chí Minh`
+//     },
+//     {
+//         name:'ĐÊM NHẠC BEETHOVEN VÀ RACHMANINOV',
+//         date: '2019-07-28 08:00:00',
+//         description: `Bản concerto cho piano số 2 cung Đô thứ của S. Rachmaninov được xem là một trong số ít những tác phẩm đặc biệt nổi tiếng của thời kỳ âm nhạc Lãng mạn. Tác phẩm được yêu mến khắp nơi trên thế giới, được mọi nghệ sĩ piano tài năng trên thế giới yêu thích lựa chọn để thể hiện tài năng của mình và âm nhạc của tác phẩm đã ảnh hưởng rộng khắp đời sống nghệ thuật đến tận ngày nay, xuất hiện trong hàng chục bộ phim nổi tiếng, là nguồn cảm hứng cho hàng trăm tác phẩm nghệ thuật khác như múa, kịch, hòa tấu, ca khúc, chương trình truyền hình … Tác phẩm này sẽ được trình diễn bởi nghệ sĩ piano xuất sắc Bích Trà cùng Dàn nhạc Giao hưởng HBSO trong Đêm nhạc Beethoven và Rachmaninov.
+
+//         Với âm nhạc của thiên tài vĩ đại Ludwig van Beethoven, chúng ta sẽ có cơ hội thưởng thức Bản giao hưởng số 7 cung La trưởng, tác phẩm được Beethoven tự đánh giá là "Một trong những tác phẩm tốt nhất của tôi". Một tác phẩm gây chấn động ngay từ lần ra mắt đầu tiên năm 1813 tại Vienna, tác phẩm còn được biết đến với tên gọi "Anh hùng ca" (Eroica).
+        
+//         Chương trình được dàn dựng và chỉ huy bởi nhạc trưởng, NSUT Trần Vương Thạch.`,
+//         organization_id: 1,
+//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/04/22/93BEBC.jpg',
+//         category_id: 1,
+//         address:'7 Công Trường Lam Sơn, phường Bến Nghé, Quận 1, Thành Phố Hồ Chí Minh'
+//     }
+// ])
 
 //console.log(bcrypt.check_password('12s3','$2b$10$/x9N3JOMc1iWgCggymbwruxtHflo5FfF0zyJl3/UhR5n6U1VjcsrC'));
 
 
-console.log(Event.recomendationEvents());
+//console.log(Event.recomendationEvents());
 

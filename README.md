@@ -1,12 +1,12 @@
 # Tickat - Sell and buy tickets
 
-## Developer
+## Developers.
 |Full name                       | Student ID    |
 |--------------------------------|---------------|
 |Lê Hoàng Sang                   |1612554        |
 |Đặng Thị Huyền Trâm             |1612719        |
 
-## Architecture
+## Architecture.
 1. Folder tree:
 
 ```
@@ -40,7 +40,7 @@
  ┃ ┣ 📂customer
  ┃ ┃ ┗ 📜home.handlebars
  ┃ ┣ 📂error
- ┃ ┃ ┗ 📜upload.handlebars
+ ┃ ┃ ┗ 📜404.handlebars
  ┃ ┣ 📂layouts
  ┃ ┃ ┣ 📜main.handlebars
  ┃ ┗ 📂partials

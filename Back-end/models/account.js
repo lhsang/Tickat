@@ -18,10 +18,20 @@ Account.init({
     full_name: Sequelize.STRING,
     address: Sequelize.STRING,
     date_of_birth: Sequelize.DATE,
-    tel: Sequelize.STRING,
+    tel: {
+        type: Sequelize.STRING,
+        isNumeric: true
+    },
     mail: Sequelize.STRING,
-    description: Sequelize.STRING,
-    role_id: Sequelize.INTEGER
+    description: {
+        type:Sequelize.STRING,
+        defaultValue: "A litle about me ..."
+    },
+    role_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: 2
+    }
+    
 }, { sequelize, modelName: 'account' });
 
 module.exports = Account;

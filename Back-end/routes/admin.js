@@ -4,6 +4,7 @@ const session = require('express-session');
 const LocalStratery = require('passport-local').Strategy;
 const Passport = require('passport');
 const {ensureAuthenticated, forwardAuthenticated} = require('../configs/ensureAuthenticated');
+const flash = require('connect-flash');
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -23,9 +24,9 @@ router.all('*', ensureAuthenticated, (req, res, next)=>{
 });
 
 router.get('/login',(req,res)=>{
-    var message ="";
+    var message = "";
     if(req.query.error !=null)
-        message = "Invalid username or password";
+       message = "Invalid username or password";
     res.render('admin/login',{
         title : 'Admin login',
         layout: 'empty',
@@ -35,7 +36,9 @@ router.get('/login',(req,res)=>{
 
 router.route('/login').post(Passport.authenticate('local',{
         failureRedirect: '/admin/login?error',
-        successRedirect: '/admin/dashboard'
+        successRedirect: '/admin/dashboard',
+        badRequestMessage : 'Missing username or password.',
+        failureFlash: true
     }
 ));
 
@@ -44,8 +47,9 @@ router.get('/logout', function(req, res){
     res.redirect('admin/login');
 });
 
-router.get('/dashboard',(req,res)=>{
+router.get('/(|dashboard)$',(req,res)=>{
     res.render('admin/dashboard',{
+        title: 'Dashboard',
         layout :'admin'
     });
 });

@@ -13,8 +13,14 @@ Event.init({
     name: {
         type: Sequelize.STRING
     },
-    created_at: Sequelize.DATE,
-    date: Sequelize.DATE,
+    created_at: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+    },
+    date: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+    },
     description: Sequelize.STRING,
     address: Sequelize.STRING,
     img: Sequelize.STRING,

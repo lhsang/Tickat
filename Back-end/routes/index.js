@@ -4,10 +4,9 @@ var pool = require('../configs/db');
 var hash_bcrypt = require('../utils/bcrypt');
 var Role = require('../models/role');
 var Account = require('../models/account');
+var homeController = require('../controller/customer/homeController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send("This is homepage");
-});
+
+router.get('/(|home)$', homeController.homePage);
 
 module.exports = router;

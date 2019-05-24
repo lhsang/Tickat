@@ -13,6 +13,10 @@ Category.init({
     name: {
         type: Sequelize.STRING,
         unique: true
+    },
+    img:{
+        type: Sequelize.STRING,
+        defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'
     }
 }, { sequelize, modelName: 'category' });
 

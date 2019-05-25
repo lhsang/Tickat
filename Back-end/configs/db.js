@@ -21,7 +21,8 @@ module.exports = new Sequelize({
     },
     define:{
         freezeTableName: true,
-        timestamps: false
+        timestamps: false,
+        underscored: true
     },
     pool: {
         max: 20,

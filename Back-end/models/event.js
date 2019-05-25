@@ -26,6 +26,6 @@ Event.init({
     img: Sequelize.STRING,
     organization_id: Sequelize.INTEGER,
     category_id: Sequelize.INTEGER
-}, { sequelize, modelName: 'event' });
+}, { sequelize, modelName: 'event' ,freezeTableName: true});
 
 module.exports = Event;

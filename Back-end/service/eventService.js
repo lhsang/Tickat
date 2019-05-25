@@ -1,4 +1,7 @@
 var Event = require('../models/event');
+var Ticket = require('../models/ticket');
+const sequelize = require('../configs/db');
+
 const {setDefaultQueryStr} =  require('../utils/default_query_string');
 
 exports.getAllEvents = async (query)=>{
@@ -28,10 +31,16 @@ exports.getCommingEvents = async ()=>{
         let events = await Event.findAll({
             attributes: ['id','name','date','address','img'],
             limit: 4,
-            order: [['date','desc']]
+            order: [['date','desc']],
+            include:{
+                model: Ticket,
+                attributes: ['price'],
+                order: [[Ticket, 'price', 'asc']]
+            }
         });
         return events;
     } catch (error) {
+        console.log(error);
         return Error('Error !');
     }
 };

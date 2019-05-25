@@ -10,9 +10,6 @@ Ticket.init({
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
-        type: Sequelize.STRING
-    },
     price: {
         type:Sequelize.INTEGER,
         defaultValue: 0
@@ -31,6 +28,6 @@ Ticket.init({
         allowNull: false
     },
     type_id: Sequelize.INTEGER
-}, { sequelize, modelName: 'ticket' });
+}, { sequelize, modelName: 'ticket',freezeTableName: true });
 
 module.exports = Ticket;

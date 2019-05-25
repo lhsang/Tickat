@@ -16,7 +16,7 @@ module.exports = function(Passport){
             }).then(user=>{
                 if(user!=null && check_password(password, user.password)){
                     done(null, user);
-                }else done(null,false,{message: 'deo tim thay'});
+                }else done(null,false);
             });
         }
     ));

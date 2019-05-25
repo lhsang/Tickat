@@ -17,10 +17,41 @@
           </div>
         </form>
         <div class="feature">
-            <a href="" class="login">Đăng nhập</a> |
+             <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
             <a class="create-event" href="">Tạo sự kiện</a>
         </div>
 
       </div>
     </nav>
     <!-- nav end -->
+
+
+
+    <!-- login modal start -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal-login">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="home" aria-selected="true">Đăng nhập</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="profile" aria-selected="false">Đăng ký</a>
+              </li>
+            </ul>
+          </div>
+          <div class="modal-body">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="home-tab">
+                Sign in
+              </div>
+              <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="profile-tab">
+                Sign up
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- login modal end -->

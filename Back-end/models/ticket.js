@@ -13,11 +13,23 @@ Ticket.init({
     name: {
         type: Sequelize.STRING
     },
-    price: Sequelize.INTEGER,
-    amount: Sequelize.INTEGER,
-    bought: Sequelize.INTEGER,
+    price: {
+        type:Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    amount: {
+        type:Sequelize.INTEGER,
+        defaultValue: 10
+    },
+    bought: {
+        type:Sequelize.INTEGER,
+        defaultValue: 0
+    },
     description: Sequelize.STRING,
-    event_id: Sequelize.INTEGER,
+    event_id: {
+        type:Sequelize.INTEGER,
+        allowNull: false
+    },
     type_id: Sequelize.INTEGER
 }, { sequelize, modelName: 'ticket' });
 

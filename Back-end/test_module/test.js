@@ -96,3 +96,9 @@ const bcrypt = require('../utils/bcrypt');
 //     {event_id: 6,type_id: 2,price: 200000,amount:110,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
+
+
+// Event.findAll({
+   
+      
+// }).then(result=>console.log(JSON.stringify(result)));

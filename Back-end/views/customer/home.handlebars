@@ -1,11 +1,6 @@
  <style>
      .comming-box .card .card-img-top{
-         height: 145px;
-     }
-
-     .card .card-title{
-        overflow: hidden;
-        height: 43px;
+         height: 150px;
      }
  </style>
  <!-- carousel intro start -->
@@ -19,9 +14,9 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
           </ol>
           <div class="carousel-inner">
-            {{#each slides}}
+            {{#each slide}}
                 <div class="carousel-item">
-                <img class="d-block w-100" src="{{img}}" alt="First slide">
+                <img class="d-block w-100" src="{{this}}" alt="First slide">
                 </div>
             {{/each}}
           </div>
@@ -42,7 +37,7 @@
       <h1 class="title-cate" style="margin-top:3%;margin-bottom: 5%">Sự kiện sắp diễn ra</h1>
       <div class="row">
         
-        {{#each comming_events}}
+        {{#each events}}
             <div class=" col-sm-12 col-lg-6 wow bounceInLeft">
                 <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
                     <img class="card-img-top" src="{{img}}" alt="Card image cap">
@@ -75,7 +70,7 @@
       </div>
     </div>
     <!-- comming event end -->
-
+ 
 
 <script>
     document.getElementsByClassName('carousel-item')[0].classList.add('active');

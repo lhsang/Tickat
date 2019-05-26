@@ -1108,3 +1108,69 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 .message-danger{
     color: rgb(235, 35, 35);
 }
+
+/* loading when start ajax */
+.modal-loading {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal-loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal-loading {
+    display: block;
+}
+
+/* snackbar start */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: rgb(35, 177, 90);
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    padding: 16px;
+    position: fixed;
+    top: 10%;
+    right: 60px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {right: 0; opacity: 0;}
+    to {right: 60px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {right: 60px; opacity: 1;}
+    to {right: 0; opacity: 0;}
+}
+
+@media (min-width: 1200px) { 
+    .list{
+        padding-left: 11%;
+    }
+}
+/* snackbar end */

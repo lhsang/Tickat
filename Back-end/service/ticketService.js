@@ -28,6 +28,6 @@ exports.getTicketsByEventId = async (event_id)=>{
         return tickets;
     } catch (e) {
         throw Error('Can not find all tickets');
-        return {};
     }
+    return {};
 };

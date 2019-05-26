@@ -14,4 +14,9 @@ router.get('/(|home)$', homeController.homePage);
 
 router.get('/events/:event_id/booking', bookingController.bookingPage);
 
+router.get('/about/:id', homeController.about);
+
+router.post('/about/:id/send-email',urlencodedParser, homeController.send_email);
+
 module.exports = router;
+

@@ -46,7 +46,7 @@
                         {{#each tickets}}
                         <tr class="data">
                             <th scope="row">{{type_of_ticket.name}}</th>
-                            <td><input class="amount" data-price="{{price}}" step="1" data-step-max="10" type="number" id="inputLoop" value="0" data-decimals="0" min="0" max="100"/></td>
+                            <td><input class="amount" data-price="{{price}}" step="1" data-step-max="10" type="number" id="inputLoop" value="0" data-decimals="0" min="0" max="{{remaining}}"/></td>
                             <td class="money">0</td>
                         </tr>
                         {{/each}}

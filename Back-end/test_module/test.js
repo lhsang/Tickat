@@ -9,6 +9,7 @@ const Ticket = require('../models/ticket');
 const bcrypt = require('../utils/bcrypt');
 const eventService = require('../service/eventService');
 const ticketService = require('../service/ticketService');
+const organizationService = require('../service/organizationService');
 
 // Role.findAll({
 //     include: {
@@ -99,16 +100,10 @@ const ticketService = require('../service/ticketService');
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
 
-function handleTicket(tickets){
-    var className = ['vip','normal','free'];
 
-    for(var i=0;i<tickets.length;i++)
-        tickets[i].className = className[i];
-}
 async function test(){
-    var tickets = await ticketService.getTicketsByEventId(3);
-    tickets[0].m ="11";
-    console.log(tickets);
+    var organization = await organizationService.findOrganizationById(2);
+    console.log(organization);
 }
 
 test();

@@ -19,5 +19,6 @@ app.set('view engine','handlebars');
 
 app.use('/', require('./routes/index'));
 app.use('/admin',require('./routes/admin'));
+app.use('/events', require('./routes/event'));
 
 module.exports = app;

@@ -1000,8 +1000,7 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 /* booking.html start */
 #booking{
     background-color: #00DBDE;
-    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
-    height: 100%;    
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%); 
     padding: 60px 20px 400px 50px;
 }
 
@@ -1050,15 +1049,15 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
 }
 
 
-#booking .vip .card-header{
+#booking .vip .card-header, #booking .Vip .card-header, #booking .VIP .card-header{
     background: #e95252;
 }
 
-#booking .normal .card-header{
+#booking .normal .card-header,#booking .Normal .card-header,#booking .NORMAL .card-header{
     background: rgba(118, 80, 175, 0.9);
 }
 
-#booking .free .card-header{
+#booking .free .card-header,#booking .Free .card-header,#booking .FREE .card-header{
     background: rgba(51, 16, 104, 0.9);
 }
 

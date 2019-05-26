@@ -1,0 +1,97 @@
+<style>
+    .card{
+        border:none;
+    }
+</style>
+<!--Body start-->
+    <div class="container-fuild" id="booking" >
+        <div class="row">
+            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-tickets wow bounceInDown">
+                <p>{{tickets.[0].event.name}}</p>
+                <hr>
+            </div>
+            
+           
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="row">
+                    {{#each tickets}}
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 wow bounceInUp">
+                        <div class="card {{className}}">
+                            <h5 class="card-header">{{type_of_ticket.name}}</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">{{price}} VNĐ</h5>
+                                <p class="card-text">{{description}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-remaining">Còn lại {{remaining}} vé</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 wow bounceInRight" data-wow-delay="0.4s">
+                <div class="booking-box">
+                    <table class="table table-dark">
+                    <thead>
+                        <tr>
+                        <th scope="col">Loại vé</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tickets}}
+                        <tr class="data">
+                            <th scope="row">{{type_of_ticket.name}}</th>
+                            <td><input class="amount" data-price="{{price}}" step="1" data-step-max="10" type="number" id="inputLoop" value="0" data-decimals="0" min="0" max="100"/></td>
+                            <td class="money">0</td>
+                        </tr>
+                        {{/each}}
+                        <tr class="table-footer">
+                            <th scope="row">Tổng</th>
+                            <td id="amountSum">0</td>
+                            <td id="moneySum">0</td>
+                        </tr>
+                    </tbody>
+                    </table>
+
+                    
+                    <div><button type="button" class="btn float-right mr-20 btn-book">Thanh toán</button></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--body end-->
+<script src="/js/bootstrap-input-spinner.js"></script>
+ <script>
+    $("input[type='number']").inputSpinner();
+    new WOW().init();
+
+</script>
+
+<script>
+    function updateSum(){
+        var amountSum=0, moneySum=0;
+        $("td.money").each(function (index, element) {
+            moneySum+=parseInt($(this).text());
+            amountSum+=parseInt($(this).parent().find('input[type=text]').val());
+        });
+
+        $("#amountSum").text(amountSum);
+        $("#moneySum").text(moneySum.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+    }
+    $('td .btn').click(function (e) { 
+        e.preventDefault();
+        var td = $(this).parent().parent().parent();
+        var price = td.find('input.amount').data("price");
+        var number = td.find('input').val();
+        td.parent().find('td.money').text(price*number);
+        updateSum();
+    });
+</script>

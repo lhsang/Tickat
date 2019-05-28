@@ -21,10 +21,18 @@ app.use('/', require('./routes/index'));
 app.use('/admin',require('./routes/admin'));
 app.use('/events', require('./routes/event'));
 app.use(function (err, req, res, next) {
-    res.status(500).send('Something broke!');
+    res.status(500);
+    res.render("error/500",{
+        title: "Lỗi rồi! - Tickat",
+        layout: "none"
+    });
 });
 
 app.get('*', function(req, res){
-    res.send('Page not found !!!!!!!', 404);
+    res.status(404);
+    res.render("error/404",{
+        title: "Không tìm thấy trang- Tickat",
+        layout: "none"
+    });
 });
 module.exports = app;

@@ -103,3 +103,10 @@ const roleIdDefined = require('../utils/object_define');
 //     {event_id: 6,type_id: 2,price: 200000,amount:110,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
+
+async function test() {
+    var x= roleIdDefined.getRoleIdDefined();
+    console.log(x.admin);
+}
+
+test();

@@ -17,8 +17,26 @@
           </div>
         </form>
         <div class="feature">
-             <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
+          {{#if logged}}
+              <a href="profile-user.html" class="login" style="text-decoration: none">
+                <img src="{{user.avatar}}" class="avatar" alt="">
+              </a> 
+              <div class="btn-group  show-on-hover">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" >
+                      <li><a href="profile-user.html" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
+                      <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
+                      <li><a href="#"><i class="fas fa-calendar-alt"></i> Sự kiện đã tạo</a></li>
+                      <li class="divider"> <hr></li>
+                      <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                    </ul>
+                </div>
+          {{else}}
+            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
             <a class="create-event" href="">Tạo sự kiện</a>
+          {{/if}}
         </div>
 
       </div>
@@ -51,26 +69,28 @@
                             <img src="/img/logo/logo_1x.png"> 
                             <img src="/img/logo/Tickat_1x.png"> 
                         </div> 
-                        <form action="/login" method="post"> 
+                        <form id="login-form"> 
                                 <div class="input-group"> 
                                     <div class="input-group-prepend"> 
                                         <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span> 
                                     </div> 
-                                    <input type="text" class="form-control" placeholder="Username" name="username" aria-describedby="basic-addon1"> 
+                                    <input type="text" class="form-control" placeholder="Username" id="username" aria-describedby="basic-addon1"> 
                                 </div> 
                                 <div class="input-group"> 
                                     <div class="input-group-prepend"> 
                                         <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span> 
                                     </div> 
-                                    <input type="password" class="form-control" placeholder="Password" name="password"> 
+                                    <input type="password" class="form-control" placeholder="Password" id="password"> 
                                 </div> 
                                 
-                                {{> message}}
+                                <div class="message-danger">
+                                    <p id="message"></p>
+                                </div>
 
                                 <div class="row"> 
                                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"> 
                                         <label class="form-check-label"> 
-                                            <input type="checkbox" class="form-check-input" name="remember" id="" value="checkedValue" checked> 
+                                            <input type="checkbox" class="form-check-input" id="remember" value="checkedValue" checked> 
                                                 Remember me 
                                         </label> 
                                     </div> 
@@ -99,3 +119,23 @@
       </div>
     </div>
     <!-- login modal end -->
+
+
+<script>
+  $("#login-form").on("submit", function(){
+    $.ajax({
+      type: "POST",
+      url: "/login",
+      data: {
+        username: $('#username').val(),
+        password: $('#password').val()
+      },
+      success: function (res) {
+        if(res.status==200)
+          window.location.href ="/";
+        else $("#message").html(res.message);
+      }
+  });
+   return false;
+  });
+</script>

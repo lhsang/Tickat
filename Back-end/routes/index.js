@@ -23,9 +23,13 @@ router.post('/login', urlencodedParser, homeController.login);
 
 router.get('/logout', homeController.logout);
 
-router.get('/events/:event_id/booking', bookingController.bookingPage);
+router.post('/sign-up',urlencodedParser, homeController.signUp);
 
-router.get('/about/:id', homeController.about);
+router.get('/switch-acc',decodeToken, homeController.switchAcc);
+
+router.get('/events/:event_id/booking',decodeToken, bookingController.bookingPage);
+
+router.get('/about/:id',decodeToken, homeController.about);
 
 router.post('/about/:id/send-email',urlencodedParser, homeController.send_email);
 

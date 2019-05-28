@@ -18,10 +18,16 @@ exports.bookingPage = async (req, res)=>{
 
     handleTickets(tickets);
 
-    res.render("customer/booking",{
+    var data = {
         title: 'Thông tin vé - Tickat: Mua bán vé sự kiện',
         layout: 'main',
         categories:  categories,
-        tickets: tickets
-    });
+        tickets: tickets,
+        logged: false
+    };
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+    res.render("customer/booking",data);
 };

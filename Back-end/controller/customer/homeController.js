@@ -7,8 +7,9 @@ var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var organizationService = require('../../service/organizationService');
 var userService = require('../../service/userService');
-var {hash_bcrypt,check_password} = require('../../utils/bcrypt');
+var {hash_password,check_password} = require('../../utils/bcrypt');
 var smtpTransport = require('../../utils/mail');
+var objectDefined = require('../../utils/object_define');
 
 var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
@@ -31,9 +32,14 @@ exports.homePage = async (req, res)=>{
         comming_events: comming_events,
         recommend_events: events,
         slides: slides,
-        categories:  categories
+        categories:  categories,
+        logged: false
     };
-    
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+
     res.render("customer/home",data);
 };
 
@@ -42,12 +48,18 @@ exports.about = async (req, res)=>{
     var id =  req.params.id;
     var organization = await organizationService.findOrganizationById(id);
 
-    res.render("customer/about",{
+    var data = {
         title: 'Tickat - '+organization.name,
         layout: 'main',
         organization: organization,
-        categories:  categories
-    });
+        categories:  categories,
+        logged: false
+    };
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+    res.render("customer/about",data);
 };
 
 exports.send_email = async (req, res)=>{
@@ -85,28 +97,48 @@ exports.send_email = async (req, res)=>{
 exports.login = async (req, res)=>{
     var username = req.body.username, password = req.body.password;
     var user = await userService.getUserByUsername(username);
-    var payload = {
-        username: user.username,
-        full_name: user.full_name,
-        avatar: user.avatar,
-        role_id: user.role_id
+    var response ={
+        status: 403,
+        message: "Invalid username or password !"
     };
 
     if(user!=null && check_password(password, user.password)){
+        var payload = {
+            username: user.username,
+            full_name: user.full_name,
+            avatar: user.avatar,
+            role_id: user.role_id
+        };
+
         let token = jwt.sign(payload, privateKey, { algorithm: 'RS256'});
         res.cookie('token', token);
-        res.status(200);
-        if(user.role_id == 1)
-            res.redirect('/admin');
-        res.redirect('/');
-    }else{
-        res.status(300);
-        res.end();
+        response.status = 200;
+        response.message="";
     }
+    res.send(response);
+};
 
+exports.signUp = async (req, res)=>{
+    var data = {
+        username :req.body.username,
+        password : req.body.password
+    };
+
+    data.password = hash_password(data.password);
+
+    userService.createAccount(data);
+    res.redirect('/');
 };
 
 exports.logout = (req, res)=>{
     res.clearCookie("token");
     res.redirect('/');
+};
+
+exports.switchAcc = async (req, res)=>{
+    if(typeof req.user !== 'undefined'){
+        userService.switchRoleToAdmin(req.user.username);
+    }
+    res.clearCookie("token");
+    res.redirect('/admin/login');
 };

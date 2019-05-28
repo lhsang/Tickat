@@ -8,7 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var adminController = require('../controller/admin/adminController');
 var adminDasboardController = require('../controller/admin/adminDashboardController');
 var ensureAuthenticated = require('../middleware/authenticate').verifyTokenInRoleAdmin;
-
+var decodeToken = require('../middleware/authenticate').decodeToken;
 
 router.use(cookieParser());
 
@@ -18,10 +18,6 @@ router.all('*',ensureAuthenticated, (req, res, next)=>{
 
 router.get('/login',adminController.login);
 
-
-// router.get('/logout', adminController.logout);
-
-router.get('/(|dashboard)$', adminDasboardController.dashboard);
-
+router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
 
 module.exports = router;

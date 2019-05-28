@@ -36,14 +36,17 @@ exports.decodeToken = (req, res, next)=>{
     return next();
 };
 
-exports.verifyTokenInRoleAdmin = (req, res, next) =>{
+exports.verifyTokenInRoleAdmin = async (req, res, next) =>{
     
     req.token = req.cookies.token;
     if(typeof req.token !== 'undefined'){
         jwt.verify(req.token, publicKey, { algorithms: ['RS256'] }, (error, authorData)=>{
-            var role = roleDefined.getRoleIdDefined();
-            if(error||authorData.role_id!= role.admin){
-                res.send("Access denied !!!");
+            var  role = roleDefined.getRoleIdDefined();
+            if(error||authorData.role_id != role.admin){
+                res.render('error/403',{
+                    title: "Access denied - Tickat",
+                    layout: "none"
+                });
             }else{
                 if(ignoreAuthenticate.includes(req.path))
                     res.redirect('/admin');

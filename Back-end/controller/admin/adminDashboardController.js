@@ -1,6 +1,8 @@
 exports.dashboard = (req, res)=>{
-    res.render('admin/dashboard',{
+    var data = {
         title: 'Dashboard',
-        layout :'admin'
-    });
+        layout :'admin',
+        user : req.user
+    }; 
+    res.render('admin/dashboard',data);
 };

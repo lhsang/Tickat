@@ -17,7 +17,10 @@ Organization.init({
     mail: Sequelize.STRING,
     website: Sequelize.STRING,
     img: Sequelize.STRING,
-    description: Sequelize.STRING
-}, { sequelize, modelName: 'organization' });
+    description: {
+        type: Sequelize.STRING,
+        defaultValue: "Chưa có mô tả."
+    }
+}, { sequelize, modelName: 'organization', freezeTableName: true});
 
 module.exports = Organization;

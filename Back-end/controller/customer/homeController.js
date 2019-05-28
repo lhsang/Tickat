@@ -1,15 +1,23 @@
+var nodemailer = require("nodemailer");
+var fs = require('fs');
+var jwt = require('jsonwebtoken');
+var path = require('path');
+
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var organizationService = require('../../service/organizationService');
-var nodemailer = require("nodemailer");
+var userService = require('../../service/userService');
+var {hash_bcrypt,check_password} = require('../../utils/bcrypt');
 var smtpTransport = require('../../utils/mail');
+
+var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
 exports.homePage = async (req, res)=>{
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
         limit: 4
     });
-
+    
     //get slide img - tạm thời, sau bỏ vô service
     var slides = events.map(obj=>{
         return {'img':obj.img,'name':obj.name};
@@ -17,14 +25,16 @@ exports.homePage = async (req, res)=>{
     var comming_events = await eventService.getCommingEvents();
     var categories = await categoryService.getAllCategories();
 
-    res.render("customer/home",{
+    var data = {
         title: 'Tickat - Mua bán vé sự kiện',
         layout: 'main',
         comming_events: comming_events,
         recommend_events: events,
         slides: slides,
         categories:  categories
-    });
+    };
+    
+    res.render("customer/home",data);
 };
 
 exports.about = async (req, res)=>{
@@ -69,4 +79,34 @@ exports.send_email = async (req, res)=>{
                 res.end("Phản hồi của bạn đã được gởi đến nhà tổ chức !");
             }
     });
+};
+
+
+exports.login = async (req, res)=>{
+    var username = req.body.username, password = req.body.password;
+    var user = await userService.getUserByUsername(username);
+    var payload = {
+        username: user.username,
+        full_name: user.full_name,
+        avatar: user.avatar,
+        role_id: user.role_id
+    };
+
+    if(user!=null && check_password(password, user.password)){
+        let token = jwt.sign(payload, privateKey, { algorithm: 'RS256'});
+        res.cookie('token', token);
+        res.status(200);
+        if(user.role_id == 1)
+            res.redirect('/admin');
+        res.redirect('/');
+    }else{
+        res.status(300);
+        res.end();
+    }
+
+};
+
+exports.logout = (req, res)=>{
+    res.clearCookie("token");
+    res.redirect('/');
 };

@@ -10,6 +10,10 @@ const bcrypt = require('../utils/bcrypt');
 const eventService = require('../service/eventService');
 const ticketService = require('../service/ticketService');
 const organizationService = require('../service/organizationService');
+const userService =  require('../service/userService');
+
+const fs = require('fs');
+const roleIdDefined = require('../utils/object_define');
 
 // Role.findAll({
 //     include: {
@@ -99,11 +103,3 @@ const organizationService = require('../service/organizationService');
 //     {event_id: 6,type_id: 2,price: 200000,amount:110,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
-
-
-async function test(){
-    var organization = await organizationService.findOrganizationById(2);
-    console.log(organization);
-}
-
-test();

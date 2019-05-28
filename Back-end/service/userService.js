@@ -11,3 +11,16 @@ exports.getAll = async (query)=>{
         throw Error('Can not find all Users');
     }
 };
+
+exports.getUserByUsername = async (username)=>{
+    try {
+        var user = await User.findOne({
+            where: {username: username}
+        });
+        return user;
+    } catch (error) {
+        console.log(error);
+        
+        throw Error('Can not find this User');
+    }
+};

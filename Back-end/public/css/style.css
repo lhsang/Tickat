@@ -253,6 +253,28 @@ input[type="search"]::-webkit-search-cancel-button {
     text-underline-position: under;
     
 }
+
+#modal-login .modal-body{
+    padding: 0px;
+  }
+  #modal-login .admin-login, #modal-login .admin-login .body{
+    background: white;
+  }
+
+  #modal-login .admin-login .body form{
+       width:55%;
+       margin: auto;
+   }
+
+   @media(max-width: 768px){
+       #modal-login .admin-login .body form{
+           width: 100%;
+       } 
+   }
+   #modal-login .logo-img{
+     width: 45px;
+     height: 45px;
+   }
 /* login modal end */
 
 /*Footer start*/

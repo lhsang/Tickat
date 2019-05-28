@@ -29,7 +29,6 @@ exports.getCommingEvents = async ()=>{
         });
         return events;
     } catch (error) {
-        console.log(error);
         return Error('Error !');
     }
 };

@@ -20,5 +20,11 @@ app.set('view engine','handlebars');
 app.use('/', require('./routes/index'));
 app.use('/admin',require('./routes/admin'));
 app.use('/events', require('./routes/event'));
+app.use(function (err, req, res, next) {
+    res.status(500).send('Something broke!');
+});
 
+app.get('*', function(req, res){
+    res.send('Page not found !!!!!!!', 404);
+});
 module.exports = app;

@@ -10,27 +10,26 @@ var userService = require('../../service/userService');
 var {hash_password,check_password} = require('../../utils/bcrypt');
 var smtpTransport = require('../../utils/mail');
 var objectDefined = require('../../utils/object_define');
+var handleData = require('../../utils/handleData');
 
 var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
-exports.homePage = async (req, res)=>{
-    var events = await eventService.getAllEvents({
-        attributes: ['id','name','date','address','img'],
-        limit: 4
-    });
-    
-    //get slide img - tạm thời, sau bỏ vô service
-    var slides = events.map(obj=>{
-        return {'img':obj.img,'name':obj.name};
-    });
+exports.homePage = async (req, res)=>{ 
     var comming_events = await eventService.getCommingEvents();
     var categories = await categoryService.getAllCategories();
+    var suggest_events = await eventService.getSuggestEvents();
 
+    //get slide img - tạm thời, sau bỏ vô service
+    var slides = comming_events.map(obj=>{
+        return {'img':obj.img,'name':obj.name};
+    });
+
+    handleData.addDateArrToEvents(comming_events);
     var data = {
         title: 'Tickat - Mua bán vé sự kiện',
         layout: 'main',
         comming_events: comming_events,
-        recommend_events: events,
+        suggest_events: suggest_events,
         slides: slides,
         categories:  categories,
         logged: false
@@ -93,7 +92,6 @@ exports.send_email = async (req, res)=>{
     });
 };
 
-
 exports.login = async (req, res)=>{
     var username = req.body.username, password = req.body.password;
     var user = await userService.getUserByUsername(username);
@@ -133,6 +131,25 @@ exports.signUp = async (req, res)=>{
 exports.logout = (req, res)=>{
     res.clearCookie("token");
     res.redirect('/');
+};
+
+exports.profile = async (req, res)=>{
+    var categories = await categoryService.getAllCategories();
+    var username =  req.params.username;
+    var user_profile = await userService.getUserByUsername(username);
+
+    var data = {
+        title: 'Tickat - '+user_profile.full_name,
+        layout: 'main',
+        user_profile: user_profile,
+        categories:  categories,
+        logged: false
+    };
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+    res.render("customer/profile",data);
 };
 
 exports.switchAcc = async (req, res)=>{

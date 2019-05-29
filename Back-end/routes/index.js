@@ -14,6 +14,8 @@ var Account = require('../models/account');
 var homeController = require('../controller/customer/homeController');
 var bookingController = require('../controller/customer/bookingController');
 var decodeToken = require('../middleware/authenticate').decodeToken;
+var eventService = require('../service/eventService');
+var handle = require('../utils/handleData');
 
 router.use(cookieParser());
 
@@ -33,5 +35,11 @@ router.get('/about/:id',decodeToken, homeController.about);
 
 router.post('/about/:id/send-email',urlencodedParser, homeController.send_email);
 
+router.get('/users/:username',decodeToken, homeController.profile);
+
+router.get('/test', async (req, res)=>{
+    var x = await eventService.getSuggestEvents();
+    res.send(x);
+});
 module.exports = router;
 

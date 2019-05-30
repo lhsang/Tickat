@@ -14,4 +14,12 @@ router.get('/(|home)$', homeController.homePage);
 
 router.get('/detailevent',detailEvent.detailPage);
 
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+router.post('/test', urlencodedParser,(req, res)=>{
+    var username = req.body.username;
+    res.send("server nhan:"+username);
+})
+
 module.exports = router;

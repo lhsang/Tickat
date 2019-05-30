@@ -98,9 +98,20 @@ const eventService = require('../service/eventService');
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
 
-async function test(){
-    var events = await eventService.getCommingEvents();
-    console.log(events);
-}
+// async function test(){
+//     var events = await eventService.getCommingEvents();
+//     console.log(events);
+// }
 
-test();
+// test();
+
+
+Event.findAll({
+    attributes:['event.name','organization.name'],
+    include:[
+        {
+            model: Organization,
+            where:{ id:2 }
+        }
+    ]
+}).then(res=>console.log(JSON.stringify(res)))

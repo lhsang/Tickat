@@ -26,6 +26,8 @@ exports.getEventsById = async (query)=>{
     }
 };
 
+
+
 exports.getCommingEvents = async ()=>{
     try {
         let events = await Event.findAll({
@@ -43,4 +45,6 @@ exports.getCommingEvents = async ()=>{
         console.log(error);
         return Error('Error !');
     }
+
+    
 };

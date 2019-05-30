@@ -6,6 +6,10 @@
 |Lê Hoàng Sang                   |1612554        |
 |Đặng Thị Huyền Trâm             |1612719        |
 
+## Front-end web
+user	https://ptudw-cntn2016-nhom05.herokuapp.com/	
+admin	https://ptudw-cntn2016-nhom05.herokuapp.com/admin	
+
 ## Architecture.
 1. Folder tree:
 

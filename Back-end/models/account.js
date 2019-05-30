@@ -30,6 +30,10 @@ Account.init({
     role_id: {
         type: Sequelize.INTEGER,
         defaultValue: 2
+    },
+    avatar:{
+        type: Sequelize.STRING,
+        defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHrfXM02tYxPsrVLqi2G9JsddmYU2ord-0Q0j4kkzn05a38Z7H"
     }
     
 }, { sequelize, modelName: 'account' });

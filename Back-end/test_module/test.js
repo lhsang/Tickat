@@ -8,6 +8,12 @@ const TypeTicket = require('../models/type_of_ticket');
 const Ticket = require('../models/ticket');
 const bcrypt = require('../utils/bcrypt');
 const eventService = require('../service/eventService');
+const ticketService = require('../service/ticketService');
+const organizationService = require('../service/organizationService');
+const userService =  require('../service/userService');
+
+const fs = require('fs');
+const roleIdDefined = require('../utils/object_define');
 
 // Role.findAll({
 //     include: {
@@ -115,3 +121,9 @@ Event.findAll({
         }
     ]
 }).then(res=>console.log(JSON.stringify(res)))
+async function test() {
+    var x= roleIdDefined.getRoleIdDefined();
+    console.log(x.admin);
+}
+
+test();

@@ -1,0 +1,76 @@
+<style>
+  body{
+    background: #dadada
+  }
+</style>
+<!-- about.html start-->
+      <div class="container mt-20" style="padding:80px;">
+          <div class="information">
+              <h1 class="title-main">{{organization.name}}</h1>
+              <div class="info">
+                  <span class="title">Email:</span> <span>{{organization.mail}}</span>
+                </div>
+                <div class="info">
+                  <span class="title"> Điện thoại :</span> <span>{{organization.tel}}</span>
+                </div>
+
+                <div style="text-align: center; margin-top: 25px;">
+                  <button class="btn-more">Xem các sự kiện từ tổ chức này</button>
+                </div>
+          </div>
+
+          <div class="row contact" style="margin-top:30px">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 bg-primary contact-box">
+                <span class="ic-envelope mt-50"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                <p class="color-white">Liên hệ</p>
+                <p class="color-white" style="font-size:20px; padding: 5px 5px;">Nhà tổ chức sự kiện sẽ lắng nghe ý kiến từ bạn !</p>
+              </div>
+
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 bg-white">
+                <form id="sendMail" class="ml-30">
+                  <div class="form-group">
+                    <label class="title-input mt-20">Họ và tên của bạn:</label>
+                    <input type="text" name="fullName" required id ="fullName" class="form-control" placeholder="Nguyễn Văn A" aria-describedby="helpId">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="title-input">Số điện thoại:</label>
+                    <input type="text" name="phone" class="form-control" id="phone" placeholder="033 457 2829" aria-describedby="helpId">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="title-input">Email:</label>
+                    <input type="email" name="email" class="form-control" required id="email" placeholder="example@gmail.com" aria-describedby="helpId">
+                  </div>
+
+                  <div class="form-group">
+                    <div><label class="title-input">Nội dung:</label></div>
+                    <textarea name="content" required cols="46" rows="3" id="content"></textarea>
+                  </div>
+
+                  <input type="submit" value="Gởi"></input>
+                </form>
+              </div>
+            </div>            
+          </div>
+      </div>
+    <!-- about.html end -->
+
+    <script>
+      $( "#sendMail" ).submit(function( event ) {
+        $.ajax({
+            type: "POST",
+            url: "/about/{{organization.id}}/send-email",
+            data: {
+              fullName: $('#fullName').val(),
+              phone: $('#phone').val(),
+              email: $('#email').val(),
+              content:$('#content').val()
+            },
+            success: function (response) {
+               showSnackbar(response);
+            }
+        });
+        event.preventDefault();
+      });
+    </script>

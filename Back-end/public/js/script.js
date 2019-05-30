@@ -191,3 +191,19 @@ function loadMapChart(){
     };
 }
 // dashboard-stats end
+
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }    
+});
+
+function showSnackbar(content) {
+  var x = document.getElementById("snackbar");
+  x.innerHTML = content;
+  x.className = "show";
+  var audio = new Audio('/sound/notification.mp3');
+  audio.play();
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}

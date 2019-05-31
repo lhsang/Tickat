@@ -4,7 +4,7 @@ var categoryService = require('../../service/categoryService');
 exports.detailPage = async (req, res)=>{
   
 
-    var event_id= req.param('id');
+    var event_id= req.param.id;
 
     var event = await eventService.getEventsById({
         where: {id:event_id},
@@ -23,11 +23,14 @@ exports.detailPage = async (req, res)=>{
     })
     var categories = await categoryService.getAllCategories();
 
-    res.render("customer/detailEvent",{
+    var data = {
         title: 'Detail Event',
         layout: 'main',
         events: event,
         categories:  categories,
         organization_name: organization_name
-    });
+    };
+
+    res.render("customer/detailEvent",data);
 };
+

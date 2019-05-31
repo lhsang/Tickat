@@ -15,6 +15,9 @@ var homeController = require('../controller/customer/homeController');
 var bookingController = require('../controller/customer/bookingController');
 var decodeToken = require('../middleware/authenticate').decodeToken;
 
+var detailEvent = require('../controller/customer/detailEvent');
+
+
 router.use(cookieParser());
 
 router.get('/(|home)$',decodeToken, homeController.homePage);
@@ -33,9 +36,9 @@ router.get('/about/:id',decodeToken, homeController.about);
 
 router.post('/about/:id/send-email',urlencodedParser, homeController.send_email);
 
-//router.get('/detailEvent',(req,res)=>res.render('customer/detailEvent'));
+//router.get('/detailEvent/:id',(req,res)=>res.render('customer/detailEvent'));
 
-router.get('/detailevent',detailEvent.detailPage);
+router.get('/detailEvent/:id',detailEvent.detailPage);
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });

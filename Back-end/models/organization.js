@@ -20,6 +20,9 @@ Organization.init({
     description: {
         type: Sequelize.STRING,
         defaultValue: "Chưa có mô tả."
+    },
+    user_id:{
+        type: Sequelize.INTEGER
     }
 }, { sequelize, modelName: 'organization', freezeTableName: true});
 

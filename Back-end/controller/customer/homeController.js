@@ -168,3 +168,12 @@ exports.switchAcc = async (req, res)=>{
 exports.uploadAvatar = (req, res)=>{
     res.send('upload thanh cong');
 };
+
+exports.eventDetail = async (req, res)=>{
+    var event = eventService.getEventById(req.params.id);
+    var data = {
+
+    };
+    //res.render('customer/eventDetail', data);
+    res.send(event);
+};

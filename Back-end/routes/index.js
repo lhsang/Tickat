@@ -33,6 +33,8 @@ router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username',decodeToken, homeController.profile);
 
+router.get('/events/:id', homeController.eventDetail);
+
 router.get('/test', async (req, res)=>{
     var comming_events = await eventService.getSuggestEvents(true);
 

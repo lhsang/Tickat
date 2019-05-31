@@ -83,3 +83,13 @@ exports.getSuggestEvents = async (isHandle = false)=>{
         return Error('Error !');
     }
 };
+
+exports.getEventById = async (id)=>{
+    try {
+        let event = await Event.findByPk(id);
+        return event;
+    } catch (error) {
+        console.log(error);
+        
+    }
+};

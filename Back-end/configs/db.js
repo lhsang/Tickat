@@ -53,6 +53,12 @@ Organization.hasMany(Event, {
 Event.belongsTo(Organization,{
     foreignKey: 'organization_id'
 });
+Account.hasOne(Organization,{
+    foreignKey: 'user_id'
+});
+Organization.belongsTo(Account, {
+    foreignKey: 'user_id'
+});
 
 Category.hasMany(Event, {
     foreignKey: 'category_id'

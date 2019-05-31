@@ -45,7 +45,7 @@ router.post('/upload-avatar', uploadAvatar.single('avatar'), (req, res)=>{
 
 //router.get('/detailEvent/:id',(req,res)=>res.render('customer/detailEvent'));
 
-router.get('/detailEvent/:id',detailEvent.detailPage);
+//router.get('/detailEvent/:id',detailEvent.detailPage);
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });

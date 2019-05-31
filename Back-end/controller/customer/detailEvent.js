@@ -21,6 +21,7 @@ exports.detailPage = async (req, res)=>{
                     }
                 ]
     })
+    
     var categories = await categoryService.getAllCategories();
 
     var data = {

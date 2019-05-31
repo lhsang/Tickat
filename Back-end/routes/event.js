@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var pool = require('../configs/db');
 var hash_bcrypt = require('../utils/bcrypt');

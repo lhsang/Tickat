@@ -164,3 +164,7 @@ exports.switchAcc = async (req, res)=>{
     res.clearCookie("token");
     res.redirect('/admin/login');
 };
+
+exports.uploadAvatar = (req, res)=>{
+    res.send('upload thanh cong');
+};

@@ -25,7 +25,8 @@ Event.init({
     address: Sequelize.STRING,
     img: Sequelize.STRING,
     organization_id: Sequelize.INTEGER,
-    category_id: Sequelize.INTEGER
+    category_id: Sequelize.INTEGER,
+    date_arr: Sequelize.VIRTUAL
 }, { sequelize, modelName: 'event'});
 
 module.exports = Event;

@@ -11,9 +11,10 @@ const eventService = require('../service/eventService');
 const ticketService = require('../service/ticketService');
 const organizationService = require('../service/organizationService');
 const userService =  require('../service/userService');
+const {getDateObjectFromString} = require('../utils/format');
 
 const fs = require('fs');
-const roleIdDefined = require('../utils/object_define');
+const object_define = require('../utils/object_define');
 
 // Role.findAll({
 //     include: {
@@ -31,44 +32,63 @@ const roleIdDefined = require('../utils/object_define');
 
 // Organization.bulkCreate([
 //     {
-//         name: 'Confexhub Sdn. Bhd', tel: '084 727 4736', 
-//         mail: 'vietnammeetup@gmail.com', website: 'confexhub.com.vn',
-//         img: 'http://www.newmaker.com/u/2016/20167/com_img/Confexhub-logo.png',
-//         description: 'Confexhub is a leading thought leader network solutions provider focuses on delivering industry economic and policy studies, global business and investment matching, as well as innovative business and investment conferences, exhibitions, forums and trainings in the ASEAN, SAARC and EEU regions.'
+//         name: 'COCOBAY ĐÀ NẴNG', tel: '084 287 2326', 
+//         mail: 'contact@cocobay.com', website: 'cocobay.com',
+//         img: 'https://dichvuthuexedanang.com/wp-content/uploads/2018/08/Review-Cocobay-Da-Nang-5.jpg',
+//         description: `Tọa lạc ở vị trí trung tâm du lịch Đà Nẵng - Hội An, tổ hợp Du lịch và Giải trí Cocobay như một viên ngọc tuyệt mỹ nổi bật giữa khung cảnh nên thơ của biển trời Đà Nẵng. Với tổng diện tích 31 ha bao gồm bãi biển xanh ngát trải dài 600m thơ mộng, Cocobay mang đến những trải nghiệm chưa từng có về du lịch, lưu trú, giải trí và là biểu tượng mới của phong cách sống thời thượng.
+//         Cocobay được định hướng tập trung cung cấp mô hình dịch vụ hoàn chỉnh "Lưu Trú Tiện Nghi - Giải Trí Tuyệt Vời - Tham Quan Thả Ga - Ẩm Thực Đa Dạng".
+//         - Chuỗi khách sạn Boutique cùng các căn hộ Condotels độc đáo mang đến trải nghiệm lưu trú thú
+//         vị. 
+//         - Các hoạt động giải trí đẳng cấp và diễn ra quanh năm hứa hẹn giúp du khách có những giây phút
+//         thư giãn trong không khí lễ hội tưng bừng mỗi khi đến tới Cocobay.
+//         - Chuỗi nhà hàng với lựa chọn đa dạng cùng phố đi bộ ẩm thực chắc chắn sẽ giúp các tín đồ ẩm thực
+//         thỏa thích khám phá. 
+//         - Coco Bus Tour - xe buýt 2 tầng đầu tiên tại Việt Nam - sẽ đưa du khách đến các điểm du lịch nổi
+//         tiếng tại Đà Nẵng.
+//         `
 //     },
 //     {
-//         name: 'Orion', tel: '028.3827.4173', 
-//         mail: 'contact@orion.com', website: 'orion.com',
-//         img: 'http://images1.cafef.vn/Images/Uploaded/DuLieuDownload/LogoCorpLarge/ORION.JPG',
-//         description: 'Orion được biết đến là một trong các công ty dẫn đầu thị trường bánh kẹo ở Việt Nam, với rất nhiều nhãn hàng được nhiều người biết đến như Choco.Pie, Custas, Goute…, hay các loại snack như O’star, Toonies, Marineboy, Swing… Với phương châm làm việc đặt chất lượng lên hàng đầu, Orion không ngừng nghiên cứu và phát triển nhiều sản phẩm mới vừa ngon miệng vừa có giá trị dinh dưỡng cao cho người tiêu dùng ở mọi lứa tuổi.'
+//         name: `TRUNG TÂM VĂN HÓA PHÁP TẠI HÀ NỘI-L'ESPACE' `, tel: '038.3927.4473', 
+//         mail: 'contact@ttvhphn.com', website: 'ttvhphn.com',
+//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/organizerlogo/2018/08/23/CD2B1E.jpg',
+//         description: `Trung tâm Văn hóa Pháp tại Hà Nội – L’Espace là nơi giao lưu gặp gỡ về ngôn ngữ, văn hóa Pháp và các nước Pháp ngữ. Đây là trung tâm giảng dạy tiếng Pháp và là một trong những địa chỉ quen thuộc của đời sống văn hóa nghệ thuật Hà Nội.
+//         `
 //     },
 // ]);
 
 // Event.bulkCreate([
 //     {
-//         name:'Rock’n’Share – Hoa Lư Rực Lửa',
-//         date: '2019-06-19 17:00:00',
-//         description: `Quỹ #VìTụiNhỏ được thành lập bởi Psychotramps13 từ năm 2015, nhằm giúp đỡ các trẻ em vùng cao có hoàn cảnh khó khăn, thiếu thốn.
-//         Toàn bộ số tiền bán vé và gây guỹ được từ các sản phẩm và đêm nhạc sẽ chuyển thành những nụ cười và ánh mắt này của Tụi Nhỏ, được chuyển đi bởi những gã lang thang trên những con xe, vượt đường xa, nắng gió, để trao tận tay Tụi Nhỏ.
-//         Để từ đó, tiếp thêm năng lượng cho anh em Psychotramps13 tiếp tục cuộc hành trình Rock'n'Share và rồi để lại đi buôn hạnh phúc.`,
-//         organization_id: 2,
-//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/05/18/0568AC.jpg',
-//         category_id: 3,
-//         address: `Sân Vận Động Hoa Lư
-//         Số 2 Đinh Tiên Hoàng, Quận 1, Thành Phố Hồ Chí Minh`
-//     },
-//     {
-//         name:'ĐÊM NHẠC BEETHOVEN VÀ RACHMANINOV',
-//         date: '2019-07-28 08:00:00',
-//         description: `Bản concerto cho piano số 2 cung Đô thứ của S. Rachmaninov được xem là một trong số ít những tác phẩm đặc biệt nổi tiếng của thời kỳ âm nhạc Lãng mạn. Tác phẩm được yêu mến khắp nơi trên thế giới, được mọi nghệ sĩ piano tài năng trên thế giới yêu thích lựa chọn để thể hiện tài năng của mình và âm nhạc của tác phẩm đã ảnh hưởng rộng khắp đời sống nghệ thuật đến tận ngày nay, xuất hiện trong hàng chục bộ phim nổi tiếng, là nguồn cảm hứng cho hàng trăm tác phẩm nghệ thuật khác như múa, kịch, hòa tấu, ca khúc, chương trình truyền hình … Tác phẩm này sẽ được trình diễn bởi nghệ sĩ piano xuất sắc Bích Trà cùng Dàn nhạc Giao hưởng HBSO trong Đêm nhạc Beethoven và Rachmaninov.
+//         name:'AQUA LEAGUE',
+//         date: '2019-08-01 14:00:00',
+//         description: `Nhập code 'VIPCODE12' nhận ngay ưu đãi giảm 12% cho gói COUPLE và gói NHÓM
 
-//         Với âm nhạc của thiên tài vĩ đại Ludwig van Beethoven, chúng ta sẽ có cơ hội thưởng thức Bản giao hưởng số 7 cung La trưởng, tác phẩm được Beethoven tự đánh giá là "Một trong những tác phẩm tốt nhất của tôi". Một tác phẩm gây chấn động ngay từ lần ra mắt đầu tiên năm 1813 tại Vienna, tác phẩm còn được biết đến với tên gọi "Anh hùng ca" (Eroica).
+//         AQUA LEAGUE - LỄ HỘI NƯỚC ĐỈNH CAO ĐÃ SẴN SÀNG 
         
-//         Chương trình được dàn dựng và chỉ huy bởi nhạc trưởng, NSUT Trần Vương Thạch.`,
+//         Lần đầu tiên, một lễ hội nước với concept độc đáo, quy mô tầm cỡ và các hoạt động giải trí đúng CHẤT sẽ xuất hiện tại Cocobay Đà Nẵng mùa hè này.
+        
+//         Aqua League hứa hẹn thổi bay sức nóng mùa hè này bằng hàng loạt những điểm nhấn cực kỳ thú vị có 1-0-2.
+        
+//         Với concept “đại chiến nước” thú vị của #AquaLeague, khán giả tham dự chương trình sẽ được thử nghiệm những trò chơi thể thao nước QUY MÔ KHỦNG chưa từng thấy.
+        
+//         💦 Thoả sức mình trong các trò chơi nước độc đáo được đầu tư khủng như pháo đài nước, đường trượt nước, đường trượt xà phòng, cây cầu nước, máy phun bọt xà phòng, vòi rồng phun nước cỡ lớn.
+        
+//         💦 Tham gia vào cuộc “đại chiến team” cực lớn đầy phấn khích
+        
+//         💦 Thưởng thức những set nhạc cực bốc từ các DJs xuyên suốt cả ngày
+        
+//         💦 Tận hưởng những màn biểu diễn dance bốc lửa tại cả hai sân khấu phụ và chính
+        
+//         VÀ ĐẶC BIỆT HƠN CẢ 
+        
+//         Dàn line-up Việt - Hàn nóng hừng hực xuyên suốt cả 2 ngày lễ hội. Đặc biệt, sự xuất hiện của JAY PARK và DJ PUMKIN ngày 14/7 sẽ đem đến những phút giây đắm mình trong âm nhạc cuồng nhiệt
+//         Concept ĐẠI CHIẾN TEAM không khoan nhượng được DJ và NGHỆ SỸ “cầm trịch”
+//         Nghệ sĩ tham gia biểu diễn: 
+//         .`,
 //         organization_id: 1,
-//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/04/22/93BEBC.jpg',
+//         img: 'https://tkbvn-tokyo.s3.amazonaws.com/Upload/eventcover/2019/05/27/0C7BA8.jpg',
 //         category_id: 1,
-//         address:'7 Công Trường Lam Sơn, phường Bến Nghé, Quận 1, Thành Phố Hồ Chí Minh'
+//         address:`Cocobay Đà Nẵng
+//         Đường Trường Sa, phường Hòa Hải, Quận Ngũ Hành Sơn, Thành Phố Đà Nẵng`
 //     }
 // ])
 
@@ -105,25 +125,23 @@ const roleIdDefined = require('../utils/object_define');
 // ]).then(result=>console.log(JSON.stringify(result)));
 
 // async function test(){
-//     var events = await eventService.getCommingEvents();
-//     console.log(events);
+//     var events= await eventService.getAllEvents();
+//     handleSuggestEvents(events);
+// }
+
+// function handleSuggestEvents(events){
+//     var result = [];
+//     var i =0, length = (events.length%2==0)? events.length : (events.length-1);
+//     console.log(length);
+    
+//     for(i=0;i<length;i+=2){
+//         result.push([events[i],events[i+1]]);
+//     }
+//     console.log(result);
 // }
 
 // test();
 
+var today = new Date(' Thu Aug 01 2019 14:00:00 GMT+0700 (Indochina Time)');
 
-Event.findAll({
-    attributes:['event.name','organization.name'],
-    include:[
-        {
-            model: Organization,
-            where:{ id:2 }
-        }
-    ]
-}).then(res=>console.log(JSON.stringify(res)))
-async function test() {
-    var x= roleIdDefined.getRoleIdDefined();
-    console.log(x.admin);
-}
-
-test();
+console.log(getDateObjectFromString(today));

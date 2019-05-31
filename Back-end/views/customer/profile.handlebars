@@ -1,0 +1,126 @@
+<div class="container" style="margin-top:6%; padding:90px" id="profile-admin">
+    <div class="row  d-flex justify-content-center">
+        <div id="user-profile-2" class="user-profile" >
+            <div class="tabbable">
+              <ul class="nav nav-tabs padding-18">
+                <li class="active">
+                  <a data-toggle="tab" href="#home" style="color: rgba(226, 127, 11, 0.94)">
+                    <i class="ace-icon fa fa-user bigger-120" style="color: rgba(226, 127, 11, 0.94)"></i>
+                    Hồ sơ cá nhân
+                  </a>
+                </li>
+        
+              </ul>
+        
+              <div class="tab-content no-border padding-24">
+                <div id="home" class="tab-pane in active"  style="margin-top:2%">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-5 center">    
+                        <img class="editable img-responsive" style="width: 200px;height: 200px;border-radius: 50%;margin-top:7%" src="{{user_profile.avatar}}">    
+                    </div><!-- /.col -->
+        
+                    <div class="col-xs-12 col-sm-7" >
+                      <h4 style="color: rgba(226, 127, 11, 0.94)">
+                        <span class="middle">{{user_profile.full_name}}</span>
+        
+                        <span class="label label-purple arrowed-in-right">
+                          <i class="fa fa-circle" style="font-size:14px"></i>
+                          online
+                        </span>
+                      </h4>
+        
+                      <div class="profile-user-info">
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Username </div>
+        
+                          <div class="profile-info-value">
+                            <span>{{user_profile.username}}</span>
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Địa chỉ </div>
+        
+                          <div class="profile-info-value">
+                            <span>{{user_profile.address}}</span>
+                            
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Ngày sinh </div>
+        
+                          <div class="profile-info-value">
+                            <span>{{user_profile.date_of_birth}}</span>
+                          </div>
+                        </div>
+        
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Tham gia </div>
+        
+                          <div class="profile-info-value">
+                            <span>2010/06/20</span>
+                          </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Điện thoại </div>
+        
+                          <div class="profile-info-value">
+                            <span>{{user_profile.tel}}</span>
+                          </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                          <div class="profile-info-name"> Email </div>
+        
+                          <div class="profile-info-value">
+                            <span>{{user_profile.mail}}</span>
+                          </div>
+                        </div>
+                        <br>
+                      </div>    
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+        
+                  <div class="space-20"></div>
+        
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                      <div class="widget-box transparent">
+                        <div class="widget-header widget-header-small">
+                          <h4 class="widget-title smaller" style="color: rgba(226, 127, 11, 0.94)">
+                              <i class="far fa-check-square" style="color: rgba(226, 127, 11, 0.94)"></i>                             
+                              Giới thiệu
+                            </h4>
+                        </div>
+        
+                        <div class="widget-body">
+                          <div class="widget-main">
+                            <p>
+                              {{user_profile.description}}
+                            </p>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /#home -->
+        
+              </div>
+            </div>
+          </div>
+    </div>
+   <hr>
+  <div class="row  d-flex justify-content-center">
+    <button  class="btnchangepass"><i class="far fa-edit" style="color:white;font-size: 18px"></i> Chỉnh sửa hồ sơ</button>
+    <button class="btnchangepass"><i class="fas fa-ticket-alt" style="margin-right:10%"></i><b></b> Xem vé đã mua</b> </button>
+  </div>
+
+
+
+
+<br>
+
+</div>

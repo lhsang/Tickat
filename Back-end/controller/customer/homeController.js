@@ -17,7 +17,11 @@ var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key
 exports.homePage = async (req, res)=>{ 
     var comming_events = await eventService.getCommingEvents();
     var categories = await categoryService.getAllCategories();
-    var suggest_events = await eventService.getSuggestEvents();
+    var suggest_events = await eventService.getSuggestEvents(true);
+
+    comming_events.map((obj)=>{
+        handleData.sortByKey(obj.tickets,"price","desc");
+    });
 
     //get slide img - tạm thời, sau bỏ vô service
     var slides = comming_events.map(obj=>{
@@ -25,6 +29,7 @@ exports.homePage = async (req, res)=>{
     });
 
     handleData.addDateArrToEvents(comming_events);
+    handleData.addDateArrToEvents(suggest_events);
     var data = {
         title: 'Tickat - Mua bán vé sự kiện',
         layout: 'main',

@@ -44,7 +44,7 @@
         
         {{#each comming_events}}
             <div class=" col-sm-12 col-lg-6 wow bounceInLeft">
-                <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
+                <div class="card" onclick="location.href='/events/{{id}}'">
                     <img class="card-img-top" src="{{img}}" alt="Card image cap">
                     <span class="badge-price">
                         {{tickets.[0].price}} VND
@@ -93,7 +93,7 @@
                               <div class="row">
                                   {{#each this}}
                                   <div class=" col-sm-12 col-lg-6">
-                                      <div class="card" onclick="location.href='./html/a2-trangchitietsp.html'">
+                                      <div class="card" onclick="location.href='/events/{{id}}'">
                                           <img class="card-img-top" src="{{img}}" alt="Card image cap">
                                           <span class="badge-price">{{tickets.[0].price}} VNĐ</span>
                                           <div class="card-body row">

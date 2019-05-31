@@ -37,6 +37,7 @@ exports.getCommingEvents = async ()=>{
 function handleSuggestEvents(events){
     var result = [];
     var i =0, length = (events.length%2==0)? events.length : (events.length-1);
+    
     handleData.addDateArrToEvents(events);
     for(i=0;i<length-1;i+=2){
         result.push([events[i],events[i+1]]);
@@ -44,7 +45,7 @@ function handleSuggestEvents(events){
     return result;
 }
 
-exports.getSuggestEvents = async (req, res)=>{
+exports.getSuggestEvents = async (isHandle = false)=>{
     try {
         let events = await Event.findAll({
             attributes: ['id','name','date','address','img'],
@@ -53,10 +54,16 @@ exports.getSuggestEvents = async (req, res)=>{
             include:{
                 model: Ticket,
                 attributes: ['price'],
-                order: [[Ticket, 'price', 'asc']]
+                order: [
+                    [Ticket,'price', 'asc']
+                ]
             }
         });
-        return handleSuggestEvents(events);
+        events.map((obj)=>{
+            handleData.sortByKey(obj.tickets,"price","desc");
+        });
+        
+        return isHandle? handleSuggestEvents(events): events;
     } catch (error) {
         return Error('Error !');
     }

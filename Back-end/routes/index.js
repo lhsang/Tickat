@@ -17,6 +17,9 @@ var decodeToken = require('../middleware/authenticate').decodeToken;
 var eventService = require('../service/eventService');
 var handle = require('../utils/handleData');
 
+var Event = require('../models/event');
+var Organization = require('../models/organization');
+
 router.use(cookieParser());
 
 router.get('/(|home)$',decodeToken, homeController.homePage);
@@ -38,8 +41,15 @@ router.post('/about/:id/send-email',urlencodedParser, homeController.send_email)
 router.get('/users/:username',decodeToken, homeController.profile);
 
 router.get('/test', async (req, res)=>{
-    var x = await eventService.getSuggestEvents();
-    res.send(x);
+    var comming_events = await eventService.getSuggestEvents(true);
+
+    res.send(comming_events);
+});
+
+router.get('/test1', async (req, res)=>{
+    var comming_events = await eventService.getSuggestEvents();
+
+    res.send(comming_events);
 });
 module.exports = router;
 

@@ -142,6 +142,9 @@ const object_define = require('../utils/object_define');
 
 // test();
 
-var today = new Date(' Thu Aug 01 2019 14:00:00 GMT+0700 (Indochina Time)');
+async function test() {
+    var organization = await organizationService.findOrganizationByUserId(7); //7 la Le Hoang Sang
+    console.log(organization);
+}
 
-console.log(getDateObjectFromString(today));
+test();

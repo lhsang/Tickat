@@ -9,10 +9,10 @@ module.exports = new Sequelize({
     port: 5432,*/
 
     //db online
-    database: 'dd89bh5kb99lg',
-    username: 'yzmlwhuuljkjlf',
-    password: '5f0ef9e6aa0eaf21dc1b6f846d5e286c8149b6ad50adf84ed787f66e5fdf0886',
-    host: 'ec2-174-129-208-118.compute-1.amazonaws.com',
+    database: 'dfupui3khqo4iv',
+    username: 'rfzwrublzspbie',
+    password: '8c540ca8fec2d570a70982e29e83b5254f68e1fb321ba492944e6119555335f3',
+    host: 'ec2-23-21-148-223.compute-1.amazonaws.com',
     port: 5432,
     
     dialect: 'postgres',

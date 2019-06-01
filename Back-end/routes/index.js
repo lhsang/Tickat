@@ -12,6 +12,8 @@ var eventService = require('../service/eventService');
 var handle = require('../utils/handleData');
 
 var Organization = require('../models/organization');
+var Ticket = require('../models/ticket');
+var Event = require('../models/event');
 
 var uploadAvatar = require('../configs/upload').uploadAvatar;
 
@@ -33,12 +35,19 @@ router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username',decodeToken, homeController.profile);
 
-router.get('/events/:id', homeController.eventDetail);
+router.get('/events/:id',decodeToken, homeController.eventDetail);
 
 router.get('/test', async (req, res)=>{
-    var comming_events = await eventService.getSuggestEvents(true);
-
-    res.send(comming_events);
+    Ticket.findAll({
+        include:{
+            model: Event,
+            where:{
+                organization_id :2
+            }
+        }
+    }).then((results)=>{
+        res.send(results);
+    });
 });
 
 router.post('/upload-avatar', uploadAvatar.single('avatar'), (req, res)=>{

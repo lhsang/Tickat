@@ -7,10 +7,15 @@ var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var organizationService = require('../../service/organizationService');
 var userService = require('../../service/userService');
+
 var {hash_password,check_password} = require('../../utils/bcrypt');
 var smtpTransport = require('../../utils/mail');
 var objectDefined = require('../../utils/object_define');
 var handleData = require('../../utils/handleData');
+
+var Event = require('../../models/event');
+var Organization = require('../../models/organization');
+var Ticket = require('../../models/ticket');
 
 var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
@@ -170,10 +175,34 @@ exports.uploadAvatar = (req, res)=>{
 };
 
 exports.eventDetail = async (req, res)=>{
-    var event = eventService.getEventById(req.params.id);
-    var data = {
+    var event = await eventService.getEventById({
+        where: {
+            id: req.params.id
+        },
+        include:[
+            {
+                model: Ticket,
+                attributes: ['price']
+            },
+            {
+                model: Organization,
+                attributes: ['id','name','website']
+            }
+        ]
+    });
+    var categories = await categoryService.getAllCategories();
+    handleData.addDateArrToEvent(event);
 
+    var data = {
+        title: 'Tickat - '+event.name,
+        layout: 'main',
+        event: event,
+        categories:  categories,
+        logged: false
     };
-    //res.render('customer/eventDetail', data);
-    res.send(event);
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+   res.render('customer/eventDetail', data);
 };

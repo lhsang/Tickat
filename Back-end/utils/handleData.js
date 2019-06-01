@@ -1,13 +1,16 @@
 var format = require('./format');
 
-exports.addDateArrToEvents = (events)=>{
+var addDateArrToEvent = (event)=>{
+    event.date_arr =format.getDateObjectFromString(event.date);
+};
+
+var addDateArrToEvents = (events)=>{
     for(var i=0;i<events.length;i++){
-        events[i].date_arr =format.getDateObjectFromString(events[i].date);
+        addDateArrToEvent(events[i]);
     }
 };
 
-
-exports.sortByKey = (array, key, order = 'asc') => {
+var sortByKey = (array, key, order = 'asc') => {
     if(order.toLowerCase().localeCompare('asc')==0){
         return array.sort(function(a, b) {
             var x = a[key]; var y = b[key];
@@ -20,4 +23,10 @@ exports.sortByKey = (array, key, order = 'asc') => {
         return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     });
 
-}
+};
+
+module.exports = {
+    addDateArrToEvent,
+    addDateArrToEvents,
+    sortByKey
+};

@@ -69,12 +69,13 @@ exports.getSuggestEvents = async (isHandle = false)=>{
     }
 };
 
-exports.getEventById = async (id)=>{
+exports.getEventById = async (query)=>{
     try {
-        let event = await Event.findByPk(id);
+        let event = await Event.findOne(query);
+        handleData.sortByKey(event.tickets, 'price');
         return event;
     } catch (error) {
         console.log(error);
-        
+        return new Error('Some thing is wrong');
     }
 };

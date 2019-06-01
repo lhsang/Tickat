@@ -9,7 +9,7 @@ const {setDefaultQueryStr} =  require('../utils/default_query_string');
 exports.getTicketsByEventId = async (event_id)=>{
 
     try {
-        let tickets = Ticket.findAll({
+        let tickets = await Ticket.findAll({
             where: {
                 event_id: event_id
             },

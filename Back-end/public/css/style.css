@@ -280,6 +280,7 @@ input[type="search"]::-webkit-search-cancel-button {
 /*Footer start*/
 .footer{
     background: #1E0A3C;
+    padding-top: 30px;
 }
 
 .footer h1{
@@ -465,7 +466,7 @@ color: #FFFFFF;
 
 /* admin-login.html start */
 .admin-login{
-    background-color: #dad6d6;
+    background-color: #ffffff;
     height: 100%;
     padding: 10px;
 }
@@ -484,11 +485,13 @@ color: #FFFFFF;
 }
 
 .admin-login .body{
-    background: #1E0A3C;
+    background: rgb(255, 255, 255);
     padding: 40px;
     text-align: center;
-    border-radius: 10px
-
+    border-radius: 10px;
+    border: 0.3px solid #928c8c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 6%;
 }
 .admin-login .body form{
     width:40%;
@@ -1172,6 +1175,7 @@ body.loading .modal-loading {
     top: 10%;
     right: 60px;
     font-size: 17px;
+    z-index: 99999;
 }
 
 #snackbar.show {

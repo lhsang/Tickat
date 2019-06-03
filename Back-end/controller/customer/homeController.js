@@ -118,8 +118,8 @@ exports.login = async (req, res)=>{
             role_id: user.role_id
         };
 
-        let token = jwt.sign(payload, privateKey, { algorithm: 'RS256'});
-        res.cookie('token', token);
+        let token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: '1h'});
+        res.cookie('token', token, {expires: new Date(Date.now()+60*60*1000),httpOnly: true});
         response.status = 200;
         response.message="";
     }
@@ -129,13 +129,21 @@ exports.login = async (req, res)=>{
 exports.signUp = async (req, res)=>{
     var data = {
         username :req.body.username,
-        password : req.body.password
+        password : req.body.password,
+        tel: req.body.tel,
+        address: req.body.address,
+        mail: req.body.mail,
+        date_of_birth: req.body.date_of_birth,
+        full_name: req.body.full_name,
+        admin: req.body.admin
     };
-
     data.password = hash_password(data.password);
-
+    
     userService.createAccount(data);
-    res.redirect('/');
+    res.send({
+        status: 200,
+        msg: "Đăng ký thành công"
+    });
 };
 
 exports.logout = (req, res)=>{
@@ -206,3 +214,21 @@ exports.eventDetail = async (req, res)=>{
     }    
    res.render('customer/eventDetail', data);
 };
+
+exports.checkUsername = async (req, res)=>{
+    var user = await userService.getUserByUsername(req.body.username);
+    var response = {
+        status: 404,
+        msg: "Username not found"
+    };
+    if(user){
+        response.status = 200;
+        response.msg = "Username already existed"
+    }
+    res.send(response);
+};
+
+exports.test = async (req, res)=>{
+    var events = await eventService.test();
+    res.send(events);
+}

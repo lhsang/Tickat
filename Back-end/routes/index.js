@@ -23,7 +23,7 @@ router.post('/login', homeController.login);
 
 router.get('/logout', homeController.logout);
 
-router.post('/sign-up', homeController.signUp);
+router.post('/users', homeController.signUp);
 
 router.get('/switch-acc',decodeToken, homeController.switchAcc);
 
@@ -37,18 +37,9 @@ router.get('/users/:username',decodeToken, homeController.profile);
 
 router.get('/events/:id',decodeToken, homeController.eventDetail);
 
-router.get('/test', async (req, res)=>{
-    Ticket.findAll({
-        include:{
-            model: Event,
-            where:{
-                organization_id :2
-            }
-        }
-    }).then((results)=>{
-        res.send(results);
-    });
-});
+router.post('/check-username', homeController.checkUsername);
+
+router.get('/test',homeController.test);
 
 router.post('/upload-avatar', uploadAvatar.single('avatar'), (req, res)=>{
     res.send("upload thanh cong !");

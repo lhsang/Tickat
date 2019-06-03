@@ -79,3 +79,12 @@ exports.getEventById = async (query)=>{
         return new Error('Some thing is wrong');
     }
 };
+
+exports.test = async ()=>{
+    var events = await Event.findAll({
+        
+        where:
+            sequelize.where(sequelize.fn('YEAR',sequelize.col('date')),2018)
+        });
+    return events;
+};

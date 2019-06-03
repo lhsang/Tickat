@@ -8,11 +8,13 @@ var ensureAuthenticated = require('../middleware/authenticate').verifyTokenInRol
 var decodeToken = require('../middleware/authenticate').decodeToken;
 
 
-// router.all('*',ensureAuthenticated, (req, res, next)=>{
-//     next();
-// });
+router.all('*',ensureAuthenticated, (req, res, next)=>{
+    next();
+});
 
 router.get('/login',adminController.login);
+
+router.get('/sign-up',adminController.signUp);
 
 router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
 

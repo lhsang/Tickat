@@ -142,9 +142,4 @@ const object_define = require('../utils/object_define');
 
 // test();
 
-async function test() {
-    var organization = await organizationService.findOrganizationByUserId(7); //7 la Le Hoang Sang
-    console.log(organization);
-}
-
-test();
+console.log(object_define.getRoleIdDefined().admin);

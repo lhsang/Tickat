@@ -39,6 +39,8 @@ const Event = require('../models/event');
 const Category = require('../models/category');
 const TypeTicket = require('../models/type_of_ticket');
 const Ticket = require('../models/ticket');
+const Order = require('../models/order');
+const Order_detail = require('../models/order_detail');
 
 Role.hasMany(Account,{
     foreignKey: 'role_id'        
@@ -70,6 +72,11 @@ Event.belongsTo(Category, {
 Event.hasMany(Ticket, {
     foreignKey: 'event_id'
 });
+
+Event.hasMany(Order,{
+    foreignKey: 'event_id'
+})
+
 Ticket.belongsTo(Event, {
     foreignkey: 'event_id'
 });
@@ -80,5 +87,26 @@ TypeTicket.hasMany(Ticket, {
 Ticket.belongsTo(TypeTicket, {
     foreignKey: 'type_id'
 });
+
+Ticket.hasMany(Order_detail,{
+    foreignKey: 'ticket_id' 
+});
+
+Order.belongsTo(Event,{
+    foreignKey: 'event_id' 
+});
+
+Order.hasMany(Order_detail,{
+    foreignKey: 'order_id'
+});
+
+Order_detail.belongsTo(Order,{
+    foreignKey: 'order_id'
+});
+
+Order_detail.belongsTo(Ticket,{
+    foreignKey: 'ticket_id' 
+})
+
 
 

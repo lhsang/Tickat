@@ -4,8 +4,13 @@ const Account = require('../models/account');
 const Organization = require('../models/organization');
 const Event = require('../models/event');
 const Category = require('../models/category');
+
+const Order_detail = require('../models/order_detail');
+
 const TypeTicket = require('../models/type_of_ticket');
 const Ticket = require('../models/ticket');
+
+
 const bcrypt = require('../utils/bcrypt');
 const eventService = require('../service/eventService');
 const ticketService = require('../service/ticketService');
@@ -15,6 +20,13 @@ const {getDateObjectFromString} = require('../utils/format');
 
 const fs = require('fs');
 const object_define = require('../utils/object_define');
+
+// Order_detail.findAll({
+//    include:{
+//        model: Ticket
+//     }
+// }).then(result => console.log(JSON.stringify(result)));
+
 
 // Role.findAll({
 //     include: {
@@ -123,6 +135,14 @@ const object_define = require('../utils/object_define');
 //     {event_id: 6,type_id: 2,price: 200000,amount:110,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
+
+
+
+// Order.bulkCreate([
+//     {id:1,event_id:6,name:'Phan Minh Sơn',tel:'012345679',mail:'phanminhson@gmail.com',address:'132 đường số 1 quận Gò Vấp, TPHCM',user_id:null,date_bought: '2019-02-06 14:00:00'},
+ 
+// ]).then(result=>console.log(JSON.stringify(result)));
+
 
 // async function test(){
 //     var events= await eventService.getAllEvents();

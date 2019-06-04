@@ -19,6 +19,19 @@ exports.getAllEvents = async (query)=>{
     }
 };
 
+exports.getEventsById = async (query)=>{
+
+    try {
+        setDefaultQueryStr(query);
+        let events =  await Event.findAll(query);
+        return events;
+    } catch (e) {
+        throw Error('Can not find all events');
+    }
+};
+
+
+
 exports.getCommingEvents = async ()=>{
     try {
         let events = await Event.findAll({
@@ -35,6 +48,8 @@ exports.getCommingEvents = async ()=>{
     } catch (error) {
         return Error('Error !');
     }
+
+    
 };
 
 function handleSuggestEvents(events){

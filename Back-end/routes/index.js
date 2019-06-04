@@ -41,5 +41,17 @@ router.post('/upload-avatar', uploadAvatar.single('avatar'), userController.uplo
 
 router.get('/test',homeController.test);
 
+//router.get('/detailEvent/:id',(req,res)=>res.render('customer/detailEvent'));
+
+//router.get('/detailEvent/:id',detailEvent.detailPage);
+
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+router.post('/test', urlencodedParser,(req, res)=>{
+    var username = req.body.username;
+    res.send("server nhan:"+username);
+})
+
 module.exports = router;
 

@@ -7,7 +7,9 @@ var ignoreAuthenticate= [
     "/login",
     "/logout",
     "/admin/login",
-    "admin/logout"
+    "/sign-up",
+    "/admin/logout",
+    "/admin/sign-up"
 ];
 
 exports.verifyToken = (req, res, next) =>{
@@ -39,6 +41,7 @@ exports.decodeToken = (req, res, next)=>{
 exports.verifyTokenInRoleAdmin = async (req, res, next) =>{
     
     req.token = req.cookies.token;
+    
     if(typeof req.token !== 'undefined'){
         jwt.verify(req.token, publicKey, { algorithms: ['RS256'] }, (error, authorData)=>{
             var  role = roleDefined.getRoleIdDefined();

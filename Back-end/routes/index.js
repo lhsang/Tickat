@@ -12,6 +12,8 @@ var eventService = require('../service/eventService');
 var handle = require('../utils/handleData');
 
 var Organization = require('../models/organization');
+var Ticket = require('../models/ticket');
+var Event = require('../models/event');
 
 var uploadAvatar = require('../configs/upload').uploadAvatar;
 
@@ -21,7 +23,7 @@ router.post('/login', homeController.login);
 
 router.get('/logout', homeController.logout);
 
-router.post('/sign-up', homeController.signUp);
+router.post('/users', homeController.signUp);
 
 router.get('/switch-acc',decodeToken, homeController.switchAcc);
 
@@ -33,13 +35,11 @@ router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username',decodeToken, homeController.profile);
 
-router.get('/events/:id', homeController.eventDetail);
+router.get('/events/:id',decodeToken, homeController.eventDetail);
 
-router.get('/test', async (req, res)=>{
-    var comming_events = await eventService.getSuggestEvents(true);
+router.post('/check-username', homeController.checkUsername);
 
-    res.send(comming_events);
-});
+router.get('/test',homeController.test);
 
 router.post('/upload-avatar', uploadAvatar.single('avatar'), (req, res)=>{
     res.send("upload thanh cong !");

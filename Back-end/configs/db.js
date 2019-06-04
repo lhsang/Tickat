@@ -8,12 +8,12 @@ module.exports = new Sequelize({
     host: 'localhost',
     port: 5432,*/
 
-  //db online
-  database: 'dfupui3khqo4iv',
-  username: 'rfzwrublzspbie',
-  password: '8c540ca8fec2d570a70982e29e83b5254f68e1fb321ba492944e6119555335f3',
-  host: 'ec2-23-21-148-223.compute-1.amazonaws.com',
-  port: 5432,
+    //db online
+    database: 'dfupui3khqo4iv',
+    username: 'rfzwrublzspbie',
+    password: '8c540ca8fec2d570a70982e29e83b5254f68e1fb321ba492944e6119555335f3',
+    host: 'ec2-23-21-148-223.compute-1.amazonaws.com',
+    port: 5432,
     
     dialect: 'postgres',
     dialectOptions: {

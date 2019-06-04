@@ -36,21 +36,8 @@
       </div>
     </form>
     <div class="feature">
-        <a href="./html/profile-user.html"  style="text-decoration: none">
-            <img src="img/avatar/youngjae.jpg" class="avatar" alt="">
-        </a> 
-        <div class="btn-group  show-on-hover">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-caret-down" style="color:white;font-size:24px;"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" >
-                  <li><a href="./html/profile-user.html" style="color:white"><i class="fas fa-info-circle"></i> Thông tin cá nhân </a></li>
-                  <li><a href="#"><i class="fas fa-ticket-alt"></i> Vé đã mua</a></li>
-                  <li><a href="#"><i class="fas fa-calendar-alt" ></i> Sự kiện đã tạo</a></li>
-                  <li class="divider"> <hr></li>
-                  <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-                </ul>
-              </div>
+      <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" class="login">Đăng nhập</a> |
+      <a class="create-event" href="">Tạo sự kiện</a>
     </div>
   </div>
 </nav>
@@ -366,7 +353,52 @@
                 Sign in
               </div>
               <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="profile-tab">
-                Sign up
+                <form>
+                  <label for="inputPassword4">Username</label>
+                  <input type="text" class="form-control is-invalid" id="username" placeholder="Username" required>
+                  <div class="invalid-feedback">
+                    Username đã tồn tại
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Mật khẩu</label>
+                      <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Nhập lại mật khẩu</label>
+                      <input type="password" class="form-control is-valid" id="repassword" placeholder="Repeat password">
+                      <div class="invalid-feedback">
+                          Mật khẩu không khớp
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <label for="inputPassword4">Email</label>
+                  <input type="email" class="form-control" id="validationServer01" placeholder="example@gmail.com" required>
+                  <br>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Họ và tên</label>
+                      <input type="password" class="form-control" id="password" placeholder="Full name">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Ngày sinh</label>
+                      <input type="date" class="form-control" id="repassword">
+                    </div>
+                  </div>
+                  <br>
+                   <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Địa chỉ</label>
+                      <input type="password" class="form-control" id="password" placeholder="Full name">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Số điện thoại</label>
+                      <input type="text" class="form-control" id="repassword" placeholder="033457xxxx">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit" id="signup" style="float:right">Đăng ký</button>
+              </form>
               </div>
             </div>
           </div>

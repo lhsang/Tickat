@@ -1,0 +1,65 @@
+
+<style>
+  .logo{
+    text-align: center;
+    margin-top: 10%
+  }
+</style>
+<div style="width: 60%;margin: 0 auto">
+  <div class="logo"> 
+            <img src="/img/logo/logo_1x.png"> 
+            <img src="/img/logo/Tickat_1x.png"> 
+    </div> 
+     <div style="padding: 6%">
+       
+                  <form id="signup-form">
+                    <label for="inputPassword4">Username</label>
+                    <input type="text" class="form-control" id="txtusername" placeholder="Username" required>
+                    <div class="invalid-feedback">
+                      Username already exist
+                    </div>
+                    <br>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="txtpassword" placeholder="Password" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Repeat password</label>
+                        <input type="password" class="form-control" id="repassword" placeholder="Repeat password" required>
+                        <div class="invalid-feedback">
+                            Password does not matching
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <label for="inputPassword4">Email</label>
+                    <input type="email" class="form-control" id="mail" placeholder="example@gmail.com" required>
+                    <br>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Full name</label>
+                        <input type="text" class="form-control" id="full_name" placeholder="Nguyen Van A" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Date of birth</label>
+                        <input type="date" class="form-control" id="date_of_birth">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="225 Nguyễn Văn Cừ, Phường 10 , Quận 5, TP HCM">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Phone number</label>
+                        <input type="text" class="form-control" id="tel" placeholder="033457xxxx">
+                      </div>
+                    </div>
+                    <br>
+                    <a href="/admin/login"class="forgot-pass" style="color:#E27F0B"><= Login page</a> 
+                    <input type="submit" class="btn btn-primary" id="signup"  value="Sign up" style="float:right"/>
+                </form>
+                </div>
+</div>

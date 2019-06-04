@@ -17,7 +17,7 @@ Account.init({
     password: Sequelize.STRING,
     full_name: Sequelize.STRING,
     address: Sequelize.STRING,
-    date_of_birth: Sequelize.DATE,
+    date_of_birth: Sequelize.DATEONLY,
     tel: {
         type: Sequelize.STRING,
         isNumeric: true

@@ -7,6 +7,8 @@ var adminDasboardController = require('../controller/admin/adminDashboardControl
 var ensureAuthenticated = require('../middleware/authenticate').verifyTokenInRoleAdmin;
 var decodeToken = require('../middleware/authenticate').decodeToken;
 
+var organizationService = require('../service/organizationService');
+var ticketService = require('../service/ticketService');
 
 // router.all('*',ensureAuthenticated, (req, res, next)=>{
 //     next();
@@ -14,6 +16,11 @@ var decodeToken = require('../middleware/authenticate').decodeToken;
 
 router.get('/login',adminController.login);
 
-router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
+//router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
 
+router.get('/dashboard',adminDasboardController.dashboard);
+
+router.get('/dashboard-chart',adminDasboardController.dashboardchart);
+//router.get('/test', adminDasboardController.dashboard);
+//router.get('/testk',(req,res)=>console.log(req));
 module.exports = router;

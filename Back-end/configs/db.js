@@ -8,12 +8,12 @@ module.exports = new Sequelize({
     host: 'localhost',
     port: 5432,*/
 
-    //db online
-    database: 'dd89bh5kb99lg',
-    username: 'yzmlwhuuljkjlf',
-    password: '5f0ef9e6aa0eaf21dc1b6f846d5e286c8149b6ad50adf84ed787f66e5fdf0886',
-    host: 'ec2-174-129-208-118.compute-1.amazonaws.com',
-    port: 5432,
+  //db online
+  database: 'dfupui3khqo4iv',
+  username: 'rfzwrublzspbie',
+  password: '8c540ca8fec2d570a70982e29e83b5254f68e1fb321ba492944e6119555335f3',
+  host: 'ec2-23-21-148-223.compute-1.amazonaws.com',
+  port: 5432,
     
     dialect: 'postgres',
     dialectOptions: {
@@ -39,6 +39,8 @@ const Event = require('../models/event');
 const Category = require('../models/category');
 const TypeTicket = require('../models/type_of_ticket');
 const Ticket = require('../models/ticket');
+const Order = require('../models/order');
+const Order_detail = require('../models/order_detail');
 
 Role.hasMany(Account,{
     foreignKey: 'role_id'        
@@ -53,7 +55,7 @@ Organization.hasMany(Event, {
 Event.belongsTo(Organization,{
     foreignKey: 'organization_id'
 });
-Account.hasOne(Organization,{
+Account.hasMany(Organization,{
     foreignKey: 'user_id'
 });
 Organization.belongsTo(Account, {
@@ -70,6 +72,11 @@ Event.belongsTo(Category, {
 Event.hasMany(Ticket, {
     foreignKey: 'event_id'
 });
+
+Event.hasMany(Order,{
+    foreignKey: 'event_id'
+})
+
 Ticket.belongsTo(Event, {
     foreignkey: 'event_id'
 });
@@ -80,5 +87,26 @@ TypeTicket.hasMany(Ticket, {
 Ticket.belongsTo(TypeTicket, {
     foreignKey: 'type_id'
 });
+
+Ticket.hasMany(Order_detail,{
+    foreignKey: 'ticket_id' 
+});
+
+Order.belongsTo(Event,{
+    foreignKey: 'event_id' 
+});
+
+Order.hasMany(Order_detail,{
+    foreignKey: 'order_id'
+});
+
+Order_detail.belongsTo(Order,{
+    foreignKey: 'order_id'
+});
+
+Order_detail.belongsTo(Ticket,{
+    foreignKey: 'ticket_id' 
+})
+
 
 

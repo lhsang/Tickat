@@ -4,8 +4,13 @@ const Account = require('../models/account');
 const Organization = require('../models/organization');
 const Event = require('../models/event');
 const Category = require('../models/category');
+
+const Order_detail = require('../models/order_detail');
+
 const TypeTicket = require('../models/type_of_ticket');
 const Ticket = require('../models/ticket');
+
+
 const bcrypt = require('../utils/bcrypt');
 const eventService = require('../service/eventService');
 const ticketService = require('../service/ticketService');
@@ -15,6 +20,13 @@ const {getDateObjectFromString} = require('../utils/format');
 
 const fs = require('fs');
 const object_define = require('../utils/object_define');
+
+// Order_detail.findAll({
+//    include:{
+//        model: Ticket
+//     }
+// }).then(result => console.log(JSON.stringify(result)));
+
 
 // Role.findAll({
 //     include: {
@@ -124,6 +136,14 @@ const object_define = require('../utils/object_define');
 //     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
 // ]).then(result=>console.log(JSON.stringify(result)));
 
+
+
+// Order.bulkCreate([
+//     {id:1,event_id:6,name:'Phan Minh Sơn',tel:'012345679',mail:'phanminhson@gmail.com',address:'132 đường số 1 quận Gò Vấp, TPHCM',user_id:null,date_bought: '2019-02-06 14:00:00'},
+ 
+// ]).then(result=>console.log(JSON.stringify(result)));
+
+
 // async function test(){
 //     var events= await eventService.getAllEvents();
 //     handleSuggestEvents(events);
@@ -142,9 +162,259 @@ const object_define = require('../utils/object_define');
 
 // test();
 
-async function test() {
-    var organization = await organizationService.findOrganizationByUserId(7); //7 la Le Hoang Sang
-    console.log(organization);
+
+// Account.findOne({
+//     attributes:['id'],
+//     where: {id:7},
+//     include: [{
+//         attributes:['name'],
+//         model: Organization,
+//         include: [{
+//             attributes:['name'],
+//             model: Event,
+//             include:[
+//                 {
+//                     attributes:['id'],
+//                     model: Ticket
+//                 }],
+           
+//         }]
+//     }],
+// }).then(result=>console.log(result));
+
+
+// Ticket.findAll({
+//     attributes:['id','price'],
+//     include:[{
+//         model:Event,
+//         include: [{
+//             model: Organization,
+//             where: {user_id:7},
+//         }]
+//     }]
+// }).then(result=>console.log(result));
+
+// Event.findAll({
+//     attributes: ['id','organization_id'],
+//     include: [{
+//         model: Organization,
+//         where: {user_id:6},
+//     }]
+// }).then(result=>console.log(result));
+
+// Event.update({
+//     organization_id:3
+// },{
+//     where: {id:6}
+// }
+// )
+
+// Ticket.findAll({
+//     attributes: ['id','price'],
+//     include: [{
+//         model:Event,
+//         attributes:['id'],
+//         //where:{id:6},
+//         include: [{
+//             model:Organization,
+//             where: {user_id:6},
+//             attributes:['id']
+//         }]
+//     }]
+// }).then(result=>console.log(result));
+
+const sequelize = require('../configs/db');
+
+// var ticket;
+// async function test(){
+//     var sum=0;
+//    ticket=Ticket.findAll({
+//         attributes: [[sequelize.fn('sum', sequelize.col('price')), 'price'],'bought'],
+//         include: [{
+//             model:Event,
+//             where:{organization_id:3},
+//         }
+//         ],
+        
+//          group:['ticket.id','event.id'],
+//     });
+
+//     for(i=0;i<ticket.length;i++){
+//         sum=ticket[i].price*ticket[i].bought+sum;
+//         console.log(ticket[i].price,ticket[i].bought,sum);
+//     }
+
+
+//     console.log(sum);
+ 
+// }
+  
+
+
+//  test();
+
+// Ticket.findAll({
+//     include:{
+//         model: Order_detail,
+//         include:{
+//             model: Order,
+//             where:{
+//                 sequelize.Query
+//                 sequelize.where(sequelize.fn('month', sequelize.col('date_bought')), 06),
+//             }
+
+//         }
+//     }
+// })
+
+// }
+// console.log(JSON.stringify(result));
+
+
+// Organization.findAll({
+//     where:{id:3}}
+// ).then(result=>console.log(result[0].id))
+var Order = require('../models/order');
+
+// async function t(){
+//     var or= await
+// }
+
+var dateFormat = require('dateformat');
+const { Op } = Sequelize = require('sequelize');
+
+// async function t(year,month){
+//     var nowdate = new Date(year+'-'+month+'-01');
+//     var monthStartDay =  dateFormat(new Date(nowdate.getFullYear(), nowdate.getMonth(), 1),"yyyy-mm-dd");
+//     var monthEndDay =  dateFormat(new Date(nowdate.getFullYear(), nowdate.getMonth() + 1, 0),"yyyy-mm-dd");
+//     console.log(monthStartDay,monthEndDay);
+//    // console.log(nowdate);
+// }
+
+// async function k(){
+//     t(2019,6);
+// }
+
+// k();
+function getMonthStartDay(month,year){
+    var date = new Date(year+'-'+month+'-01');
+    var monthStartDay =  dateFormat(new Date(date.getFullYear(), date.getMonth(), 1),"yyyy-mm-dd");
+    return monthStartDay;
 }
 
-test();
+function getMonthEndDay(month,year){
+    var date = new Date(year+'-'+month+'-01');
+    var monthEndDay =  dateFormat(new Date(date.getFullYear(), date.getMonth() + 1, 0),"yyyy-mm-dd");
+    return monthEndDay;
+}
+
+var monthStartDay=getMonthStartDay(6,2019);
+var monthEndDay=getMonthEndDay(6,2019);
+
+var now = new Date();
+var monthnow = now.getMonth();
+console.log(monthnow);
+
+// Order.findAll({
+//     where: {
+//         date_bought: {
+//             [Op.gte]: monthStartDay ,
+//             [Op.lt]: monthEndDay
+//         },
+//         event_id:6,
+//       },
+//       attributes:['date_bought'],
+
+//       include: {
+//           model: Order_detail,
+//           attributes:['amount'],
+//           include:{
+//               model: Ticket,
+//                 attributes:['price']
+
+//           }
+//       },
+
+//     //attributes:['day_bought']
+// }).then(result=>console.log(JSON.stringify(result)));
+
+
+
+// sequelize.query('SELECT * FROM Order JOIN Event on (Order.event_id=Event.id) where Event.organization_id=3 ',
+// {  type: sequelize.QueryTypes.SELECT }
+// ).then(projects => {
+// console.log(projects)
+// })
+
+
+// Order_detail.findAll({
+//     include: {
+//         model: Order
+//     }
+// }).then(result=>console.log(JSON.stringify(result)));
+
+// Ticket.findAll({
+//     include:{
+//         model: Order_detail,
+//         include: {
+//             model: Order,
+//             //attributes:['name','date_bought'],
+//            // where:{event_id:6}
+//             include:{
+//                 model: Event,
+//                 where:{organization_id:3}
+//             }
+//         }
+//     },
+//     attributes:['price','bought'],
+
+// }).then(result=>console.log(result[0].Order_detail));
+
+// Order_detail.findAll({
+//     include:{
+//         model:Ticket,
+//         //where:{event_id:6}
+//     }
+// }).then(result=>console.log(JSON.stringify(result)));
+
+
+
+
+// Order.findAll({
+//     where:
+//         sequelize.where(sequelize.fn('year',sequelize.col('date_bought')),6),
+
+// }).then(result=>console.log(JSON.stringify(result)));
+
+
+// sequelize.query("SELECT * FROM Ticket " , { type: sequelize.QueryTypes.SELECT})
+ 
+//   .then(result => {
+//     result=>console.log(JSON.stringify(result))})
+
+// Ticket.findAll({
+//     include: {
+//         model: Event,
+//         where:{organization_id:3},
+//         include:{
+//             model: Order,
+//             attributes:['date_bought'],
+//         }
+//     }
+    
+   
+// }).then(result=>console.log(JSON.stringify(result)));
+
+
+// Order_detail.findAll({
+//     attributes:['amount'],
+//     include:{
+//         model: Order,
+//         attributes:['date_bought'],
+//         include:{
+//             model:Event,
+//             where:{organization_id:3}
+//         }
+        
+//     }
+// }).then(result=>console.log(JSON.stringify(result)));

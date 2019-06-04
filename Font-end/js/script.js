@@ -30,12 +30,12 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 // footer end
 
 // dashboard-stats start
-function loadchart(){
-    loadColumChart();
-    loadPieChart();
-    loadLinechart();
-    loadMapChart();
-}
+// function loadchart(){
+//     loadColumChart();
+//     loadPieChart();
+//     loadLinechart();
+//     loadMapChart();
+// }
 
 
 function loadColumChart(){

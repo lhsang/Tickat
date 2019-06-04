@@ -277,4 +277,12 @@ $("#signup-form").on("submit", function(){
  return false;
 });
 
+(() =>{  
+  var li = document.getElementsByClassName("pagination")[0].getElementsByTagName("li");
+  for (var i = 0; i < li.length; i++) {
+      li[i].classList.add("paginate-item");
+      li[i].getElementsByTagName("a")[0].classList.add("page-link");
+  }
+})();
+
 //end login validate

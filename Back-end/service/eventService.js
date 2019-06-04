@@ -1,8 +1,10 @@
 var Event = require('../models/event');
 var Ticket = require('../models/ticket');
 const sequelize = require('../configs/db');
+const Sequelize = require('sequelize');
 var handleData = require('../utils/handleData');
 
+const Op = Sequelize.Op;
 const {setDefaultQueryStr} =  require('../utils/default_query_string');
 
 exports.getAllEvents = async (query)=>{
@@ -12,6 +14,7 @@ exports.getAllEvents = async (query)=>{
         let events =  await Event.findAll(query);
         return events;
     } catch (e) {
+        //console.log(e);
         throw Error('Can not find all events');
     }
 };

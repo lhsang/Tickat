@@ -28,7 +28,8 @@ exports.bookingPage = async (req, res)=>{
     var tickets = await ticketService.getTicketsByEventId(id);
 
     handleTickets(tickets);
-
+    console.log(tickets);
+    
     var data = {
         title: 'Thông tin vé - Tickat: Mua bán vé sự kiện',
         layout: 'main',

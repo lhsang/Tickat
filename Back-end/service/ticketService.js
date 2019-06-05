@@ -11,10 +11,6 @@ exports.getTicketsByEventId = async (event_id)=>{
 
     try {
         let tickets = Ticket.findAll({
-            //attributes: ['id',[sequelize.fn('count', sequelize.col('price')), 'count']],
-           // group:['Ticket.id'],
-            // attributes: ['price','amount','description','bought'],
-            // order: [['price','desc']],
             include: [
                 {
                     model: TypeTicket
@@ -28,7 +24,6 @@ exports.getTicketsByEventId = async (event_id)=>{
                 event_id: event_id
             },
         });
-      //  console.log(tickets.id);
         return tickets;
     } catch (e) {
         throw Error('Can not find all tickets');
@@ -67,26 +62,6 @@ exports.getTicketsByOrganizationId = async (organization_id)=>{
             }
             ],           
              group:['ticket.id','event.id'],
-        });
-           //console.log(sum);
-               
-        return tickets;
-        
-    } catch (e) {
-        throw Error('Can not find all tickets');
-    }
-    return {};
-};
-
-exports.getTicketsByEventId = async (event_id)=>{
-
-    try {
-        
-        let tickets = await Ticket.findAll({
-            attributes: ['price','amount','bought'],
-            where:{
-                event_id:event_id,
-            },
         });
            //console.log(sum);
                

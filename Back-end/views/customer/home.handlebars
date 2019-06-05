@@ -24,9 +24,9 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
           </ol>
           <div class="carousel-inner">
-            {{#each slide}}
+            {{#each slides}}
                 <div class="carousel-item">
-                <img class="d-block w-100" src="{{this}}" alt="First slide">
+                <img class="d-block w-100" src="{{img}}" alt="First slide">
                 </div>
             {{/each}}
           </div>
@@ -47,7 +47,7 @@
       <h1 class="title-cate" style="margin-top:3%;margin-bottom: 5%">Sự kiện sắp diễn ra</h1>
       <div class="row">
         
-        {{#each events}}
+        {{#each comming_events}}
             <div class=" col-sm-12 col-lg-6 wow bounceInLeft">
                 <div class="card" onclick="location.href='/events/{{id}}'">
                     <img class="card-img-top" src="{{img}}" alt="Card image cap">

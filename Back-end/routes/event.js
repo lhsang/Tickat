@@ -8,7 +8,7 @@ var Account = require('../models/account');
 var eventController = require('../controller/customer/eventController');
 var decodeToken = require('../middleware/authenticate').decodeToken;
 
-router.get('/:event_id/booking', eventController.bookingPage);
+router.get('/:event_id/booking',decodeToken, eventController.bookingPage);
 
 router.get('/:id',decodeToken, eventController.eventDetail);
 

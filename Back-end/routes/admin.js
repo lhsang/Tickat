@@ -16,11 +16,8 @@ router.get('/login',adminController.login);
 
 router.get('/sign-up',adminController.signUp);
 
-//router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
+router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
 
-router.get('/dashboard/',adminDasboardController.dashboard);
+router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
-router.get('/dashboard-chart/',adminDasboardController.dashboardchart);
-//router.get('/test', adminDasboardController.dashboard);
-//router.get('/testk',(req,res)=>console.log(req));
 module.exports = router;

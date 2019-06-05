@@ -124,7 +124,7 @@ async function resetAllData(){
 }
 
 exports.dashboard = async (req, res)=>{
-    var user_id = 9;
+    var user_id = req.user.id;
    
 
     var organizations = await organizationService.getOrganizationIdByUserId(user_id);
@@ -195,9 +195,8 @@ exports.dashboard = async (req, res)=>{
 };
 
 exports.dashboardchart = async (req, res)=>{
-    var user_id = 9;
+    var user_id = req.user.id;
    
-
     var organizations = await organizationService.getOrganizationIdByUserId(user_id);
 
     var events =[];

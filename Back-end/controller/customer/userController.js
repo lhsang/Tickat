@@ -20,7 +20,8 @@ exports.login = async (req, res)=>{
             username: user.username,
             full_name: user.full_name,
             avatar: user.avatar,
-            role_id: user.role_id
+            role_id: user.role_id,
+            id: user.id
         };
 
         let token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: '1h'});

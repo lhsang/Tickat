@@ -12,7 +12,7 @@ router.all('*',ensureAuthenticated, (req, res, next)=>{
     next();
 });
 
-//router.get('/login',adminController.login);
+router.get('/login',adminController.login);
 
 router.get('/sign-up',adminController.signUp);
 

@@ -20,4 +20,6 @@ router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
 
 router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
+router.get('/event', decodeToken, adminDasboardController.dashboardevent);
+
 module.exports = router;

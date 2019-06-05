@@ -262,3 +262,48 @@ exports.dashboardchart = async (req, res)=>{
        console.log(e);
     }
 };
+
+exports.dashboardevent = async (req, res)=>{
+    var user_id = req.user.id;
+
+    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
+
+    var events =[];
+    for(i=0;i<organizations.length;i++){
+        tmp = await eventService.getEventByOrganizationId(organizations[i].id);
+        if(tmp.length!=0)
+            for(j=0;j<tmp.length;j++)
+                events.push(tmp[j]);
+    }
+
+    
+    var tickets = [];
+    for(i=0;i<events.length;i++){
+       var ticket = await ticketService.getTicketsByEventId(events[i].id);
+       if(ticket.length!=0)
+        for(j=0;j<ticket.length;j++)
+            tickets.push(ticket[j]);
+    }
+
+
+    await resetAllData();
+    await CalculateTotalAndSaleInYear(tickets); 
+    
+    
+    try{
+        var data = {
+            title: 'Dashboard event',
+            layout :'admin',
+            user : req.user,
+        
+            totalTicketInYear: totalTicketInYear,
+            percentTotalPrice: percentTotalPrice,
+
+        
+        }; 
+    
+        res.render('admin/dashboard-event',data);
+    } catch (e) {
+       console.log(e);
+    }
+};

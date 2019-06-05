@@ -103,3 +103,17 @@ exports.test = async ()=>{
         });
     return events;
 };
+
+
+exports.getEventByOrganizationId = async (organization_id)=>{
+    try {
+        let event = await Event.findAll({
+            attributes: ['id'],
+            where: {organization_id:organization_id},
+        })
+        return event;
+    } catch (error) {
+        console.log(error);
+        return new Error('Some thing is wrong');
+    }
+}

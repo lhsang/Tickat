@@ -29,11 +29,7 @@ exports.getOrdersByEventId = async (event_id)=>{
         // var monthStartDay = await getMonthStartDay(month,year);
         // var monthEndDay = await getMonthEndDay(month,year);
         var orders = Order.findAll({
-            where: {
-                // date_bought: {
-                //     [Op.gte]: monthStartDay ,
-                //     [Op.lt]: monthEndDay
-                // },
+            where: {               
                 event_id:event_id,
             },
              attributes:['date_bought'],
@@ -61,3 +57,4 @@ exports.getOrdersByEventId = async (event_id)=>{
     }
     
 };
+

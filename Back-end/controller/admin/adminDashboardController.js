@@ -6,6 +6,8 @@ var ticketService = require('../../service/ticketService');
 var orderService = require('../../service/orderService');
 var dateFormat = require('dateformat');
 var moment = require('moment');
+var numeral = require('numeral');
+
 
 
 
@@ -29,28 +31,16 @@ var percentTotalPrice;
 var daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
 var dayArr=[];
 
-var formatday = require('../../utils/format');
 
-async function getMonthStartDay(month,year){
-    var date = new Date(year+'-'+month+'-01');
-    var monthStartDay =  dateFormat(new Date(date.getFullYear(), date.getMonth(), 1),"yyyy-mm-dd");
-    return monthStartDay;
-}
-
-async function getMonthEndDay(month,year){
-    var date = new Date(year+'-'+month+'-01');
-    var monthEndDay =  dateFormat(new Date(date.getFullYear(), date.getMonth() + 1, 0),"yyyy-mm-dd");
-    return monthEndDay;
-}
 
 async function CalculateTotalAndSaleInYear(tickets){
    
     for(i=0;i<tickets.length;i++)
      {
-        saleInYear = saleInYear+tickets[i].price*tickets[i].bought;
+        saleInYear = saleInYear + parseInt(tickets[i].price) *  parseInt(tickets[i].bought);
         console.log(saleInYear,tickets[i].price,tickets[i].bought);
-        totalTicketInYear = totalTicketInYear + tickets[i].amount;
-        totalTicketInYearBought = totalTicketInYearBought + tickets[i].bought;
+        totalTicketInYear = totalTicketInYear +  parseInt(tickets[i].amount);
+        totalTicketInYearBought = totalTicketInYearBought +  parseInt(tickets[i].bought);
      }  
 
     percentTotalPrice = ((totalTicketInYearBought/totalTicketInYear)*100).toFixed(2);
@@ -110,26 +100,71 @@ async function getSaleInDay(orders){
     return daySale;
 }
 
+async function resetAllData(){
+    sales = [0,0,0,0,0,0,0,0,0,0,0,0];
+    totalTicketInYear=0;
+    totalTicketInYearBought=0;
+    saleInYear=0;
+
+    totalTicketinMonth=[0,0,0,0,0,0,0,0,0,0,0,0];
+    saleInMonth =0;
+    percentSaleInMonth=0;
+
+    seatInMonth=0;
+
+    now = new Date();
+    monthNow = now.getMonth();
+
+    percentTotalPrice;
+
+    daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
+    dayArr=[];
+
+
+}
 
 exports.dashboard = async (req, res)=>{
-     var user_id = 6;
-    // var organization_id = await organizationService.findOrganizationByUserId(user_id);
+    var user_id = 9;
+   
 
-    var tickets = await ticketService.getTicketsByOrganizationId(3);
-    var orders = await orderService.getOrdersByEventId(6);
+    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
+
+    var events =[];
+    for(i=0;i<organizations.length;i++){
+        tmp = await eventService.getEventByOrganizationId(organizations[i].id);
+        if(tmp.length!=0)
+            for(j=0;j<tmp.length;j++)
+                events.push(tmp[j]);
+    }
     
+    var tickets = [];
+    var orders= [];
+    for(i=0;i<events.length;i++){
+       var ticket = await ticketService.getTicketsByEventId(events[i].id);
+       if(ticket.length!=0)
+        for(j=0;j<ticket.length;j++)
+            tickets.push(ticket[j]);
+
+      
+       var order = await orderService.getOrdersByEventId(events[i].id);
+       if(order.length!=0)
+            for(j=0;j<order.length;j++)           
+                orders.push(order[j]);
+    }
 
 
-    await CalculateTotalAndSaleInYear(tickets); 
-    var saleInMonthArr = await getSaleInMonthOfYear(orders);
-    console.log(saleInMonthArr);
 
-    await getSaleAndSeatInMonth();
-    daySale = await getSaleInDay(orders);
+    resetAllData();
+     await CalculateTotalAndSaleInYear(tickets); 
+     var saleInMonthArr = await getSaleInMonthOfYear(orders);
+     console.log(saleInMonthArr);
 
+     await getSaleAndSeatInMonth();
+     daySale = await getSaleInDay(orders);
 
-
-    console.log('a',daySale);
+    saleInYear = numeral(saleInYear).format('$0,0');
+    saleInMonth = numeral(saleInMonth).format('$0,0');
+    
 
     
     try{
@@ -160,49 +195,71 @@ exports.dashboard = async (req, res)=>{
 };
 
 exports.dashboardchart = async (req, res)=>{
-    var user_id = 6;
-   // var organization_id = await organizationService.findOrganizationByUserId(user_id);
-
-   var tickets = await ticketService.getTicketsByOrganizationId(3);
-   var orders = await orderService.getOrdersByEventId(6);
+    var user_id = 9;
    
 
+    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
 
-   await CalculateTotalAndSaleInYear(tickets); 
-   var saleInMonthArr = await getSaleInMonthOfYear(orders);
-   console.log(saleInMonthArr);
+    var events =[];
+    for(i=0;i<organizations.length;i++){
+        tmp = await eventService.getEventByOrganizationId(organizations[i].id);
+        if(tmp.length!=0)
+            for(j=0;j<tmp.length;j++)
+                events.push(tmp[j]);
+    }
 
-   await getSaleAndSeatInMonth();
-   daySale = await getSaleInDay(orders);
+    
+    var tickets = [];
+    var orders= [];
+    for(i=0;i<events.length;i++){
+       var ticket = await ticketService.getTicketsByEventId(events[i].id);
+       if(ticket.length!=0)
+        for(j=0;j<ticket.length;j++)
+            tickets.push(ticket[j]);
+
+      
+       var order = await orderService.getOrdersByEventId(events[i].id);
+       if(order.length!=0)
+            for(j=0;j<order.length;j++)           
+                orders.push(order[j]);
+    }
 
 
+    await resetAllData();
+     await CalculateTotalAndSaleInYear(tickets); 
+     var saleInMonthArr = await getSaleInMonthOfYear(orders);
 
-   console.log('a',daySale);
+     await getSaleAndSeatInMonth();
+     daySale = await getSaleInDay(orders);
 
-   
-   try{
-       var data = {
-           title: 'Dashboard chart',
-           layout :'admin',
-           user : req.user,
-          
-           month: month[monthNow],
-           saleInYear: saleInYear,
-           percentTotalPrice: percentTotalPrice,
+    saleInYear = numeral(saleInYear).format('$0,0');
+    saleInMonth = numeral(saleInMonth).format('$0,0');
+    
 
-           saleInMonth: saleInMonth,
-           percentSaleInMonth: percentSaleInMonth,
+    
+    try{
+        var data = {
+            title: 'Dashboard chart',
+            layout :'admin',
+            user : req.user,
+           
+            month: month[monthNow],
+            saleInYear: saleInYear,
+            percentTotalPrice: percentTotalPrice,
 
-           seatInMonth: seatInMonth,
-           saleInMonthArr: saleInMonthArr,
+            saleInMonth: saleInMonth,
+            percentSaleInMonth: percentSaleInMonth,
 
-           dayArr: dayArr,
-           daySale: daySale,
-       
-       }; 
-   
-       res.render('admin/dashboard-chart',data);
-   } catch (e) {
-      console.log(e);
-   }
+            seatInMonth: seatInMonth,
+            saleInMonthArr: saleInMonthArr,
+
+            dayArr: dayArr,
+            daySale: daySale,
+        
+        }; 
+    
+        res.render('admin/dashboard-chart',data);
+    } catch (e) {
+       console.log(e);
+    }
 };

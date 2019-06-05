@@ -1,6 +1,5 @@
 
-  
-  
+ 
 <body > 
        
  
@@ -13,7 +12,7 @@
         <div class="row d-flex justify-content-center">
             <div class="row">
                     <form action="" >
-                            <b>Revenue and Cost from day:</b> 
+                            <b>Cost from day:</b> 
                             <input type="date" name="from" value="31/3/2019">
                             
                             <b> to day:</b>
@@ -25,6 +24,8 @@
                 
             <div class="row">
                     <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
+
+
                     <hr>
             </div>
 
@@ -51,17 +52,20 @@
               <div class="row d-flex justify-content-center">
                   <h3>Total sales in 2019</h3>
               </div>
-              <div class="row progress yellow">
-                  <span class="progress-left">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <span class="progress-right">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <div class="progress-value">{{percentTotalPrice}}%</div>
+              
+              <div class="row">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentTotalPrice}}"
+                    data-stroke="#ffff00"
+                    style="width:70%;height:70%;margin:auto"
+
+                  ></div>
               </div>
+
               <div class="row  d-flex justify-content-center">
-                  <h3 style="margin-top:2%">${{saleInYear}} </h3>
+                  <h3 style="margin-top:2%">{{saleInYear}} </h3>
               </div>
               
           </div>
@@ -69,31 +73,33 @@
               <div class="row d-flex justify-content-center">
                   <h3>Sales in {{month}}</h3>
               </div>
-              <div class="row progress red">
-                  <span class="progress-left">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <span class="progress-right">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <div class="progress-value">{{percentSaleInMonth}}%</div>
+               <div class="row">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentSaleInMonth}}"
+                    data-stroke="#1FAE66"
+                    style="width:70%;height:70%;margin:auto"
+
+                  ></div>
               </div>
               <div class="row  d-flex justify-content-center">
-                  <h3 style="margin-top:2%">${{saleInMonth}}</h3>
+                  <h3 style="margin-top:2%">{{saleInMonth}}</h3>
               </div>
           </div>
           <div class="row card circle-bar">
               <div class="row d-flex justify-content-center">
                   <h3>Total seats in {{month}}</h3>
               </div>
-              <div class="progress green">
-                  <span class="progress-left">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <span class="progress-right">
-                      <span class="progress-bar"></span>
-                  </span>
-                  <div class="progress-value">{{percentSaleInMonth}}%</div>
+                <div class="row">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentSaleInMonth}}"
+                    data-stroke="#F85D2C"
+                    style="width:70%;height:70%;margin:auto"
+
+                  ></div>
               </div>
               <div class="row  d-flex justify-content-center">
                   <h3 style="margin-top:2%">{{seatInMonth}} seats</h3>
@@ -118,7 +124,6 @@
 <script>
   $( document ).ready(function() {
     loadColumChart();
-    loadPieChart();
     loadLinechart();
 });
 
@@ -171,7 +176,7 @@ function loadColumChart(){
             width: 1000,
             height: 800,
             legend: { position: "none" },
-            vAxis: {format:'# $',max:120000}
+            vAxis: {format:'$000,000',max:120000}
          
 
           };
@@ -181,31 +186,7 @@ function loadColumChart(){
 }
 
 
-function loadPieChart(){
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Gen', 'Visitors in day'],
-        ['Men',     600],
-        ['Women',      1200],
 
-      ]);
-
- 
-
-      var options = {
-        title: 'Visitor in March 2019',
-        pieHole: 0.4,
-        colors: ['#F85D2C', '#1FAE66'],
-
-
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      chart.draw(data, options);
-    }
-}
 
 
 function loadLinechart(){
@@ -245,7 +226,7 @@ function loadLinechart(){
         ]);
 
         var options = {
-          'title':'Cost',
+          'title':'Cost chart',
 
           colors: ['#F85D2C'],
           vAxis:{
@@ -259,7 +240,7 @@ function loadLinechart(){
             scrollArrows: 'none'
         },
           pointSize: 10,
-          vAxis: {format:'# $'}
+          vAxis: {format:'$000,000'}
 
         };
         var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));

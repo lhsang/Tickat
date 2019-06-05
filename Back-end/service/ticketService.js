@@ -78,6 +78,25 @@ exports.getTicketsByOrganizationId = async (organization_id)=>{
     return {};
 };
 
+exports.getTicketsByEventId = async (event_id)=>{
+
+    try {
+        
+        let tickets = await Ticket.findAll({
+            attributes: ['price','amount','bought'],
+            where:{
+                event_id:event_id,
+            },
+        });
+           //console.log(sum);
+               
+        return tickets;
+        
+    } catch (e) {
+        throw Error('Can not find all tickets');
+    }
+    return {};
+};
 
 exports.getTicketsByMonth = async (organization_id)=>{
 

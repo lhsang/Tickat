@@ -162,4 +162,58 @@ const object_define = require('../utils/object_define');
 
 // test();
 
-console.log(object_define.getRoleIdDefined().admin);
+//console.log(object_define.getRoleIdDefined().admin);
+
+var Order = require('../models/order');
+
+// Order.findAll({
+//      attributes:['date_bought'],
+//         include: {
+//             model: Order_detail,
+//             attributes:['amount'],
+//             include:{
+//                 model: Ticket,
+//                   attributes:['price'],
+//                 include: {
+//                     model: Event,
+//                     attributes:['organization_id'],
+//                     where:{organization_id :2}
+//                 }
+  
+//             },
+           
+//         },
+       
+
+// }).then(result=>console.log(JSON.stringify(result)));
+
+
+// Organization.findAll({
+//     attributes:['id'],
+//     where:{
+//         user_id:9
+//     },
+//     include:{
+//         model: Event,
+//         attributes:['organization_id'],
+//         include:{
+//             model:Ticket,
+//             attributes:['price'],
+//             include:{
+//                 model: Order_detail,
+//                 attributes:['amount'],
+//                 include:{
+//                     model: Order,
+//                     attributes:['date_bought']
+//                 }
+//             }
+//         }
+//     }
+// }).then(result=>console.log(JSON.stringify(result)));
+
+Ticket.findAll({
+    attributes: ['price','amount','bought'],
+    where:{
+        event_id:3,
+    },
+}).then(result=>console.log(JSON.stringify(result)));

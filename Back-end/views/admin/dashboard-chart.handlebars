@@ -1,68 +1,74 @@
 
 
-<div class="container-fluid circle-bar">
+<div class="container-fluid ">
     <div class="row d-flex justify-content-center" >
         <div class="col-md-3 col-sm-4 card" >
             <div class="row d-flex justify-content-center">
                 <h3>Total sales in 2019</h3>
             </div>
-            <div class="row progress yellow">
-                <span class="progress-left">
-                    <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                    <span class="progress-bar"></span>
-                </span>
-                  <div class="progress-value">{{percentTotalPrice}}%</div>
-            </div>
+             <div class="row d-flex justify-content-center">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentTotalPrice}}"
+                    data-stroke="#ffff00"
+                    style="width:70%;height:70%"
+
+                  ></div>
+              </div>
             <div class="row  d-flex justify-content-center">
-                  <h3 style="margin-top:2%">${{saleInYear}} </h3>
+                  <h3 style="margin-top:2%">{{saleInYear}} </h3>
             </div>
             
         </div>
-        <div class="col-md-3 col-sm-4 card">
-            <div class="row d-flex justify-content-center">
-                  <h3>Sales in {{month}}</h3>
-            </div>
-            <div class="row progress red">
-                <span class="progress-left">
-                    <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                    <span class="progress-bar"></span>
-                </span>
-                  <div class="progress-value">{{percentSaleInMonth}}%</div>
-            </div>
-            <div class="row  d-flex justify-content-center">
-                  <h3 style="margin-top:2%">${{saleInMonth}}</h3>
-            </div>
-        </div>
+
         <div class="col-md-3 col-sm-4 card">
             <div class="row d-flex justify-content-center">
                   <h3>Total seats in {{month}}</h3>
             </div>
-            <div class="progress green">
-                <span class="progress-left">
-                    <span class="progress-bar"></span>
-                </span>
-                <span class="progress-right">
-                    <span class="progress-bar"></span>
-                </span>
-                  <div class="progress-value">{{percentSaleInMonth}}%</div>
-            </div>
+             <div class="row  d-flex justify-content-center">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentSaleInMonth}}"
+                    data-stroke="#F85D2C"
+                    style="width:70%;height:70%"
+
+                  ></div>
+              </div>
             <div class="row  d-flex justify-content-center">
                   <h3 style="margin-top:2%">{{seatInMonth}} seats</h3>
             </div>
         </div>
+
+        <div class="col-md-3 col-sm-4 card">
+            <div class="row d-flex justify-content-center">
+                  <h3>Sales in {{month}}</h3>
+            </div>
+            <div class="row  d-flex justify-content-center">
+                  <div
+                    data-preset="fan"
+                    class="ldBar label-center"
+                    data-value="{{percentSaleInMonth}}"
+                    data-stroke="#1FAE66"
+                    style="width:70%;height:70%"
+
+              ></div>
+              </div>
+            <div class="row  d-flex justify-content-center">
+                  <h3 style="margin-top:2%">{{saleInMonth}}</h3>
+            </div>
+        </div>
+        
     </div>
 </div>
 
 
-<div class="container-fluid dashboard-stats">
+<div class="container dashboard-stats">
   <hr>
   <div class="row d-flex justify-content-center">
       <form action="" >
-         <b>Revenue and Cost from day:</b> 
+         <b>Cost from day:</b> 
         <input type="text" name="from" value="31/3/2019">
         
         <b> to day:</b>
@@ -74,11 +80,9 @@
       
   </div>
  <hr>
-  <div class="row">
-      
-         
-          
-          <form action="" class="formchart">
+  <div class="row d-flex justify-content-center">
+       
+          <form action="" >
               <b>Sales in:</b> 
              <input type="" name="year" value="2019">
           
@@ -145,10 +149,10 @@ function loadColumChart(){
     
           var options = {
             title: "Sales Graph by month 2019",
-            width: 1600,
+            width: 1400,
             height: 500,
             legend: { position: "none" },
-            vAxis: {format:'# $',max:120000}
+            vAxis: {format:'$000,000',max:120000}
          
 
           };
@@ -197,7 +201,7 @@ function loadLinechart(){
         ]);
 
         var options = {
-          'title':'Cost',
+          'title':'Cost from by days',
 
           colors: ['#F85D2C'],
           vAxis:{
@@ -211,7 +215,7 @@ function loadLinechart(){
             scrollArrows: 'none'
         },
           pointSize: 10,
-          vAxis: {format:'# $'}
+          vAxis: {format:'$000,000'}
 
         };
         var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));

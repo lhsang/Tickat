@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const path = require('path');
-
 var pool = require('../configs/db');
-var hash_bcrypt = require('../utils/bcrypt');
+
 var homeController = require('../controller/customer/homeController');
-var bookingController = require('../controller/customer/bookingController');
 var decodeToken = require('../middleware/authenticate').decodeToken;
 var eventService = require('../service/eventService');
+var userController = require('../controller/customer/userController');
+
 var handle = require('../utils/handleData');
 
 var Organization = require('../models/organization');
@@ -19,31 +17,29 @@ var uploadAvatar = require('../configs/upload').uploadAvatar;
 
 router.get('/(|home)$',decodeToken, homeController.homePage);
 
-router.post('/login', homeController.login);
-
-router.get('/logout', homeController.logout);
-
-router.post('/users', homeController.signUp);
-
-router.get('/switch-acc',decodeToken, homeController.switchAcc);
-
-router.get('/events/:event_id/booking',decodeToken, bookingController.bookingPage);
-
 router.get('/about/:id',decodeToken, homeController.about);
 
 router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username',decodeToken, homeController.profile);
 
-router.get('/events/:id',decodeToken, homeController.eventDetail);
+router.post('/check-username', userController.checkUsername);
 
-router.post('/check-username', homeController.checkUsername);
+/* ---------------------------start user router------------------------ */
+
+router.post('/login', userController.login);
+
+router.get('/logout', userController.logout);
+
+router.post('/users', userController.signUp);
+
+router.get('/switch-acc',decodeToken, userController.switchAcc);
+
+router.post('/upload-avatar', uploadAvatar.single('avatar'), userController.uploadAvatar);
+
+/* ---------------------------end user router------------------------ */
 
 router.get('/test',homeController.test);
-
-router.post('/upload-avatar', uploadAvatar.single('avatar'), (req, res)=>{
-    res.send("upload thanh cong !");
-});
 
 //router.get('/detailEvent/:id',(req,res)=>res.render('customer/detailEvent'));
 

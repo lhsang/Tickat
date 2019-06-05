@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 var adminController = require('../controller/admin/adminController');
 var adminDasboardController = require('../controller/admin/adminDashboardController');
 var ensureAuthenticated = require('../middleware/authenticate').verifyTokenInRoleAdmin;
@@ -9,10 +8,9 @@ var decodeToken = require('../middleware/authenticate').decodeToken;
 
 var organizationService = require('../service/organizationService');
 var ticketService = require('../service/ticketService');
-
-// router.all('*',ensureAuthenticated, (req, res, next)=>{
-//     next();
-// });
+router.all('*',ensureAuthenticated, (req, res, next)=>{
+    next();
+});
 
 //router.get('/login',adminController.login);
 

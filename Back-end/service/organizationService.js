@@ -24,8 +24,6 @@ exports.findOrganizationByUserId = async (user_id)=>{
 
 exports.getOrganizationIdByUserId = async(user_id)=>{
     try {
-        // var monthStartDay = await getMonthStartDay(month,year);
-        // var monthEndDay = await getMonthEndDay(month,year);
         var organization = Organization.findAll({
             attributes:['id'],
             where:{

@@ -1,15 +1,18 @@
+var dateFormat = require('dateformat');
+var moment = require('moment');
+var numeral = require('numeral');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var organizationService = require('../../service/organizationService');
 var userService = require('../../service/userService');
 var ticketService = require('../../service/ticketService');
 var orderService = require('../../service/orderService');
-var dateFormat = require('dateformat');
-var moment = require('moment');
-var numeral = require('numeral');
 
-
-
+var Event = require('../../models/event');
+var handleData = require('../../utils/handleData');
 
 var sales = [0,0,0,0,0,0,0,0,0,0,0,0];
 var totalTicketInYear=0;
@@ -32,9 +35,7 @@ var daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
 var dayArr=[];
 
 
-
-async function CalculateTotalAndSaleInYear(tickets){
-   
+function CalculateTotalAndSaleInYear(tickets){
     for(i=0;i<tickets.length;i++)
      {
         saleInYear = saleInYear + parseInt(tickets[i].price) *  parseInt(tickets[i].bought);
@@ -42,14 +43,10 @@ async function CalculateTotalAndSaleInYear(tickets){
         totalTicketInYear = totalTicketInYear +  parseInt(tickets[i].amount);
         totalTicketInYearBought = totalTicketInYearBought +  parseInt(tickets[i].bought);
      }  
-
     percentTotalPrice = ((totalTicketInYearBought/totalTicketInYear)*100).toFixed(2);
-
 }
 
-
-
-async function getSaleInMonthOfYear(orders){
+function getSaleInMonthOfYear(orders){
     
     orders.forEach(function getOrderByMonth(order){
         day=new Date(order.date_bought);
@@ -58,15 +55,12 @@ async function getSaleInMonthOfYear(orders){
         for(j=0;j<order.order_details.length;j++){ 
            sales[m] = sales[m] + parseInt(order.order_details[j].amount) * parseInt(order.order_details[j].ticket.price);
             totalTicketinMonth[m] = totalTicketinMonth[m] + parseInt(order.order_details[j].amount);
-
         }
-    
-    })
+    });
     return sales;
 }
 
-async function getSaleAndSeatInMonth(){
-    
+function getSaleAndSeatInMonth(){
     saleInMonth = sales[monthNow];
     percentSaleInMonth = (totalTicketinMonth[monthNow]/totalTicketInYear*100).toFixed(2);
 
@@ -74,15 +68,13 @@ async function getSaleAndSeatInMonth(){
 }
 
 
-async function getSaleInDay(orders){
-   // var day=[];
-   
+function getSaleInDay(orders){
+
     for(i=9;i>=0;i--){
         var daybefore = dateFormat(moment().subtract(i, 'days'),"yyyy-mmmm-dd");
         dayArr.push(daybefore);
     }
 
-    console.log('day',dayArr);
     orders.forEach(function getOrderByDay(order){
       
         for(j=0;j<order.order_details.length;j++){ 
@@ -95,12 +87,12 @@ async function getSaleInDay(orders){
         
         }
     
-    })
-    console.log(daySale);
+    });
+
     return daySale;
 }
 
-async function resetAllData(){
+function resetAllData(){
     sales = [0,0,0,0,0,0,0,0,0,0,0,0];
     totalTicketInYear=0;
     totalTicketInYearBought=0;
@@ -119,14 +111,11 @@ async function resetAllData(){
 
     daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
     dayArr=[];
-
-
 }
 
 exports.dashboard = async (req, res)=>{
     var user_id = req.user.id;
    
-
     var organizations = await organizationService.getOrganizationIdByUserId(user_id);
 
     var events =[];
@@ -150,22 +139,18 @@ exports.dashboard = async (req, res)=>{
        if(order.length!=0)
             for(j=0;j<order.length;j++)           
                 orders.push(order[j]);
+
     }
-
-
 
     resetAllData();
      await CalculateTotalAndSaleInYear(tickets); 
      var saleInMonthArr = await getSaleInMonthOfYear(orders);
-     console.log(saleInMonthArr);
 
      await getSaleAndSeatInMonth();
      daySale = await getSaleInDay(orders);
 
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
-    
-
     
     try{
         var data = {
@@ -265,6 +250,9 @@ exports.dashboardchart = async (req, res)=>{
 
 exports.dashboardevent = async (req, res)=>{
     var user_id = req.user.id;
+    var q = req.query.q || "";
+    var limit = req.query.limit || 6 ;
+    var page = req.query.page || 1; page= parseInt(page);
 
     var organizations = await organizationService.getOrganizationIdByUserId(user_id);
 
@@ -288,22 +276,32 @@ exports.dashboardevent = async (req, res)=>{
 
     await resetAllData();
     await CalculateTotalAndSaleInYear(tickets); 
-    
-    
-    try{
-        var data = {
-            title: 'Dashboard event',
-            layout :'admin',
-            user : req.user,
-        
-            totalTicketInYear: totalTicketInYear,
-            percentTotalPrice: percentTotalPrice,
 
-        
-        }; 
     
-        res.render('admin/dashboard-event',data);
-    } catch (e) {
-       console.log(e);
-    }
+    handleData.addDateArrToEvents(events);
+
+    var data = {
+        title: 'Dashboard event',
+        layout :'admin',
+        user : req.user,
+    
+        totalTicketInYear: totalTicketInYear,
+        percentTotalPrice: percentTotalPrice,
+
+        events: events,
+        
+        pagination: {
+            limit : limit,
+            page: page,
+            totalRows: await Event.count({
+                where:{
+                    name:{
+                        [Op.like]: "%"+q+"%"
+                    }
+                }
+            })
+        }
+    }; 
+
+    res.render('admin/dashboard-event',data);
 };

@@ -1,4 +1,25 @@
-       <div class="row event">
+ <style>
+      .dashboard-event .card{
+        background: rgb(245, 245, 245);
+        padding: 4px
+      }
+
+      .dashboard-event .card:hover{
+        background:white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      .dashboard-event .card .event-name{
+        height: 20px;
+        overflow: hidden
+      }
+
+      .dashboard-event .card .card-body .info-event p{
+        height: 20px;
+        overflow: hidden
+      }
+ </style> 
+       <div class="row event dashboard-event">
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-9" style="padding-left:60px;">
                 <div class="filter">
                   <div style="text-align: -webkit-right; margin-right:10px; ">
@@ -14,276 +35,23 @@
                   </div>
                 </div>
                 <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/jb.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>JB</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-1.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/mark.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Mark Tuan</span>
-                                  <p class="time">10 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-2.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">MSI LEAGUE OF LEGEND</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/jinyoung.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park Jin Young</span>
-                                  <p class="time">15 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-3.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Sport</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/jackson.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Jackson</span>
-                                  <p class="time">45 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-4.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Giao lưu ở Đại học Harlow</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Anh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/youngjae.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Choi Young Jae</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-2.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/bambam.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Bam Bam</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-1.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
 
+                {{#each events}}
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/yugyeom.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Kim Yu Gyeom</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
+                  <div class="card text-center wow zoomIn"   onclick="location.href='/admin/events/{{id}}'">
                       <div class="card-body">
-                        <img src="../img/data/event-4.jpg" class="banner-card">
+                        <img src="{{img}}" class="banner-card">
                           <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
+                              <span class="event-name">{{name}}</span>
                           </div>
                           <div class="row">
                               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
                                   <span>Date</span>
-                                  <p>Apr 14, 2019</p>
+                                  <p>{{date_arr.mm_en}} {{date_arr.dd}}, {{date_arr.yyyy}}</p>
                               </div>
                               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
                                 <span>Location</span>
-                                <p>Ho Chi Minh</p>
+                                <p>{{address}}</p>
                               </div>
                               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
                                 <span>Status</span>
@@ -293,86 +61,8 @@
                       </div>
                     </div>
                 </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-2.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='../html/admin-event-detail.html'">
-                      <div class="card-header">
-                          <div class="row">
-                              <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2 rm-padding avatar-box">
-                                  <img src="../img/avatar/tramanh.jpg" class="avatar">
-                              </div>
-                              <div class="col-xs-6 col-sm-7 col-md-7 col-lg-8">
-                                  <span>Park JinYoung</span>
-                                  <p class="time">5 minute ago</p>
-                              </div>
-                              
-                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 edit">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <img src="../img/data/event-1.jpg" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">Đêm nhạc phim</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>Apr 14, 2019</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>Ho Chi Minh</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
+                {{/each}}
+
                 </div>
               </div>
               
@@ -447,26 +137,9 @@
         </div>
 
         <div class="pag">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+            <nav>
+                  {{{paginate pagination paginationClass="pagination"}}}
+            </nav>
         </div>
     
       

@@ -6,8 +6,8 @@ var roleDefined = require('../utils/object_define');
 var ignoreAuthenticate= [
     "/login",
     "/logout",
-    "/admin/login",
     "/sign-up",
+    "/admin/login",
     "/admin/logout",
     "/admin/sign-up"
 ];

@@ -30,8 +30,6 @@ exports.getEventsById = async (query)=>{
     }
 };
 
-
-
 exports.getCommingEvents = async ()=>{
     try {
         let events = await Event.findAll({
@@ -100,20 +98,24 @@ exports.getEventById = async (query)=>{
 
 exports.test = async ()=>{
     var events = await Event.findAll({
-        
         where:
             sequelize.where(sequelize.fn('YEAR',sequelize.col('date')),2018)
         });
     return events;
 };
 
-
 exports.getEventByOrganizationId = async (organization_id)=>{
     try {
         let event = await Event.findAll({
-            attributes: ['id'],
-            where: {organization_id:organization_id},
-        })
+            attributes: ['id','name','address','img','date'],
+            include:{
+                model: Ticket,
+                attributes: ['id','amount','bought','event_id']
+            },
+            where: {
+                organization_id:organization_id
+            },
+        });
         return event;
     } catch (error) {
         console.log(error);

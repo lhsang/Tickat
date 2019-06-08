@@ -104,7 +104,7 @@ exports.test = async ()=>{
     return events;
 };
 
-exports.getEventByOrganizationId = async (organization_id)=>{
+exports.getEventByOrganizationId = async (organization_id,limit = 9, offset = 0)=>{
     try {
         let event = await Event.findAll({
             attributes: ['id','name','address','img','date'],
@@ -121,4 +121,14 @@ exports.getEventByOrganizationId = async (organization_id)=>{
         console.log(error);
         return new Error('Some thing is wrong');
     }
-}
+};
+
+exports.countEvent = async (query) =>{
+    try {
+        let count = await Event.count(query);
+        return count;
+    } catch (error) {
+        console.log(error);
+        return new Error('Some thing is wrong');
+    }
+};

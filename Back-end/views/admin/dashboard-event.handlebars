@@ -9,14 +9,21 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
 
-      .dashboard-event .card .event-name{
-        height: 20px;
+      .dashboard-event .card .content-event{
+        height: 25px;
         overflow: hidden
       }
 
       .dashboard-event .card .card-body .info-event p{
         height: 20px;
         overflow: hidden
+      }
+      .pag{
+        margin-top: 30px;
+        width:100%
+      }
+      li.active .page-link{
+        color: white; background: blue;
       }
  </style> 
        <div class="row event dashboard-event">
@@ -36,33 +43,45 @@
                 </div>
                 <div class="row">
 
-                {{#each events}}
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <div class="card text-center wow zoomIn"   onclick="location.href='/admin/events/{{id}}'">
-                      <div class="card-body">
-                        <img src="{{img}}" class="banner-card">
-                          <div class="content-event">
-                              <span class="event-name">{{name}}</span>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                  <span>Date</span>
-                                  <p>{{date_arr.mm_en}} {{date_arr.dd}}, {{date_arr.yyyy}}</p>
+                  
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    
+                    <div class="row">
+                        {{#each events}}
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                          <div class="card text-center wow zoomIn"   onclick="location.href='/admin/events/{{id}}'">
+                              <div class="card-body">
+                                <img src="{{img}}" class="banner-card">
+                                  <div class="content-event">
+                                      <span class="event-name">{{name}}</span>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                          <span>Date</span>
+                                          <p>{{date_arr.mm_en}} {{date_arr.dd}}, {{date_arr.yyyy}}</p>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                        <span>Location</span>
+                                        <p>{{address}}</p>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
+                                        <span>Status</span>
+                                        <p>100/250</p>
+                                    </div>
+                                  </div>
                               </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Location</span>
-                                <p>{{address}}</p>
-                              </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 info-event">
-                                <span>Status</span>
-                                <p>100/250</p>
                             </div>
-                          </div>
-                      </div>
+                        </div>
+                        {{/each}}
                     </div>
-                </div>
-                {{/each}}
+                    
+                  </div>
 
+                    <div class="pag">
+                      <nav style="float: right; margin-right:10%">
+                            {{{paginate pagination paginationClass="pagination"}}}
+                      </nav>
+                  </div>
                 </div>
               </div>
               
@@ -136,11 +155,7 @@
 
         </div>
 
-        <div class="pag">
-            <nav>
-                  {{{paginate pagination paginationClass="pagination"}}}
-            </nav>
-        </div>
+        
     
       
     </div>

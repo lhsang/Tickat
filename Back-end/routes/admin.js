@@ -13,14 +13,16 @@ router.all('*',ensureAuthenticated, (req, res, next)=>{
     next();
 });
 
-router.get('/login',adminController.login);
+router.get('/login', adminController.login);
 
-router.get('/sign-up',adminController.signUp);
+router.get('/sign-up', adminController.signUp);
 
-router.get('/(|dashboard)$',decodeToken, adminDasboardController.dashboard);
+router.get('/(|dashboard)$', decodeToken, adminDasboardController.dashboard);
 
 router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
 router.get('/events', decodeToken, adminDasboardController.dashboardevent);
+
+router.get('/setting', decodeToken, adminController.profile);
 
 module.exports = router;

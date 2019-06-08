@@ -251,20 +251,17 @@ exports.dashboardchart = async (req, res)=>{
 exports.dashboardevent = async (req, res)=>{
     var user_id = req.user.id;
     var q = req.query.q || "";
-    var limit = req.query.limit || 6 ;
+    var limit = req.query.limit || 9 ;
     var page = req.query.page || 1; page= parseInt(page);
 
     var organizations = await organizationService.getOrganizationIdByUserId(user_id);
 
-    var events =[];
-    for(i=0;i<organizations.length;i++){
-        tmp = await eventService.getEventByOrganizationId(organizations[i].id);
-        if(tmp.length!=0)
-            for(j=0;j<tmp.length;j++)
-                events.push(tmp[j]);
-    }
+    var organizationsIds = organizations.map((obj)=>{
+        return obj.id;
+    });
 
-    
+    var events = await eventService.getEventByOrganizationId(organizationsIds,limit,(page-1)*limit);
+
     var tickets = [];
     for(i=0;i<events.length;i++){
        var ticket = await ticketService.getTicketsByEventId(events[i].id);
@@ -274,7 +271,7 @@ exports.dashboardevent = async (req, res)=>{
     }
 
 
-    await resetAllData();
+   await resetAllData();
     await CalculateTotalAndSaleInYear(tickets); 
 
     
@@ -293,15 +290,16 @@ exports.dashboardevent = async (req, res)=>{
         pagination: {
             limit : limit,
             page: page,
-            totalRows: await Event.count({
+            totalRows: await eventService.countEvent({
                 where:{
                     name:{
                         [Op.like]: "%"+q+"%"
-                    }
+                    },
+                    organization_id: organizationsIds
                 }
             })
         }
     }; 
 
-    res.render('admin/dashboard-event',data);
+    res.render('admin/dashboard-event',data); 
 };

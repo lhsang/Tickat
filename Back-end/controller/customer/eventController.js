@@ -108,7 +108,7 @@ exports.allEvents = async (req, res) =>{
         pagination: {
             limit : limit,
             page: page,
-            totalRows: await Event.count({
+            totalRows: await eventService.countEvent({
                 where:{
                     name:{
                         [Op.like]: "%"+q+"%"

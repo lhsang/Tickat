@@ -115,26 +115,11 @@ const object_define = require('../utils/object_define');
 //     {name: 'Free'}
 // ]).then(result=>console.log(JSON.stringify(result)));
 
-// Ticket.bulkCreate([
-//     {event_id: 3,type_id: 1,price: 500000,amount:60,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 3,type_id: 2,price: 200000,amount:100,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 3,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-//     {event_id: 2,type_id: 1,price: 600000,amount:40,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 2,type_id: 2,price: 300000,amount:70,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 2,type_id: 3,price: 0,amount:10,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-//     {event_id: 1,type_id: 1,price: 1500000,amount:60,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 1,type_id: 2,price: 700000,amount:100,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 1,type_id: 3,price: 0,amount:30,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-//     {event_id: 4,type_id: 1,price: 300000,amount:160,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 4,type_id: 2,price: 100000,amount:200,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 4,type_id: 3,price: 0,amount:0,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-//     {event_id: 5,type_id: 1,price: 450000,amount:80,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 5,type_id: 2,price: 150000,amount:200,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 5,type_id: 3,price: 0,amount:70,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-//     {event_id: 6,type_id: 1,price: 350000,amount:20,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
-//     {event_id: 6,type_id: 2,price: 200000,amount:110,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
-//     {event_id: 6,type_id: 3,price: 0,amount:40,description:'Các hàng ghế sau, không chuẩn bị nước uống'},
-// ]).then(result=>console.log(JSON.stringify(result)));
+Ticket.bulkCreate([
+    {event_id: 7,type_id: 1,price: 400000,amount:160,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
+    {event_id: 7,type_id: 2,price: 140000,amount:50,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
+    {event_id: 7,type_id: 3,price: 0,amount:30,description:'Các hàng ghế sau, không chuẩn bị nước uống'}
+]).then(result=>console.log(JSON.stringify(result)));
 
 
 
@@ -210,10 +195,10 @@ var Order = require('../models/order');
 //         }
 //     }
 // }).then(result=>console.log(JSON.stringify(result)));
-
+/* 
 Ticket.findAll({
     attributes: ['price','amount','bought'],
     where:{
         event_id:3,
     },
-}).then(result=>console.log(JSON.stringify(result)));
+}).then(result=>console.log(JSON.stringify(result))); */

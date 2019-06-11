@@ -271,9 +271,8 @@ exports.dashboardevent = async (req, res)=>{
     }
 
 
-   await resetAllData();
+    await resetAllData();
     await CalculateTotalAndSaleInYear(tickets); 
-
     
     handleData.addDateArrToEvents(events);
 
@@ -286,7 +285,8 @@ exports.dashboardevent = async (req, res)=>{
         percentTotalPrice: percentTotalPrice,
 
         events: events,
-        
+        organizations: organizations,
+
         pagination: {
             limit : limit,
             page: page,

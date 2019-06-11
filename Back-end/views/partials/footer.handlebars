@@ -14,7 +14,7 @@
           <div id="carousel-example" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner row w-100 mx-auto" role="listbox">
                   {{#each categories}}
-                  <div class="carousel-item footer-carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="carousel-item footer-carousel-item col-12 col-sm-6 col-md-4 col-lg-3"  onclick="location.href='/events?category_id={{id}}'" style="cursor:pointer">
                       <img src="{{img}}" class="img-fluid mx-auto d-block" alt="img8" title="{{name}}">
                   </div>
                   {{/each}}

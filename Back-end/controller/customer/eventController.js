@@ -5,6 +5,7 @@ const sequelize = require('../../configs/db');
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var ticketService = require('../../service/ticketService');
+var organizationService = require('../../service/organizationService');
 
 var Organization = require('../../models/organization');
 var Ticket = require('../../models/ticket');
@@ -22,13 +23,41 @@ function handleTickets(tickets){
     });
 }
 
-exports.bookingPage = async (req, res)=>{
+function handleQueryString(q='', category_id = -1, organization_id = -1){
+    q = q || "";
+    var queryStr={
+        name:{
+            [Op.like]: "%"+q+"%"
+        }
+    };
+    if(typeof category_id !=='undefined' && category_id != -1)
+        queryStr.category_id = category_id;
+    if(typeof organization_id !=='undefined' && organization_id != -1)
+        queryStr.organization_id =  organization_id;
+
+    return queryStr;
+};
+
+function handlequeryParams(q='', category_id = -1, organization_id = -1){
+    var queryParams ={};
+    if(typeof q !== 'undefined' && q!="")
+        queryParams.q = q;
+    if(typeof category_id !=='undefined' && category_id != -1)
+        queryParams.category_id = category_id;
+    if(typeof organization_id !=='undefined' && organization_id != -1)
+        queryParams.organization_id =  organization_id;
+    return queryParams;   
+};
+
+exports.bookingPage = async (req, res, next)=>{
     var categories = await categoryService.getAllCategories();
     var id = req.params.event_id;
     var tickets = await ticketService.getTicketsByEventId(id);
 
+    // if(typeof tickets === 'undefined' || tickets==null ||tickets =={})
+    //     next();
+
     handleTickets(tickets);
-    console.log(tickets);
     
     var data = {
         title: 'Thông tin vé - Tickat: Mua bán vé sự kiện',
@@ -82,6 +111,10 @@ exports.allEvents = async (req, res) =>{
     var q = req.query.q || "";
     var limit = req.query.limit || 6 ;
     var page = req.query.page || 1; page= parseInt(page);
+    var category_id = req.query.category_id;
+    var organization_id = req.query.organization_id;
+
+    console.log(handleQueryString(q, category_id, organization_id));
 
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
@@ -89,31 +122,26 @@ exports.allEvents = async (req, res) =>{
             model: Ticket,
             attributes: ['price']
         },
-        where:{ 
-            name:{
-                [Op.like]: "%"+q+"%"
-            }
-        },
+        where : handleQueryString(q, category_id, organization_id),
         limit: limit,
         offset: (page-1)*limit
     });
     handleData.addDateArrToEvents(events);
 
+    var organizations = await organizationService.getAllOrganizations();
     var data = {
         title: 'Tìm vé - Tickat: Mua bán vé sự kiện',
         layout: 'main',
         categories:  categories,
         events : events,
+        organizations: organizations,
         logged: false,
         pagination: {
             limit : limit,
             page: page,
+            queryParams: handlequeryParams(q, category_id, organization_id),
             totalRows: await eventService.countEvent({
-                where:{
-                    name:{
-                        [Op.like]: "%"+q+"%"
-                    }
-                }
+                where:handleQueryString(q, category_id, organization_id)
             })
         }
     };
@@ -122,9 +150,43 @@ exports.allEvents = async (req, res) =>{
         data.logged = true;
         data.user = req.user;
     }    
-
-    console.log(data);
     
     res.render("customer/all_events",data);
 };
+
+exports.filter = async (req, res)=>{
+    var q = req.query.q || "";
+    var limit = req.query.limit || 6 ;
+    var page = req.query.page || 1; page= parseInt(page);
+    var category_id = req.query.category_id;
+    var organization_id = req.query.organization_id;
+
+    var events = await eventService.getAllEvents({
+        attributes: ['id','name','date','address','img'],
+        include: {
+            model: Ticket,
+            attributes: ['price']
+        },
+        where: handleQueryString(q, category_id, organization_id),
+        limit: limit,
+        offset: (page-1)*limit
+    });
+    
+    handleData.addDateArrToEvents(events);
+
+    var data = {
+        layout: 'blank',
+        events : events,
+        pagination: {
+            limit : limit,
+            page: page,
+            queryParams: handlequeryParams(q, category_id, organization_id),
+            totalRows: await eventService.countEvent({
+                where:handleQueryString(q, category_id, organization_id)
+            })
+        }
+    };
+    res.render("customer/filterEvents",data);
+};
+
 

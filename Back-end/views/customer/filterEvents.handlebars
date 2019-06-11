@@ -1,0 +1,60 @@
+                    <div class="row bg-white box">
+                        
+                        {{#each events}}
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="card wow zoomIn" onclick="location.href='/events/{{id}}'">
+                                <img class="card-img-top" src="{{img}}" alt="Card image cap">
+                                <span class="badge-price">{{tickets.[0].price}} VNĐ</span>
+                                <div class="card-body row">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                                    <div class="date-box">
+                                        <div class="date-header">
+                                            {{date_arr.mm_en}}
+                                        </div>
+                                        <div class="date-body">
+                                            {{date_arr.dd}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
+                                    <h6 class="card-title">{{name}}</h6>
+                                    <hr>
+                                    <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i>{{date}}</p>
+                                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>{{address}}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+
+                    <div class="row pag">
+                            <nav>
+                                {{{paginate pagination paginationClass="pagination" leftText="Prev" rightText="Next" limit="4"}}}
+                            </nav>
+                    </div>
+<script>
+
+(() =>{  
+  var li = document.getElementsByClassName("pagination")[0].getElementsByTagName("li");
+  for (var i = 0; i < li.length; i++) {
+      li[i].classList.add("paginate-item");
+      li[i].getElementsByTagName("a")[0].classList.add("page-link");
+      //li[i].getElementsByTagName("a")[0].removeAttribute("href");
+  }
+})();
+
+
+$('.page-link').click(function (e) { 
+  e.preventDefault();
+  var queryParams = $(this).attr('href');
+  $.ajax({
+    type: "get",
+    url: "/events/filter"+queryParams,
+    success: function (response) {
+      $('#events').html(response);
+    }
+  });
+});
+
+</script>

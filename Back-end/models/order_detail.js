@@ -16,8 +16,6 @@ Order_detail.init({
         allowNull: false
     },
 
-
-
     ticket_id: {
         type:Sequelize.INTEGER,
         allowNull: false

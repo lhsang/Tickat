@@ -180,11 +180,14 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 .btn-more{
     color: white;
-    background: #E27F0B;
+    background: rgb(236, 138, 26);
     padding: 6px 30px;
     border: none;
 }
 
+.btn-more:hover{
+    background: rgb(240, 128, 0);
+}
 .badge-price{
     position: absolute;
     right: 5px;

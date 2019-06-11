@@ -282,21 +282,8 @@ $("#signup-form").on("submit", function(){
   for (var i = 0; i < li.length; i++) {
       li[i].classList.add("paginate-item");
       li[i].getElementsByTagName("a")[0].classList.add("page-link");
-      //li[i].getElementsByTagName("a")[0].removeAttribute("href");
   }
 })();
 
-
-$('.page-link').click(function (e) { 
-  e.preventDefault();
-  var queryParams = $(this).attr('href');
-  $.ajax({
-    type: "get",
-    url: "/events/filter"+queryParams,
-    success: function (response) {
-      $('#events').html(response);
-    }
-  });
-});
 
 //end login validate

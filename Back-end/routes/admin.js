@@ -23,6 +23,8 @@ router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
 router.get('/events', decodeToken, adminDasboardController.dashboardevent);
 
+router.get('/events/:id([0-9]+)', decodeToken, adminDasboardController.orderDetails);
+
 router.get('/setting', decodeToken, adminController.profile);
 
 module.exports = router;

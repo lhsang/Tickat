@@ -5,56 +5,81 @@ var Order_detail = require('../models/order_detail');
 var Order = require('../models/order');
 var dateFormat = require('dateformat');
 
-
 const sequelize = require('../configs/db');
 
 const {setDefaultQueryStr} =  require('../utils/default_query_string');
 const { Op } = Sequelize = require('sequelize');
 
-async function getMonthStartDay(month,year){
+function getMonthStartDay(month,year){
     var date = new Date(year+'-'+month+'-01');
     var monthStartDay =  dateFormat(new Date(date.getFullYear(), date.getMonth(), 1),"yyyy-mm-dd");
     return monthStartDay;
 }
 
-async function getMonthEndDay(month,year){
+function getMonthEndDay(month,year){
     var date = new Date(year+'-'+month+'-01');
     var monthEndDay =  dateFormat(new Date(date.getFullYear(), date.getMonth() + 1, 0),"yyyy-mm-dd");
     return monthEndDay;
 }
 
-
-exports.getOrdersByEventId = async (event_id)=>{
+exports.getOrdersByEventId = async (event_id,limit = 10, offset = 0)=>{
     try {
-        // var monthStartDay = await getMonthStartDay(month,year);
-        // var monthEndDay = await getMonthEndDay(month,year);
-        var orders = Order.findAll({
+        var orders = await Order.findAll({
             where: {               
                 event_id:event_id,
             },
-             attributes:['date_bought'],
-
-                include: {
-                    model: Order_detail,
-                    attributes:['amount'],
+            attributes:['date_bought','name'],
+            include: {
+                model: Order_detail,
+                attributes:['amount'],
+                include:{
+                    model: Ticket,
+                    attributes:['price'],
                     include:{
-                        model: Ticket,
-                          attributes:['price']
-          
+                        model: TypeTicket,
+                        attributes: ['name']
                     }
-                },
-        
+                }
+            },
+            offset: offset,
+            limit: limit,
+            subQuery:false
         });
-        if(orders.length==0)
-            return 0;
-        else
         return orders;
     } catch (error) {
-        console.log(error);
-        return {};
         throw Error('Can not find order');   
-     
     }
-    
+};
+
+exports.countOrderDetailsByEventId = async (event_id)=>{
+    try {
+        var orders = await Order.findAll({
+            where: {               
+                event_id:event_id,
+            },
+            attributes:['date_bought','name'],
+            include: {
+                model: Order_detail,
+                attributes:['amount'],
+                include:{
+                    model: Ticket,
+                    attributes:['price'],
+                    include:{
+                        model: TypeTicket,
+                        attributes: ['name']
+                    }
+                }
+            }
+        });
+        var sum = 0;
+        orders.map((obj)=>{
+            sum+=obj.order_details.length;
+        });
+        
+        return sum;
+    } catch (error) {
+        console.log(error+"");
+        
+    }
 };
 

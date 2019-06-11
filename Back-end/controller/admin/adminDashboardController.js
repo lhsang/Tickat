@@ -303,3 +303,30 @@ exports.dashboardevent = async (req, res)=>{
 
     res.render('admin/dashboard-event',data); 
 };
+
+exports.orderDetails = async (req, res)=>{
+    var eventId = req.params.id;
+    var limit = req.query.limit || 10 ;
+    var page = req.query.page || 1; page= parseInt(page);
+
+    var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
+    
+    var data = {
+        title: 'Dashboard event',
+        layout :'admin',
+        user : req.user,
+    
+        orders: orders,
+        pagination: {
+            limit : limit,
+            page: page,
+            queryParams:{
+                page: page,
+                limit: limit
+            },
+            totalRows: await orderService.countOrderDetailsByEventId(eventId)
+        }
+    }; 
+    
+    res.render('admin/order-details',data); 
+};

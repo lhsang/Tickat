@@ -285,5 +285,4 @@ $("#signup-form").on("submit", function(){
   }
 })();
 
-
 //end login validate

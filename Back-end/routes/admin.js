@@ -27,4 +27,7 @@ router.get('/events/:id([0-9]+)', decodeToken, adminDasboardController.orderDeta
 
 router.get('/setting', decodeToken, adminController.profile);
 
+
+router.get('/events/test/:id([0-9]+)', decodeToken, adminDasboardController.test);
+
 module.exports = router;

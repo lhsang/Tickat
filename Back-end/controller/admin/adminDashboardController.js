@@ -310,13 +310,16 @@ exports.orderDetails = async (req, res)=>{
     var page = req.query.page || 1; page= parseInt(page);
 
     var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
-    
+    var order_details = await orderService.sumaryByEventId(eventId);
+
     var data = {
         title: 'Dashboard event',
         layout :'admin',
         user : req.user,
     
         orders: orders,
+        order_details:order_details,
+
         pagination: {
             limit : limit,
             page: page,
@@ -327,6 +330,11 @@ exports.orderDetails = async (req, res)=>{
             totalRows: await orderService.countOrderDetailsByEventId(eventId)
         }
     }; 
-    
     res.render('admin/order-details',data); 
+};
+
+exports.test = async (req, res)=>{
+    var od = await orderService.sumaryByEventId(6);
+
+    res.send(od);
 };

@@ -39,32 +39,20 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {{#each order_details}}
                     <tr>
-                      <td scope="row">VIP</td>
-                      <td>50</td>
-                      <td>250.000</td>
-                      <td>250.000</td>
+                      <td scope="row">'{{ticket.type_of_ticket.[0].name}}'</td>
+                      <td>{{amount}}</td>
+                      <td>{{ticket.price}}</td>
+                      <td>0</td>
                       <td>12.250.000</td>
                     </tr>
-                    <tr>
-                        <td scope="row">Normal</td>
-                        <td>100</td>
-                        <td>150.000</td>
-                        <td>550.000</td>
-                        <td>14.450.000</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Free</td>
-                        <td>10</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
+                    {{/each}}
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="color-red">700.000</td>
+                        <td class="color-red">0</td>
                         <td class="color-red">26.700.000</td>
                     </tr>
                   </tbody>

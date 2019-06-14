@@ -2,18 +2,18 @@ const Sequelize = require('sequelize');
 module.exports = new Sequelize({
 
     //db local
-    // database: 'tickat',
-    // username: 'postgres',
-    // password: 'postgres',
-    // host: 'localhost',
-    // port: 5432,
+    database: 'tickat',
+    username: 'postgres',
+    password: 'postgres',
+    host: 'localhost',
+    port: 5432,
 
     //db online
-    database: 'dfupui3khqo4iv',
+    /* database: 'dfupui3khqo4iv',
     username: 'rfzwrublzspbie',
     password: '8c540ca8fec2d570a70982e29e83b5254f68e1fb321ba492944e6119555335f3',
     host: 'ec2-23-21-148-223.compute-1.amazonaws.com',
-    port: 5432, 
+    port: 5432, */
     
     dialect: 'postgres',
     dialectOptions: {

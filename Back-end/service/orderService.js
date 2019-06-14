@@ -83,3 +83,39 @@ exports.countOrderDetailsByEventId = async (event_id)=>{
     }
 };
 
+exports.sumaryByEventId = async (event_id)=>{
+    try {
+        var orders = await Order.findAll({
+            attributes:['id'],
+            where:{
+                event_id:event_id
+            }
+        });
+
+        var ids = orders.map((obj)=>{
+            return obj.id;
+        });
+
+        var order_details = await Order_detail.findAll({
+            raw:true,
+            where:{
+                order_id: ids
+            },
+            attributes: ['ticket_id', [sequelize.fn('sum', sequelize.col('order_detail.amount')), 'amount']],
+            include:{
+                model: Ticket,
+                attributes:['price'],
+                include:{
+                    model: TypeTicket,
+                    attributes: ['name']
+                }
+            },
+            group: ['ticket_id',"ticket.id","ticket->type_of_ticket.id"]
+        });
+        
+        return order_details;
+    } catch (error) {
+        console.log(error+"");
+    }
+};
+

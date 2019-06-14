@@ -1,4 +1,6 @@
 var nodemailer = require("nodemailer");
+var dateFormat = require('dateformat');
+
 
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
@@ -118,4 +120,24 @@ exports.profile = async (req, res)=>{
 exports.test = async (req, res)=>{
     var events = await eventService.test();
     res.send(events);
+}
+
+
+exports.changeProfile = async (req,res)=>{
+    var address = req.body.address,
+   date_of_birth = req.body.date_of_birth,
+    tel = req.body.tel,
+    mail = req.body.mail,
+    description = req.body.description;
+    var username = req.user.username;
+    console.log({address:username});
+
+    var user = await userService.getUserByUsername(username);
+    user.address=address;
+    user.date_of_birth=dateFormat( new Date(date_of_birth),"mm/dd/yyyy");
+    user.tel=tel;
+    user.mail=mail;
+    user.description=description;
+    user.save();
+    res.send(address);
 }

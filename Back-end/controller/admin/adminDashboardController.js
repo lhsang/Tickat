@@ -338,3 +338,11 @@ exports.test = async (req, res)=>{
 
     res.send(od);
 };
+
+exports.costChart = async (req,res)=>{
+    var daystart = res.query.daystart;
+    var dayto = res.query.dayto;
+
+    console.log(daystart);
+    res.send("sasas");
+};

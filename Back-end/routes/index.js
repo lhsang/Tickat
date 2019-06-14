@@ -23,6 +23,8 @@ router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username',decodeToken, homeController.profile);
 
+router.post('/users',decodeToken, homeController.changeProfile);
+
 router.post('/check-username', userController.checkUsername);
 
 /* ---------------------------start user router------------------------ */

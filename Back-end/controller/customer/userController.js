@@ -82,3 +82,4 @@ exports.switchAcc = async (req, res)=>{
 exports.uploadAvatar = (req, res)=>{
     res.send('upload thanh cong');
 };
+

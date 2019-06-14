@@ -30,4 +30,6 @@ router.get('/setting', decodeToken, adminController.profile);
 
 router.get('/events/test/:id([0-9]+)', decodeToken, adminDasboardController.test);
 
+router.get('/costchart',adminDasboardController.costChart);
+
 module.exports = router;

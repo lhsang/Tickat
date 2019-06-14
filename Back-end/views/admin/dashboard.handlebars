@@ -1,5 +1,5 @@
 
- 
+
 <body > 
 
 <div class="container-fuild">
@@ -7,14 +7,14 @@
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">                 
         <div class="row d-flex justify-content-center">
             <div class="row">
-                    <form action="" >
+                    <form  >
                             <b>Cost from day:</b> 
-                            <input type="date" name="from" value="31/3/2019" id="dayfrom">
+                            <input type="date" value="31/3/2019" id="daystart" required>
                             
                             <b> to day:</b>
-                            <input type="date" name="to" value="11/4/2019" id="dayto">
+                            <input type="date" value="11/4/2019" id="dayto" required>
                             
-                            <input type="submit" value="Submit" class="btndashboard" onclick="loadChart()">
+                            <input type="button" value="Submit" id="dayform" class="btndashboard" >
                           </form> 
             </div>
                 
@@ -113,16 +113,34 @@
       </div>
 </div>
 
-
-
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+<script>
+  
+$("#dayform").click(function (e) { 
+  e.preventDefault();
+  console.log("3200");
+  $.ajax({
+    type: "GET",
+    url: "/admin/costchart",
+    data:  {
+        daystart: $("#daystart").val(),
+        dayto: $("#dayto").val()
+      },
+    success: function (res) {
+      console.log("200");
+    }
+});
+
+});
+</script>
 <script>
   $( document ).ready(function() {
     loadColumChart();
     loadLinechart();
 });
 
+ 
 
 
 

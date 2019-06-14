@@ -286,3 +286,12 @@ $("#signup-form").on("submit", function(){
 })();
 
 //end login validate
+$.ajax({
+  type: "method",
+  url: "url",
+  data: "data",
+  dataType: "dataType",
+  success: function (response) {
+    
+  }
+});

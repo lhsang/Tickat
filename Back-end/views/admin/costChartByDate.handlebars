@@ -1,0 +1,51 @@
+
+<script>
+    
+
+function loadLinechart(){
+  google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dayArr=[];
+        {{#each dayArr}}
+          dayArr.push('{{this}}');
+        {{/each}}
+
+       
+        var saleInDay = [{{daySale}}];
+
+        console.log(dayArr);
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Day');
+        data.addColumn('number', 'Cost');
+      
+
+        for(i=0;i<dayArr.length;i++){
+          data.addRow([new Date(dayArr[i]),saleInDay[i]]);
+        }
+
+        var options = {
+          'title':'Cost chart',
+
+          colors: ['#F85D2C'],
+          vAxis:{
+            viewWindow:{
+              max:1000
+            }
+          },
+          legend: {
+            position: 'bottom',
+            pagingTextStyle: { color: '#666' },
+            scrollArrows: 'none'
+        },
+          pointSize: 10,
+          vAxis: {format:'$000,000'}
+
+        };
+        var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));
+        chart.draw(data, options);
+    }
+
+</script>
+

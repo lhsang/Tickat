@@ -113,34 +113,35 @@
       </div>
 </div>
 
- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-  
-$("#dayform").click(function (e) { 
-  e.preventDefault();
-  console.log("3200");
-  $.ajax({
-    type: "GET",
-    url: "/admin/costchart",
-    data:  {
-        daystart: $("#daystart").val(),
-        dayto: $("#dayto").val()
-      },
-    success: function (res) {
-      console.log("200");
-    }
-});
 
-});
-</script>
 <script>
-  $( document ).ready(function() {
+
+$( document ).ready(function() {
     loadColumChart();
-    loadLinechart();
+    loadLineChart(0,0);
 });
 
- 
+
+$("#dayform").click(function (e) { 
+    e.preventDefault();
+    console.log($('#daystart').val());
+    $.ajax({
+        type: "GET",
+        url: "/admin/costchart",
+        data: {
+          daystart : $('#daystart').val(),
+          dayto : $('#dayto').val(),
+        },
+        success: function (response) {
+          console.log('ab',response.daySale,response.dayArr);
+          loadLineChart(response.daySale,response.dayArr);
+        }
+  });
+    
+});
+
 
 
 
@@ -200,54 +201,42 @@ function loadColumChart(){
         }
 }
 
-
-
-
-
-function loadLinechart(){
+function loadLineChart(daySale,dayArray){
   google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var dayArr=[];
-        {{#each dayArr}}
-          dayArr.push('{{this}}');
-        {{/each}}
+        var data = new google.visualization.DataTable();
+
+        if(daySale==0){
+          var dayArr=[];
+          {{#each dayArr}}
+            dayArr.push('{{this}}');
+          {{/each}}
 
        
-        var saleInDay = [{{daySale}}];
+          var saleInDay = [{{daySale}}];
+        }
+        else{
+          var dayArr=[];
+          for(i=0;i<dayArray.length;i++)
+            dayArr.push(dayArray[i]);
+          saleInDay=daySale;
+        }
 
-        console.log(dayArr);
-        
-        var data = new google.visualization.DataTable();
+
         data.addColumn('date', 'Day');
         data.addColumn('number', 'Cost');
       
-      /*
-        data.addRows([
-
-         [new Date(dayArr[0]),saleInDay[0]],
-         [new Date(dayArr[1]),saleInDay[1]],
-         [new Date(dayArr[2]),saleInDay[2]],
-         [new Date(dayArr[3]),saleInDay[3]],
-         [new Date(dayArr[4]),saleInDay[4]],
-         [new Date(dayArr[5]),saleInDay[5]],
-        [new Date(dayArr[6]),saleInDay[6]],
-         [new Date(dayArr[7]),saleInDay[7]],
-         [new Date(dayArr[8]),saleInDay[8]],
-         [new Date(dayArr[9]),saleInDay[9]]
-
-
-
-        ]);*/
-
-        for(i=0;i<dayArr.length;i++){
-          data.addRow([new Date(dayArr[i]),saleInDay[i]]);
+      for(i=0;i<dayArr.length;i++) {
+          tmp=[];
+          tmp.push(new Date(dayArr[i]),saleInDay[i]);
+          data.addRow(tmp);
         }
 
         var options = {
-          'title':'Cost chart',
+          'title':'Cost by day',
 
-          colors: ['#F85D2C'],
+          colors: ['#F85D2C', '#1FAE66'],
           vAxis:{
             viewWindow:{
               max:1000
@@ -259,14 +248,13 @@ function loadLinechart(){
             scrollArrows: 'none'
         },
           pointSize: 10,
-          vAxis: {format:'$000,000'}
+          vAxis: {format:'# $'}
 
         };
         var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));
         chart.draw(data, options);
     }
 }
-
 
 </script>
 

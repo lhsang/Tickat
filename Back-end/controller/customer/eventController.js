@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+var dateFormat = require('dateformat');
 const sequelize = require('../../configs/db');
 
 var eventService = require('../../service/eventService');
@@ -23,7 +24,7 @@ function handleTickets(tickets){
     });
 }
 
-function handleQueryString(q='', category_id = -1, organization_id = -1){
+function handleQueryString(q='', category_id = -1, organization_id = -1, start = -1, end = -1){
     q = q || "";
     var queryStr={
         name:{
@@ -34,11 +35,18 @@ function handleQueryString(q='', category_id = -1, organization_id = -1){
         queryStr.category_id = category_id;
     if(typeof organization_id !=='undefined' && organization_id != -1)
         queryStr.organization_id =  organization_id;
-
+    if(typeof start !=='undefined' && start != -1)
+        queryStr.date= {
+                [Op.gte]: dateFormat(start,"yyyy-mm-dd")
+          };
+    if(typeof end !=='undefined' && end != -1)
+        queryStr.date= {
+                  [Op.lte]: dateFormat(end,"yyyy-mm-dd")
+            };
     return queryStr;
 };
 
-function handlequeryParams(q='', category_id = -1, organization_id = -1){
+function handlequeryParams(q='', category_id = -1, organization_id = -1, start =-1, end=-1){
     var queryParams ={};
     if(typeof q !== 'undefined' && q!="")
         queryParams.q = q;
@@ -46,7 +54,11 @@ function handlequeryParams(q='', category_id = -1, organization_id = -1){
         queryParams.category_id = category_id;
     if(typeof organization_id !=='undefined' && organization_id != -1)
         queryParams.organization_id =  organization_id;
-    return queryParams;   
+    if(typeof start !=='undefined' && start != -1)
+        queryParams.star =  start;
+     if(typeof end !=='undefined' && end != -1)
+        queryParams.end =  start;
+    return queryParams;
 };
 
 exports.bookingPage = async (req, res, next)=>{
@@ -114,7 +126,6 @@ exports.allEvents = async (req, res) =>{
     var category_id = req.query.category_id;
     var organization_id = req.query.organization_id;
 
-    console.log(handleQueryString(q, category_id, organization_id));
 
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
@@ -160,14 +171,16 @@ exports.filter = async (req, res)=>{
     var page = req.query.page || 1; page= parseInt(page);
     var category_id = req.query.category_id;
     var organization_id = req.query.organization_id;
-
+    var start = req.query.start;
+    var end = req.query.end;
+    
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
         include: {
             model: Ticket,
             attributes: ['price']
         },
-        where: handleQueryString(q, category_id, organization_id),
+        where: handleQueryString(q, category_id, organization_id,start,end),
         limit: limit,
         offset: (page-1)*limit
     });
@@ -180,9 +193,9 @@ exports.filter = async (req, res)=>{
         pagination: {
             limit : limit,
             page: page,
-            queryParams: handlequeryParams(q, category_id, organization_id),
+            queryParams: handlequeryParams(q, category_id, organization_id),start,end,
             totalRows: await eventService.countEvent({
-                where:handleQueryString(q, category_id, organization_id)
+                where:handleQueryString(q, category_id, organization_id,start,end)
             })
         }
     };

@@ -47,13 +47,10 @@ router.get('/test',homeController.test);
 
 //router.get('/detailEvent/:id',detailEvent.detailPage);
 
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-router.post('/test', urlencodedParser,(req, res)=>{
+router.put('/test',(req, res)=>{
     var username = req.body.username;
-    res.send("server nhan:"+username);
-})
+    res.send("server nhan:"+req.body.hhi);
+});
 
 module.exports = router;
 

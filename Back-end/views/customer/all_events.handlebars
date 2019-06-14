@@ -39,16 +39,16 @@
                     </div>
 
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-                          <label for="input" class="col-sm-2 control-label label-datepicker">Từ:</label>
+                          <label for="input" class="col-sm-2 control-label label-datepicker" >Từ:</label>
                     </div>   
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+                        <input type="date" name="" class="form-control" id="start" data-date-format="DD MM YYYY">
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mt-20">
-                          <label for="input" class="col-sm-2 control-label label-datepicker">Đến:</label>
+                          <label for="input" class="col-sm-2 control-label label-datepicker" >Đến:</label>
                     </div>   
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 mt-20">
-                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+                        <input type="date" name="" class="form-control" id="end" data-date-format="DD MM YYYY">
                         <hr>
                     </div>
 
@@ -149,12 +149,15 @@
 <script>
     $('.btn-loc').click(function (e) { 
         e.preventDefault();
+        console.log($('#start').val());
         $.ajax({
             type: "get",
             url: "/events/filter",
             data: {
                 category_id: $('#category_id').val(),
-                organization_id:  $('#organization_id').val()
+                organization_id:  $('#organization_id').val(),
+                start: $('#start').val(),
+                end: $('#end').val()
             },
             success: function (response) {
                 $('#events').html(response);
@@ -169,7 +172,7 @@
             type: "get",
             url: "/events/filter"+queryParams,
             success: function (response) {
-            $('#events').html(response);
+                $('#events').html(response);
             }
         });
     });

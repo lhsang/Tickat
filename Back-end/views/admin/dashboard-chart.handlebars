@@ -67,15 +67,15 @@
 <div class="container dashboard-stats">
   <hr>
   <div class="row d-flex justify-content-center">
-      <form action="" >
-         <b>Cost from day:</b> 
-        <input type="text" name="from" value="31/3/2019">
-        
+      <form  >
+        <b>Cost from day:</b> 
+        <input type="date" value="31/3/2019" id="daystart" required>
+                            
         <b> to day:</b>
-        <input type="text" name="to" value="11/4/2019">
-        
-        <input type="submit" value="Submit"class="btndashboard">
-      </form> 
+        <input type="date" value="11/4/2019" id="dayto" required>
+                            
+         <input type="button" value="Submit" id="dayform" class="btndashboard" >
+       </form> 
       <div id="lineChart"style="width: 1600px; height: 500px;" ></div>
       
   </div>
@@ -98,10 +98,31 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
 <script>
-  $( document ).ready(function() {
+
+$( document ).ready(function() {
     loadColumChart();
-    loadLinechart();
+    loadLineChart(0,0);
 });
+
+
+$("#dayform").click(function (e) { 
+    e.preventDefault();
+    console.log($('#daystart').val());
+    $.ajax({
+        type: "GET",
+        url: "/admin/costchart",
+        data: {
+          daystart : $('#daystart').val(),
+          dayto : $('#dayto').val(),
+        },
+        success: function (response) {
+          console.log('ab',response.daySale,response.dayArr);
+          loadLineChart(response.daySale,response.dayArr);
+        }
+  });
+    
+});
+
 
 
 
@@ -149,8 +170,8 @@ function loadColumChart(){
     
           var options = {
             title: "Sales Graph by month 2019",
-            width: 1400,
-            height: 500,
+            width: 1000,
+            height: 800,
             legend: { position: "none" },
             vAxis: {format:'$000,000',max:120000}
          
@@ -161,49 +182,42 @@ function loadColumChart(){
         }
 }
 
-
-
-
-function loadLinechart(){
+function loadLineChart(daySale,dayArray){
   google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var dayArr=[];
-        {{#each dayArr}}
-          dayArr.push('{{this}}');
-        {{/each}}
+        var data = new google.visualization.DataTable();
+
+        if(daySale==0){
+          var dayArr=[];
+          {{#each dayArr}}
+            dayArr.push('{{this}}');
+          {{/each}}
 
        
-        var saleInDay = [{{daySale}}];
+          var saleInDay = [{{daySale}}];
+        }
+        else{
+          var dayArr=[];
+          for(i=0;i<dayArray.length;i++)
+            dayArr.push(dayArray[i]);
+          saleInDay=daySale;
+        }
 
-        console.log(dayArr);
-        
-        var data = new google.visualization.DataTable();
+
         data.addColumn('date', 'Day');
         data.addColumn('number', 'Cost');
       
-      
-        data.addRows([
-
-         [new Date(dayArr[0]),saleInDay[0]],
-         [new Date(dayArr[1]),saleInDay[1]],
-         [new Date(dayArr[2]),saleInDay[2]],
-         [new Date(dayArr[3]),saleInDay[3]],
-         [new Date(dayArr[4]),saleInDay[4]],
-         [new Date(dayArr[5]),saleInDay[5]],
-        [new Date(dayArr[6]),saleInDay[6]],
-         [new Date(dayArr[7]),saleInDay[7]],
-         [new Date(dayArr[8]),saleInDay[8]],
-         [new Date(dayArr[9]),saleInDay[9]]
-
-
-
-        ]);
+      for(i=0;i<dayArr.length;i++) {
+          tmp=[];
+          tmp.push(new Date(dayArr[i]),saleInDay[i]);
+          data.addRow(tmp);
+        }
 
         var options = {
-          'title':'Cost from by days',
+          'title':'Cost by day',
 
-          colors: ['#F85D2C'],
+          colors: ['#F85D2C', '#1FAE66'],
           vAxis:{
             viewWindow:{
               max:1000
@@ -215,7 +229,7 @@ function loadLinechart(){
             scrollArrows: 'none'
         },
           pointSize: 10,
-          vAxis: {format:'$000,000'}
+          vAxis: {format:'# $'}
 
         };
         var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));
@@ -223,8 +237,5 @@ function loadLinechart(){
     }
 }
 
-
 </script>
-
-
 

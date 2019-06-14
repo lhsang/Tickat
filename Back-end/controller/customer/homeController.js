@@ -108,11 +108,14 @@ exports.profile = async (req, res)=>{
         layout: 'main',
         user_profile: user_profile,
         categories:  categories,
-        logged: false
+        logged: false,
+        areYourself: false
     };
     if(typeof req.user !== 'undefined'){
         data.logged = true;
         data.user = req.user;
+        if(req.user.username === username)
+            data.areYourself = true;
     }    
     res.render("customer/profile",data);
 };

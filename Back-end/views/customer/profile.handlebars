@@ -133,13 +133,14 @@
           </div>
     </div>
    <hr>
-  <div class="row  d-flex justify-content-center">
+  {{#if areYourself}}
+        <div class="row  d-flex justify-content-center">
     <button  class="btnchangepass gr1" id="edit" ><i class="far fa-edit" style="color:white;font-size: 18px" ></i> Chỉnh sửa hồ sơ</button>
     <button class="btnchangepass gr1"><i class="fas fa-ticket-alt" style="margin-right:10%"></i><b></b> Xem vé đã mua</b> </button>
 
     <button class="btnchangepass gr2" style="display:none" onclick="saveProfile()"><i class="fas fa-ticket-alt" style="margin-right:10%"></i><b></b>Lưu lại</b> </button>
   </div>
-
+  {{/if}}
 <br>
 
 </div>

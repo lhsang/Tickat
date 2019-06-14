@@ -115,12 +115,12 @@ const object_define = require('../utils/object_define');
 //     {name: 'Free'}
 // ]).then(result=>console.log(JSON.stringify(result)));
 
-Ticket.bulkCreate([
+/* Ticket.bulkCreate([
     {event_id: 7,type_id: 1,price: 400000,amount:160,description:'Hàng ghế đầu, có chuẩn bị nước trà, bánh và được gởi tặng slide buổi hội thảo.'},
     {event_id: 7,type_id: 2,price: 140000,amount:50,description:'Hàng ghế giữa, có chuẩn bị nước suối.'},
     {event_id: 7,type_id: 3,price: 0,amount:30,description:'Các hàng ghế sau, không chuẩn bị nước uống'}
 ]).then(result=>console.log(JSON.stringify(result)));
-
+ */
 
 
 // Order.bulkCreate([
@@ -195,21 +195,18 @@ var Order = require('../models/order');
 //         }
 //     }
 // }).then(result=>console.log(JSON.stringify(result)));
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const sequelize = require('../configs/db');
 
-
-Event.findAll({
-   attributes:[],
-    include:{
-        model: Ticket,
-        attributes: ['id','amount','bought','event_id',[sequelize.fn('COUNT', sequelize.col('tickets.amount')), 'sum']]
-    },
-    where: {
-        organization_id:3
-    },
-    group: ['tickets.event_id']
-}).then(result=>console.log(JSON.stringify(result)));
+// var start = "2019-7-20";
+// Event.findAll({
+//     where: {
+//         date: {
+//             [Op.gte]: new Date(start)
+//       }
+//     }
+// }).then(result=>console.log(JSON.stringify(result)));
 
 // ticket = Ticket.findAll({
 //     attributes: [[sequelize.fn('sum', sequelize.col('price')), 'price']],

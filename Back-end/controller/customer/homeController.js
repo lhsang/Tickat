@@ -24,7 +24,7 @@ exports.homePage = async (req, res)=>{
 
     //get slide img - tạm thời, sau bỏ vô service
     var slides = comming_events.map(obj=>{
-        return {'img':obj.img,'name':obj.name};
+        return {'img':obj.img,'name':obj.name,'id':obj.id};
     });
 
     handleData.addDateArrToEvents(comming_events);

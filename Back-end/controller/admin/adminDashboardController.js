@@ -271,9 +271,8 @@ exports.dashboardevent = async (req, res)=>{
     }
 
 
-   await resetAllData();
+    await resetAllData();
     await CalculateTotalAndSaleInYear(tickets); 
-
     
     handleData.addDateArrToEvents(events);
 
@@ -286,7 +285,8 @@ exports.dashboardevent = async (req, res)=>{
         percentTotalPrice: percentTotalPrice,
 
         events: events,
-        
+        organizations: organizations,
+
         pagination: {
             limit : limit,
             page: page,
@@ -302,4 +302,39 @@ exports.dashboardevent = async (req, res)=>{
     }; 
 
     res.render('admin/dashboard-event',data); 
+};
+
+exports.orderDetails = async (req, res)=>{
+    var eventId = req.params.id;
+    var limit = req.query.limit || 10 ;
+    var page = req.query.page || 1; page= parseInt(page);
+
+    var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
+    var order_details = await orderService.sumaryByEventId(eventId);
+
+    var data = {
+        title: 'Dashboard event',
+        layout :'admin',
+        user : req.user,
+    
+        orders: orders,
+        order_details:order_details,
+
+        pagination: {
+            limit : limit,
+            page: page,
+            queryParams:{
+                page: page,
+                limit: limit
+            },
+            totalRows: await orderService.countOrderDetailsByEventId(eventId)
+        }
+    }; 
+    res.render('admin/order-details',data); 
+};
+
+exports.test = async (req, res)=>{
+    var od = await orderService.sumaryByEventId(6);
+
+    res.send(od);
 };

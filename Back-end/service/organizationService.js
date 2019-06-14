@@ -1,6 +1,6 @@
 var Organization = require('../models/organization');
 
-exports.findOrganizationById = async (id)=>{
+exports.getOrganizationById = async (id)=>{
     try {
         var organization =  await Organization.findByPk(id);
         return organization;
@@ -9,36 +9,26 @@ exports.findOrganizationById = async (id)=>{
     }
 };
 
-exports.findOrganizationByUserId = async (user_id)=>{
-    try {
-        var organization = await Organization.findOne({
-            where: {user_id: user_id}
-        });
-
-        return organization;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-
 exports.getOrganizationIdByUserId = async(user_id)=>{
     try {
-        var organization = Organization.findAll({
-            attributes:['id'],
+        var organizations = await Organization.findAll({
             where:{
                 user_id:user_id
             },
             
         });
-
-        if(organization.length==0)
-            return 0;
-        else
-        return organization;
+        return organizations;
     } catch (error) {
         console.log(error);
         return {};
-     
     }
-}
+};
+
+exports.getAllOrganizations = async (query={})=>{
+    try {
+        var organizations = await Organization.findAll(query);
+        return organizations;
+    } catch (error) {
+        throw new Error(error+"");
+    }
+};

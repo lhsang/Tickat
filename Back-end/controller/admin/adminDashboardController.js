@@ -31,7 +31,7 @@ var month = ["January","February","March","April","May","June","July","August","
 
 var percentTotalPrice;
 
-var daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
+var daySale;
 var dayArr=[];
 
 
@@ -67,13 +67,38 @@ function getSaleAndSeatInMonth(){
     seatInMonth = totalTicketinMonth[monthNow];
 }
 
+function getDayArr(daystart,dayto){
+    var arr = new Array();
+
+    if(daystart==0){
+        for(i=9;i>=0;i--){
+            var daybefore = dateFormat(moment().subtract(i, 'days'),"yyyy-mmmm-dd");
+            arr.push(daybefore);
+        }
+    }
+    else{
+        dt = new Date(daystart);
+        dayend = new Date(dayto);
+        while (dt <= dayend) {
+            console.log('dt',dt);
+        arr.push(dateFormat(new Date(dt),"yyyy-mmmm-dd"));
+        dt.setDate(dt.getDate() + 1);
+      }
+      console.log('dayss',arr);
+    
+    }
+
+    return arr;
+
+}
 
 function getSaleInDay(orders){
 
-    for(i=9;i>=0;i--){
-        var daybefore = dateFormat(moment().subtract(i, 'days'),"yyyy-mmmm-dd");
-        dayArr.push(daybefore);
-    }
+  
+
+    daySale = new Array();
+    for(i=0;i<dayArr.length;i++)
+        daySale[i]=0;
 
     orders.forEach(function getOrderByDay(order){
       
@@ -110,7 +135,7 @@ function resetAllData(){
     percentTotalPrice;
 
     daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
-    dayArr=[];
+   // dayArr=[];
 }
 
 exports.dashboard = async (req, res)=>{
@@ -147,11 +172,15 @@ exports.dashboard = async (req, res)=>{
      var saleInMonthArr = await getSaleInMonthOfYear(orders);
 
      await getSaleAndSeatInMonth();
+
+     dayArr = new Array();
+     dayArr = getDayArr(0,0);
      daySale = await getSaleInDay(orders);
 
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
-    
+
+
     try{
         var data = {
             title: 'Dashboard',
@@ -191,7 +220,6 @@ exports.dashboardchart = async (req, res)=>{
             for(j=0;j<tmp.length;j++)
                 events.push(tmp[j]);
     }
-
     
     var tickets = [];
     var orders= [];
@@ -206,19 +234,23 @@ exports.dashboardchart = async (req, res)=>{
        if(order.length!=0)
             for(j=0;j<order.length;j++)           
                 orders.push(order[j]);
+
     }
 
-
-    await resetAllData();
+    resetAllData();
      await CalculateTotalAndSaleInYear(tickets); 
      var saleInMonthArr = await getSaleInMonthOfYear(orders);
 
      await getSaleAndSeatInMonth();
+
+     dayArr = new Array();
+     dayArr = getDayArr(0,0);
      daySale = await getSaleInDay(orders);
 
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
-    
+
+
 
     
     try{
@@ -340,9 +372,49 @@ exports.test = async (req, res)=>{
 };
 
 exports.costChart = async (req,res)=>{
-    var daystart = res.query.daystart;
-    var dayto = res.query.dayto;
 
-    console.log(daystart);
-    res.send("sasas");
+    var user_id = req.user.id;
+   
+    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
+
+    var events =[];
+    for(i=0;i<organizations.length;i++){
+        tmp = await eventService.getEventByOrganizationId(organizations[i].id);
+        if(tmp.length!=0)
+            for(j=0;j<tmp.length;j++)
+                events.push(tmp[j]);
+    }
+    
+    var tickets = [];
+    var orders= [];
+    for(i=0;i<events.length;i++){
+       var ticket = await ticketService.getTicketsByEventId(events[i].id);
+       if(ticket.length!=0)
+        for(j=0;j<ticket.length;j++)
+            tickets.push(ticket[j]);
+
+      
+       var order = await orderService.getOrdersByEventId(events[i].id);
+       if(order.length!=0)
+            for(j=0;j<order.length;j++)           
+                orders.push(order[j]);
+
+    }
+
+    resetAllData();
+
+    var daystart = req.query.daystart;
+    var dayto = req.query.dayto;
+
+    dayArr = new Array();
+    dayArr = getDayArr(daystart,dayto);
+    console.log('gfdg',dayArr);
+    daySale = await getSaleInDay(orders);
+    
+    console.log('abgg',daystart,dayto,dayArr,daySale);
+    res.send({
+        dayArr:dayArr,
+        daySale:daySale,        
+    });
+    
 };

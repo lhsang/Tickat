@@ -1,10 +1,6 @@
 
  
 <body > 
-       
- 
-    <!-- body start --> 
-    
 
 <div class="container-fuild">
   <div class="row  d-flex justify-content-center">
@@ -13,12 +9,12 @@
             <div class="row">
                     <form action="" >
                             <b>Cost from day:</b> 
-                            <input type="date" name="from" value="31/3/2019">
+                            <input type="date" name="from" value="31/3/2019" id="dayfrom">
                             
                             <b> to day:</b>
-                            <input type="date" name="to" value="11/4/2019">
+                            <input type="date" name="to" value="11/4/2019" id="dayto">
                             
-                            <input type="submit" value="Submit" class="btndashboard">
+                            <input type="submit" value="Submit" class="btndashboard" onclick="loadChart()">
                           </form> 
             </div>
                 
@@ -129,6 +125,7 @@
 
 
 
+
 function loadColumChart(){
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawBasic);
@@ -207,7 +204,7 @@ function loadLinechart(){
         data.addColumn('date', 'Day');
         data.addColumn('number', 'Cost');
       
-      
+      /*
         data.addRows([
 
          [new Date(dayArr[0]),saleInDay[0]],
@@ -223,7 +220,11 @@ function loadLinechart(){
 
 
 
-        ]);
+        ]);*/
+
+        for(i=0;i<dayArr.length;i++){
+          data.addRow([new Date(dayArr[i]),saleInDay[i]]);
+        }
 
         var options = {
           'title':'Cost chart',

@@ -211,9 +211,28 @@ var Order = require('../models/order');
 //     }
 // }).then(result=>console.log(JSON.stringify(result)));
 
-Ticket.findAll({
-    attributes: ['price','amount','bought'],
-    where:{
-        event_id:3,
+const sequelize = require('../configs/db');
+
+
+Event.findAll({
+   attributes:[],
+    include:{
+        model: Ticket,
+        attributes: ['id','amount','bought','event_id',[sequelize.fn('COUNT', sequelize.col('tickets.amount')), 'sum']]
     },
+    where: {
+        organization_id:3
+    },
+    group: ['tickets.event_id']
 }).then(result=>console.log(JSON.stringify(result)));
+
+// ticket = Ticket.findAll({
+//     attributes: [[sequelize.fn('sum', sequelize.col('price')), 'price']],
+//     include: [{
+//         model:Event,
+//         where:{organization_id:3},
+//     }
+//     ],          
+//      group:['event.id'],
+// }).then(result=>console.log(JSON.stringify(result)));
+

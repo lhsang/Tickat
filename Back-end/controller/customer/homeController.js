@@ -1,6 +1,6 @@
 var nodemailer = require("nodemailer");
 var dateFormat = require('dateformat');
-
+var  fs = require('fs');
 
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
@@ -120,27 +120,38 @@ exports.profile = async (req, res)=>{
     res.render("customer/profile",data);
 };
 
-exports.test = async (req, res)=>{
-    var events = await eventService.test();
-    res.send(events);
-}
-
-
 exports.changeProfile = async (req,res)=>{
     var address = req.body.address,
-   date_of_birth = req.body.date_of_birth,
-    tel = req.body.tel,
-    mail = req.body.mail,
-    description = req.body.description;
-    var username = req.user.username;
-    console.log({address:username});
+        date_of_birth = req.body.date_of_birth,
+        tel = req.body.tel,
+        mail = req.body.mail,
+        description = req.body.description;
 
+    var username = req.user.username;
     var user = await userService.getUserByUsername(username);
+    
     user.address=address;
-    user.date_of_birth=dateFormat( new Date(date_of_birth),"mm/dd/yyyy");
+    if(typeof date_of_birth !== 'undefined' && date_of_birth !=="")
+        user.date_of_birth=dateFormat( new Date(date_of_birth),"mm/dd/yyyy");
+    if(typeof req.avatar !== 'undefined')
+        user.avatar = req.avatar;
     user.tel=tel;
     user.mail=mail;
     user.description=description;
     user.save();
-    res.send(address);
-}
+
+    res.sendStatus(200);
+};
+
+exports.getResource =  (req, res)=>{
+    var dir = "uploads/avatar/"+req.params.avatar; 
+    fs.readFile(dir, (error, imgData)=>{
+        if(error){
+            console.log(error+"");
+            res.sendStatus(404);
+        }else{
+            res.writeHead(200, {'Content-Type':'image/jpeg'});
+            res.end(imgData);
+        }
+    });
+};

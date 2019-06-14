@@ -15,15 +15,17 @@ var Event = require('../models/event');
 
 var uploadAvatar = require('../configs/upload').uploadAvatar;
 
-router.get('/(|home)$',decodeToken, homeController.homePage);
+router.get('/(|home)$', decodeToken, homeController.homePage);
 
-router.get('/about/:id',decodeToken, homeController.about);
+router.get('/about/:id', decodeToken, homeController.about);
 
 router.post('/about/:id/send-email', homeController.send_email);
 
-router.get('/users/:username',decodeToken, homeController.profile);
+router.get('/users/:username', decodeToken, homeController.profile);
 
-router.post('/users',decodeToken, homeController.changeProfile);
+router.put('/users', uploadAvatar.single('avatar'), decodeToken, homeController.changeProfile);
+
+router.get('/users/uploads/avatar/:avatar', homeController.getResource);
 
 router.post('/check-username', userController.checkUsername);
 
@@ -35,22 +37,11 @@ router.get('/logout', userController.logout);
 
 router.post('/users', userController.signUp);
 
-router.get('/switch-acc',decodeToken, userController.switchAcc);
+router.get('/switch-acc', decodeToken, userController.switchAcc);
 
 router.post('/upload-avatar', uploadAvatar.single('avatar'), userController.uploadAvatar);
 
 /* ---------------------------end user router------------------------ */
-
-router.get('/test',homeController.test);
-
-//router.get('/detailEvent/:id',(req,res)=>res.render('customer/detailEvent'));
-
-//router.get('/detailEvent/:id',detailEvent.detailPage);
-
-router.put('/test',(req, res)=>{
-    var username = req.body.username;
-    res.send("server nhan:"+req.body.hhi);
-});
 
 module.exports = router;
 

@@ -1,15 +1,18 @@
 const express = require('express');
 const multer  = require('multer');
-const maxSizeAvatar = 1*1024*1024;
+const maxSizeAvatar = 3*1024*1024;
 const accepted_extensions = ['jpg', 'png', 'gif'];
+var avatarDir = "uploads/avatar/";
 
 var storageAvatar = multer.diskStorage({
     destination: (req, file, cb)=>{
-        cb(null,'uploads/avatar/');
+        cb(null, avatarDir);
     },
     filename: (req, file, cb)=>{
         let date = new Date();
-        let fileName = date.getTime().toString()+'.'+file.originalname.split('.')[1] || file.originalname;
+        let fileName = "ava" + date.getTime().toString()+'.'+file.originalname.split('.')[1] || file.originalname;
+        req.avatar = avatarDir+fileName;
+
         cb(null, fileName);
     }
 });
@@ -18,6 +21,6 @@ var uploadAvatar = multer({
         limits:{
             fieldSize: maxSizeAvatar
         },
-    });
+});
 
 module.exports = {uploadAvatar};

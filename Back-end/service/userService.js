@@ -27,11 +27,11 @@ exports.getUserByUsername = async (username)=>{
 };
 
 exports.switchRoleToAdmin = async (username)=>{
-    console.log("ROle"+objectDefined.getRoleIdDefined().admin);
-    
     try {
         var user = await User.findOne({where: {username: username}});
         user.role_id = objectDefined.getRoleIdDefined().admin;
+        console.log(user);
+        
         user.save();
     } catch (error) {
         

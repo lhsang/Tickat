@@ -25,7 +25,7 @@ router.get('/users/:username', decodeToken, homeController.profile);
 
 router.put('/users', uploadAvatar.single('avatar'), decodeToken, homeController.changeProfile);
 
-router.get('/users/uploads/avatar/:avatar', homeController.getResource);
+router.get('/uploads/avatar/:avatar', homeController.getResource);
 
 router.post('/check-username', userController.checkUsername);
 

@@ -11,10 +11,7 @@ function loadLinechart(){
           dayArr.push('{{this}}');
         {{/each}}
 
-       
         var saleInDay = [{{daySale}}];
-
-        console.log(dayArr);
         
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Day');

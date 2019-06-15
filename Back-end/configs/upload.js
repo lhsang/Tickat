@@ -11,7 +11,7 @@ var storageAvatar = multer.diskStorage({
     filename: (req, file, cb)=>{
         let date = new Date();
         let fileName = "ava" + date.getTime().toString()+'.'+file.originalname.split('.')[1] || file.originalname;
-        req.avatar = avatarDir+fileName;
+        req.avatar = '/' + avatarDir+fileName;
 
         cb(null, fileName);
     }

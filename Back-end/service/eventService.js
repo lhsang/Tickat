@@ -6,6 +6,8 @@ var handleData = require('../utils/handleData');
 
 const Op = Sequelize.Op;
 const {setDefaultQueryStr} =  require('../utils/default_query_string');
+var dateFormat = require('dateformat');
+
 
 exports.getAllEvents = async (query)=>{
 
@@ -127,6 +129,33 @@ exports.countEvent = async (query) =>{
     try {
         let count = await Event.count(query);
         return count;
+    } catch (error) {
+        console.log(error);
+        return new Error('Some thing is wrong');
+    }
+};
+
+exports.getEventByOrganizationIdAndYear = async (organization_id,yearnow,limit = 9, offset = 0)=>{
+    try {
+
+        var daystartofyear=dateFormat(new Date(yearnow+"-01-01"),"yyyy/mm/dd");
+        var dayendofyear=dateFormat(new Date(yearnow+"-12-31"),"yyyy/mm/dd");
+
+        let event = await Event.findAll({
+                attributes: ['id','name','address','img','date'],
+                include:{
+                    model: Ticket,
+                },
+                where: {
+                    organization_id:organization_id,
+                    date:{
+                        [Op.gte]: daystartofyear,
+                        [Op.lte]: dayendofyear,
+                    } 
+
+                },
+            });
+        return event;
     } catch (error) {
         console.log(error);
         return new Error('Some thing is wrong');

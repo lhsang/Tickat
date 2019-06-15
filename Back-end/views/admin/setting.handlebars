@@ -1,4 +1,28 @@
-<div class="container" style="padding:90px" id="profile-admin">
+<style>
+  .textProfile{
+    border: none;
+  }
+
+  .textProfile:focus{
+    outline:none;
+  }
+
+  .textProfileUpdate{
+    border:0.5px solid rgb(216, 216, 216)  
+    }
+
+  .textProfileUpdate:focus{
+    border:0.5px solid rgb(245, 192, 95)
+  }  
+
+  .profile-user-info {
+    width:100%;
+  }
+    
+</style>
+
+
+<div class="container" style="margin-top:-4%; padding:90px" id="profile-admin">
     <div class="row  d-flex justify-content-center">
         <div id="user-profile-2" class="user-profile" >
             <div class="tabbable">
@@ -16,7 +40,8 @@
                 <div id="home" class="tab-pane in active"  style="margin-top:2%">
                   <div class="row">
                     <div class="col-xs-12 col-sm-5 center">    
-                        <img class="editable img-responsive" style="width: 200px;height: 200px;border-radius: 50%;margin-top:7%" src="{{user_profile.avatar}}">    
+                        <img class="editable img-responsive" style="width: 200px;height: 200px;border-radius: 50%;margin-top:7%" src="{{user_profile.avatar}}"> 
+                        <input type="file" style="display: none" id="avatarProfile" accept="image/*">   
                     </div><!-- /.col -->
         
                     <div class="col-xs-12 col-sm-7" >
@@ -31,10 +56,10 @@
         
                       <div class="profile-user-info">
                         <div class="profile-info-row">
-                          <div class="profile-info-name"> Username </div>
+                          <div class="profile-info-name"> Họ và tên </div>
         
                           <div class="profile-info-value">
-                            <span>{{user_profile.username}}</span>
+                            <input type="text" readonly  value="{{user_profile.full_name}}" class="textProfile" id="fullnameProfile"></input>
                           </div>
                         </div>
         
@@ -42,7 +67,7 @@
                           <div class="profile-info-name"> Địa chỉ </div>
         
                           <div class="profile-info-value">
-                            <span>{{user_profile.address}}</span>
+                            <input type="text" readonly value="{{user_profile.address}}" class="textProfile" id="addressProfile"></input>
                             
                           </div>
                         </div>
@@ -51,7 +76,8 @@
                           <div class="profile-info-name"> Ngày sinh </div>
         
                           <div class="profile-info-value">
-                            <span>{{user_profile.date_of_birth}}</span>
+                              <input type="date" readonly value="{{user_profile.date_of_birth}}" class="textProfile" id="date_of_birthProfile"></input>
+
                           </div>
                         </div>
         
@@ -67,7 +93,7 @@
                           <div class="profile-info-name"> Điện thoại </div>
         
                           <div class="profile-info-value">
-                            <span>{{user_profile.tel}}</span>
+                              <input type="text" readonly value="{{user_profile.tel}}" class="textProfile" id="telProfile"></input>
                           </div>
                         </div>
 
@@ -75,7 +101,7 @@
                           <div class="profile-info-name"> Email </div>
         
                           <div class="profile-info-value">
-                            <span>{{user_profile.mail}}</span>
+                            <input type="text" readonly value="{{user_profile.mail}}" class="textProfile" id="mailProfile"></input>
                           </div>
                         </div>
                         <br>
@@ -86,25 +112,15 @@
                   <div class="space-20"></div>
         
                   <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="widget-box transparent">
-                        <div class="widget-header widget-header-small">
+                        <div class="widget-header widget-header-small" style="width: 100%">
                           <h4 class="widget-title smaller" style="color: rgba(226, 127, 11, 0.94)">
                               <i class="far fa-check-square" style="color: rgba(226, 127, 11, 0.94)"></i>                             
                               Giới thiệu
                             </h4>
                         </div>
-        
-                        <div class="widget-body">
-                          <div class="widget-main">
-                            <p>
-                              {{user_profile.description}}
-                            </p>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                           
+                      <textarea type="text" rows="7" readonly class="textProfile" id="descriptionProfile" style="font-style: italic;width:100%">   {{user_profile.description}}  </textarea>
+
                   </div>
                 </div><!-- /#home -->
         
@@ -113,13 +129,57 @@
           </div>
     </div>
    <hr>
-  <div class="row  d-flex justify-content-center">
-    <button  class="btnchangepass"><i class="far fa-edit" style="color:white;font-size: 18px"></i> Chỉnh sửa hồ sơ</button>
-  </div>
+ 
+        <div class="row  d-flex justify-content-center">
+          <button  class="btnchangepass gr1" id="edit" ><i class="far fa-edit" style="color:white;font-size: 18px" ></i> Chỉnh sửa hồ sơ</button>
 
+          <button class="btnchangepass gr2" style="display:none" onclick="saveProfile()"><i class="fas fa-ticket-alt" style="margin-right:10%"></i><b></b>Lưu lại</b> </button>
+        </div>
+  
+<br>
+
+</div>
 
 
 
 <br>
 
 </div>
+
+<script>
+
+   $("#edit").click(function () { 
+      $('.gr1').each(function (index, element) {
+       $(this).hide();
+     });
+    $('.gr2').show();
+    $('#avatarProfile').show();
+     $('.textProfile').each(function (index, element) {
+          $(this).attr("readonly", false); 
+          $(this).addClass('textProfileUpdate');
+     });
+ });
+
+  function saveProfile(){
+    var formData = new FormData();
+    formData.append("full_name",$('#fullnameProfile').val());
+    formData.append("address",$('#addressProfile').val());
+    formData.append("tel",$('#telProfile').val());
+    formData.append("date_of_birth",$('#date_of_birthProfile').val());
+    formData.append("mail",$('#mailProfile').val());
+    formData.append("description",$('#descriptionProfile').val());
+    formData.append("avatar",$('#avatarProfile').prop('files')[0]);
+
+    $.ajax({
+      type: "PUT",
+      url: "/admin/setting",
+      processData: false,
+      contentType: false, 
+      data: formData,
+      success: function (response) {
+        location.reload();
+      }
+});
+  
+  }
+</script>

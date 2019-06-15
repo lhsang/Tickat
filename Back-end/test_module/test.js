@@ -198,6 +198,7 @@ var Order = require('../models/order');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const sequelize = require('../configs/db');
+var dateFormat = require('dateformat');
 
 // var start = "2019-7-20";
 // Event.findAll({
@@ -218,3 +219,25 @@ const sequelize = require('../configs/db');
 //      group:['event.id'],
 // }).then(result=>console.log(JSON.stringify(result)));
 
+var year=2018;
+var s=dateFormat(new Date(year+"-01-01"),"yyyy/mm/dd");
+var e=dateFormat(new Date(year+"-12-31"),"yyyy/mm/dd");
+
+console.log(s,e);
+
+Event.findAll({
+    attributes: ['date'],
+    include:{
+        model: Ticket,
+    },
+    where: {
+        organization_id:3,
+        date:{
+            [Op.gte]: s,
+            [Op.lte]: e,
+
+
+        } 
+
+    },
+}).then(result=>console.log(JSON.stringify(result)));

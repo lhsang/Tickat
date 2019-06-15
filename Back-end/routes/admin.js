@@ -9,6 +9,11 @@ var decodeToken = require('../middleware/authenticate').decodeToken;
 var organizationService = require('../service/organizationService');
 var ticketService = require('../service/ticketService');
 
+var uploadAvatar = require('../configs/upload').uploadAvatar;
+var userController = require('../controller/customer/userController');
+
+
+
 router.all('*',ensureAuthenticated, (req, res, next)=>{
     next();
 });
@@ -27,9 +32,14 @@ router.get('/events/:id([0-9]+)', decodeToken, adminDasboardController.orderDeta
 
 router.get('/setting', decodeToken, adminController.profile);
 
+router.put('/setting', uploadAvatar.single('avatar'), decodeToken, userController.changeProfile);
+
 
 router.get('/events/test/:id([0-9]+)', decodeToken, adminDasboardController.test);
 
 router.get('/costchart',decodeToken,adminDasboardController.costChart);
+
+router.get('/salechart',decodeToken,adminDasboardController.saleChart);
+
 
 module.exports = router;

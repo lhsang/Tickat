@@ -28,9 +28,9 @@
             <div class="row">
                     <form action="" class="formchart">
                             <b>Sales in:</b> 
-                           <input type="text" name="year" value="2019">
+                           <input type="number" min="1900" max="2099" step="1" value="2019" id="yearnow">
                         
-                           <input type="submit" value="Submit" class="btndashboard">
+                           <input type="button" value="Submit" id="yearform" class="btndashboard">
                          </form> 
             </div>
             <div class="row">
@@ -119,7 +119,7 @@
 <script>
 
 $( document ).ready(function() {
-    loadColumChart();
+    loadColumChart(0);
     loadLineChart(0,0);
 });
 
@@ -142,16 +142,41 @@ $("#dayform").click(function (e) {
     
 });
 
+$("#yearform").click(function (e) { 
+    e.preventDefault();
+    console.log($('#yearnow').val());
+    $.ajax({
+        type: "GET",
+        url: "/admin/salechart",
+        data: {
+          yearnow : $('#yearnow').val(),
+        },
+        success: function (response) {
+          console.log('ab',response.saleInMonthArr);
+          loadColumChart(response.saleInMonthArr);
+        }
+  });
+    
+});
 
 
-
-function loadColumChart(){
+function loadColumChart(saleInMonthArr){
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawBasic);
     
     function drawBasic() {
-      console.log('anc');
-     var sale =[{{saleInMonthArr}}];
+      var max;
+      if(saleInMonthArr==0)
+          var sale =[{{saleInMonthArr}}];
+      else
+      {
+          var sale=[];
+          sale=saleInMonthArr;
+      }
+      max=Math.max(...sale)*1.25;
+
+      if(max==0) max=10000000;
+         
       //console.log(sale[0]);
        var data = google.visualization.arrayToDataTable([
             ["Element", "Sales", { role: "style" } ],
@@ -188,11 +213,18 @@ function loadColumChart(){
                            2]);
     
           var options = {
-            title: "Sales Graph by month 2019",
+            title: "Sales Graph by month in " + $('#yearnow').val(),
             width: 1000,
             height: 800,
             legend: { position: "none" },
-            vAxis: {format:'$000,000',max:120000}
+            vAxis: {
+              viewWindow:{
+                max:max,
+                min:0,
+              },
+              format:'$000,000',
+
+            }
          
 
           };
@@ -206,23 +238,26 @@ function loadLineChart(daySale,dayArray){
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = new google.visualization.DataTable();
+        var max;
 
         if(daySale==0){
           var dayArr=[];
           {{#each dayArr}}
             dayArr.push('{{this}}');
           {{/each}}
-
-       
           var saleInDay = [{{daySale}}];
         }
         else{
           var dayArr=[];
-          for(i=0;i<dayArray.length;i++)
-            dayArr.push(dayArray[i]);
+          dayArr=dayArray;
           saleInDay=daySale;
         }
 
+        max=Math.max(...saleInDay)*1.25;
+
+        if(max==0) max=10000000;
+
+        console.log('a',max,saleInDay);
 
         data.addColumn('date', 'Day');
         data.addColumn('number', 'Cost');
@@ -238,9 +273,13 @@ function loadLineChart(daySale,dayArray){
 
           colors: ['#F85D2C', '#1FAE66'],
           vAxis:{
+
             viewWindow:{
-              max:1000
-            }
+              max:max,
+              min:0
+            },
+            format:'$000,000',
+
           },
           legend: {
             position: 'bottom',
@@ -248,7 +287,8 @@ function loadLineChart(daySale,dayArray){
             scrollArrows: 'none'
         },
           pointSize: 10,
-          vAxis: {format:'# $'}
+         
+          
 
         };
         var chart = new google.visualization.AreaChart(document.getElementById('lineChart'));

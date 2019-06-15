@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var fs = require('fs');
 var path = require('path');
+var dateFormat = require('dateformat');
 
 var userService = require('../../service/userService');
 
@@ -102,7 +103,7 @@ exports.changeProfile = async (req,res)=>{
     if(user!=null){
         user.address=address;
         if(typeof date_of_birth !== 'undefined' && date_of_birth !=="")
-            user.date_of_birth=dateFormat( new Date(date_of_birth),"mm/dd/yyyy");
+            user.date_of_birth=dateFormat( date_of_birth,"yyyy/mmmm/dd");
         if(typeof req.avatar !== 'undefined'){
             try {
                 fs.unlinkSync((user.avatar+"").substr(1));

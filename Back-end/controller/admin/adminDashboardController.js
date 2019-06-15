@@ -113,7 +113,6 @@ function getSaleInDay(orders){
         }
     
     });
-
     return daySale;
 }
 
@@ -179,7 +178,6 @@ exports.dashboard = async (req, res)=>{
 
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
-
 
     try{
         var data = {
@@ -416,6 +414,47 @@ exports.costChart = async (req,res)=>{
     res.send({
         dayArr:dayArr,
         daySale:daySale,        
+    });
+    
+};
+
+
+exports.saleChart = async (req,res)=>{
+    var yearnow = req.query.yearnow;
+
+    var user_id = req.user.id;
+
+    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
+
+    var events =[];
+    for(i=0;i<organizations.length;i++){
+        tmp = await eventService.getEventByOrganizationIdAndYear(organizations[i].id,yearnow);
+        if(tmp.length!=0)
+            for(j=0;j<tmp.length;j++)
+                events.push(tmp[j]);
+    }
+    
+    var tickets = [];
+    var orders= [];
+    for(i=0;i<events.length;i++){
+       var ticket = await ticketService.getTicketsByEventId(events[i].id);
+       if(ticket.length!=0)
+        for(j=0;j<ticket.length;j++)
+            tickets.push(ticket[j]);
+
+      
+       var order = await orderService.getOrdersByEventId(events[i].id);
+       if(order.length!=0)
+            for(j=0;j<order.length;j++)           
+                orders.push(order[j]);
+
+    }
+
+    resetAllData();
+     var saleInMonthArr = await getSaleInMonthOfYear(orders);
+
+    res.send({
+        saleInMonthArr: saleInMonthArr,
     });
     
 };

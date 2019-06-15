@@ -343,14 +343,15 @@ exports.orderDetails = async (req, res)=>{
 
     var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
     var order_details = await orderService.sumaryByEventId(eventId);
-
+    
+    var temp = JSON.stringify(order_details);
     var data = {
         title: 'Dashboard event',
         layout :'admin',
         user : req.user,
     
         orders: orders,
-        order_details:order_details,
+        order_details:temp,
 
         pagination: {
             limit : limit,

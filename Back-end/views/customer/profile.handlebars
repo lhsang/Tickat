@@ -15,6 +15,9 @@
     border:0.5px solid rgb(245, 192, 95)
   }  
 
+  .profile-user-info {
+    width:100%;
+  }
     
 </style>
 
@@ -54,10 +57,10 @@
         
                       <div class="profile-user-info">
                         <div class="profile-info-row">
-                          <div class="profile-info-name"> Username </div>
+                          <div class="profile-info-name"> Họ và tên </div>
         
                           <div class="profile-info-value">
-                            <input type="text" readonly  value="{{user_profile.username}}" style="border: none;" id="usernameProfile"></input>
+                            <input type="text" readonly  value="{{user_profile.full_name}}" class="textProfile" id="fullnameProfile"></input>
                           </div>
                         </div>
         
@@ -155,6 +158,7 @@
 
   function saveProfile(){
     var formData = new FormData();
+    formData.append("full_name",$('#fullnameProfile').val());
     formData.append("address",$('#addressProfile').val());
     formData.append("tel",$('#telProfile').val());
     formData.append("date_of_birth",$('#date_of_birthProfile').val());

@@ -7,6 +7,20 @@ var userService = require('../../service/userService');
 var {hash_password,check_password} = require('../../utils/bcrypt');
 var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
+function genarateToken(user) {
+    var payload = {
+        username: user.username,
+        full_name: user.full_name,
+        avatar: user.avatar,
+        role_id: user.role_id,
+        id: user.id
+    };
+
+    var token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: '1h'});
+
+    return token;
+}
+
 exports.login = async (req, res)=>{
     var username = req.body.username, password = req.body.password;
     var user = await userService.getUserByUsername(username);
@@ -16,15 +30,7 @@ exports.login = async (req, res)=>{
     };
 
     if(user!=null && check_password(password, user.password)){
-        var payload = {
-            username: user.username,
-            full_name: user.full_name,
-            avatar: user.avatar,
-            role_id: user.role_id,
-            id: user.id
-        };
-
-        let token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: '1h'});
+        let token = genarateToken(user);
         res.cookie('token', token, {expires: new Date(Date.now()+60*60*1000),httpOnly: true});
         response.status = 200;
         response.message="";
@@ -70,7 +76,6 @@ exports.logout = (req, res)=>{
     res.redirect('/');
 };
 
-
 exports.switchAcc = async (req, res)=>{
     if(typeof req.user !== 'undefined'){
         userService.switchRoleToAdmin(req.user.username);
@@ -83,3 +88,41 @@ exports.uploadAvatar = (req, res)=>{
     res.send('upload thanh cong');
 };
 
+exports.changeProfile = async (req,res)=>{
+    var address = req.body.address,
+        date_of_birth = req.body.date_of_birth,
+        tel = req.body.tel,
+        mail = req.body.mail,
+        description = req.body.description
+        full_name =  req.body.full_name;
+
+    var username = req.user.username;
+    var user = await userService.getUserByUsername(username);
+    
+    if(user!=null){
+        user.address=address;
+        if(typeof date_of_birth !== 'undefined' && date_of_birth !=="")
+            user.date_of_birth=dateFormat( new Date(date_of_birth),"mm/dd/yyyy");
+        if(typeof req.avatar !== 'undefined'){
+            try {
+                fs.unlinkSync((user.avatar+"").substr(1));
+            } catch (error) {}
+
+            user.avatar = req.avatar;
+        }
+
+        user.full_name = full_name;
+        user.tel=tel;
+        user.mail=mail;
+        user.description=description;
+        user.save();
+
+        var token = genarateToken(user);
+
+        res.cookie('token', token, {expires: new Date(Date.now()+60*60*1000),httpOnly: true});
+
+        res.sendStatus(200);
+
+    }else res.sendStatus(500);
+
+};

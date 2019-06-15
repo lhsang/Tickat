@@ -23,7 +23,7 @@ router.post('/about/:id/send-email', homeController.send_email);
 
 router.get('/users/:username', decodeToken, homeController.profile);
 
-router.put('/users', uploadAvatar.single('avatar'), decodeToken, homeController.changeProfile);
+router.put('/users', uploadAvatar.single('avatar'), decodeToken, userController.changeProfile);
 
 router.get('/uploads/avatar/:avatar', homeController.getResource);
 

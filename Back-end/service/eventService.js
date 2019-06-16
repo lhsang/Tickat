@@ -92,11 +92,12 @@ exports.getSuggestEvents = async (isHandle = false)=>{
 exports.getEventById = async (query)=>{
     try {
         let event = await Event.findOne(query);
-        handleData.sortByKey(event.tickets, 'price');
+        try {
+            handleData.sortByKey(event.tickets, 'price');
+        } catch (error) {}
         return event;
     } catch (error) {
-        console.log(error);
-        return new Error('Some thing is wrong');
+        return new Error('Some thing is wrong when getEventById');
     }
 };
 

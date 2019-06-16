@@ -17,6 +17,7 @@ const ticketService = require('../service/ticketService');
 const organizationService = require('../service/organizationService');
 const userService =  require('../service/userService');
 const {getDateObjectFromString} = require('../utils/format');
+const orderService = require('../service/orderService');
 
 const fs = require('fs');
 const object_define = require('../utils/object_define');

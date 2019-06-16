@@ -7,12 +7,13 @@
          color: white
      }
  </style>
+
  <!-- body start -->
-    <div class="container detail mt-100">
+    <div class="container detail mt-30">
       <div class="ticket">
-        <div class="name-ticket">MSI LEAGUE OF LEGEND</div>
+        <div class="name-ticket">{{event.name}}</div>
         <div class="info">
-          22-05-2019 |  Tp Ho Chi Minh
+          {{event.date_arr.dd}}-{{event.date_arr.mm}}-{{event.date_arr.yyyy}} |  {{event.address}}
         </div>
       </div>
       <div class="header">
@@ -22,7 +23,7 @@
               <h5 class="mb-0">
                 <button class="btn btn-link" style="width:100%" type="button" data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
                     <span class="float-left"><i class="fa fa-chevron-right ic-collapse" aria-hidden="true"></i> Total</span>
-                    <span class="color-red float-right">26.000.000</span>
+                    <span class="color-red float-right" id="sum">{sum}</span>
                 </button>
               </h5>
             </div>
@@ -39,22 +40,42 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{#each order_details}}
-                    <tr>
-                      <td scope="row">'{{ticket.type_of_ticket.[0].name}}'</td>
-                      <td>{{amount}}</td>
-                      <td>{{ticket.price}}</td>
-                      <td>0</td>
-                      <td>12.250.000</td>
-                    </tr>
-                    {{/each}}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="color-red">0</td>
-                        <td class="color-red">26.700.000</td>
-                    </tr>
+
+                    <script>
+                      var order_details ={{{order_details}}};
+                      var sum = 0;
+                      for(var i=0;i<order_details.length;i++){
+                        var type = order_details[i]['ticket.type_of_ticket.name'];
+                        var amount = parseInt(order_details[i]['amount']);
+                        var price = parseInt(order_details[i]['ticket.price']);
+                        var typeId = order_details[i]['ticket.type_of_ticket.id'];
+                        var s = price*amount;
+                        sum += s;
+
+                        //table order
+                        document.write(`
+                          <tr>
+                            <td scope="row">${type}</td>
+                            <td>${amount}</td>
+                            <td>${price}</td>
+                            <td>0</td>
+                            <td>${s}</td>
+                          </tr>
+                        `);
+
+                      }
+
+                      document.write(`
+                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="color-red">0</td>
+                            <td class="color-red">${sum.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
+                        </tr>
+                      `);
+                      $('#sum').text(sum.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+                    </script>
                   </tbody>
                 </table>
               </div>
@@ -66,11 +87,16 @@
         <div class="form-group filter">
           <div class="type">
             <label class="title">Type of tickets</label>
-            <select class="form-control form-control-sm" name="" id="">
-              <option>All</option>
-              <option>VIP tickets</option>
-              <option>Normal tickets</option>
-              <option>Free tickets</option>
+            <select class="form-control form-control-sm" id="typeTicket">
+              <option value="-1">All</option>
+               <script>
+                  var order_details ={{{order_details}}};
+                  for(var i=0;i<order_details.length;i++){
+                      var type = order_details[i]['ticket.type_of_ticket.name'];
+                      var typeId = order_details[i]['ticket.type_of_ticket.id'];
+                      document.write(`<option value='${typeId}'>${type} tickets</option>`);
+                  }
+                </script>
             </select>
           </div>
 
@@ -125,7 +151,6 @@
             </nav>
         </div>
     </div>
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
 <script>
     $('#entry').change(function (e) { 
         e.preventDefault();
@@ -137,11 +162,34 @@
         window.location.href = url;
     });
 
-    $(document).ready(function(e) {
-        var selectedIndex={{pagination.limit}}||10; 
-        $('#entry').val(selectedIndex);
+    $('#typeTicket').change(function (e) { 
+        e.preventDefault();
+        var url = window.location.href+"";
+        url=url.replace(/type_of_ticket=\d+/,"");
+
+        if($(this).val()!=-1){
+          if(!url.includes("?"))
+              url+="?";
+          url+="&type_of_ticket="+$(this).val();
+        }
+
+        window.location.href = url;
     });
 
-    var x ='{{order_details}}';
-    console.log(JSON.parse(x));
+    $(document).ready(function(e) {
+         $('#section1ContentId').on('show.bs.collapse', function () {
+              $('.ic-collapse').addClass('rotate-collapse');
+          })
+          $('#section1ContentId').on('hide.bs.collapse', function () {
+            $('.ic-collapse').removeClass('rotate-collapse');
+          })
+
+        var selectedIndex={{pagination.limit}}||10; 
+        $('#entry').val(selectedIndex);
+
+        var selectedIndexType=parseInt(((location.href+"").match(/type_of_ticket=\d+/)+"").match(/\d+/));
+        if(selectedIndexType)
+          $('#typeTicket').val(selectedIndexType);
+    });
+
 </script>

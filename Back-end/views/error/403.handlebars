@@ -1,131 +1,164 @@
 <style>
-@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono|Montserrat:700");
-
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    color: inherit;
+    /* Wrapper for inline SVG elements and responsiveness (thanks, IE11) */
+@mixin svg-container($width, $height) {
+ box-sizing: content-box;
+ position: relative;
+ width: 100%;
+ height: 0;
+ padding-bottom: calc(100% * #{$height} / #{$width});
+ 
+ svg {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+ }
 }
 
 body {
-    background-image: linear-gradient(120deg, #4f0088 0%, #000000 100%);
-    height: 100vh;
+  padding: 60px 30px;
 }
-
-h1 {
-    font-size: 45vw;
-    text-align: center;
-    position: fixed;
-    width: 100vw;
-    z-index: 1;
-    color: #ffffff26;
-    text-shadow: 0 0 50px rgba(0, 0, 0, 0.07);
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: "Montserrat", monospace;
-}
-
-div {
-    background: rgba(0, 0, 0, 0);
-    width: 70vw;
+.intro {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  transition: 0.6s ease-in-out;
+  
+  body.oh-no & {
+    transform: rotate(12deg);
+  }
+  
+  &__subhead {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 auto;
-    padding: 30px 30px 10px;
-    box-shadow: 0 0 150px -20px rgba(0, 0, 0, 0.5);
-    z-index: 3;
-}
-
-P {
-    font-family: "Share Tech Mono", monospace;
-    color: #f5f5f5;
-    margin: 0 0 20px;
-    font-size: 17px;
-    line-height: 1.2;
-}
-
-span {
-    color: #f0c674;
-}
-
-i {
-    color: #8abeb7;
-}
-
-div a {
-    text-decoration: none;
-}
-
-b {
-    color: #81a2be;
-}
-
-a.avatar {
-    position: fixed;
-    bottom: 15px;
-    right: -100px;
-    animation: slide 0.5s 4.5s forwards;
-    display: block;
-    z-index: 4
-}
-
-a.avatar img {
-    border-radius: 100%;
-    width: 44px;
-    border: 2px solid white;
-}
-
-@keyframes slide {
-    from {
-        right: -100px;
-        transform: rotate(360deg);
-        opacity: 0;
+    
+    body.oh-no & {
+      &:after {
+        content: ' y u do dis :\'(';
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        color: red;
+        font-weight: bold;
+        text-align: center;
+      }
     }
-    to {
-        right: 15px;
-        transform: rotate(0deg);
-        opacity: 1;
-    }
+  }
 }
-a.homepage{
-    background: green;
+
+.lemmehaveit {
+  width: 100%;
+}
+
+.cupcake-canvas {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.cupcake-svg-container {
+  @include svg-container(594, 289);
+}
+ h1.intro__headline{
+     font-size: 80px
+ }
+p{
+    font-size: 17px
+} 
+ p.intro__subhead{
+     font-size: 45px
+ }
+ .btn-return{
+    margin-top: 90px;
+    padding: 10px 15px;
+    border: none;
+    background: #212529;
     color: white;
-    font-weight: 700;
-    padding:10px;
-    border-radius: 5px
-}
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer
+ }
+ .btn-return:hover{
+     color: #ff6300
+ }
 </style>
+<title>Tickat - 403 Access Denied </title>
+<header class="intro">
+  <h1 class="intro__headline">403</h1>
+  <p class="intro__subhead">Truy cập của bạn bị từ chối.</p>
+</header>
 
-<h1>403</h1>
-<div><p>> <span>Lỗi</span>: "<i>HTTP 403 Truy cập bị chặn</i>"</p>
-<p>> <span>Mô tả</span>: "<i>Truy cập của bạn đã bị chặn do tài khoản của bạn không có quyền truy cập vào trang của admin</i>"</p>
-<p>> <span>Đề xuất</span>: [<b>Nếu bạn chỉ mua vé thì mời bạn trở về trang chủ <a href="/" class="homepage">Tickat</a></b></p>
-<p>> <span>Bạn muốn đăng sự kiện ?</span> "<i>Chúng tôi sẽ chuyển đổi loại tài khoản cho bạn với tên đăng nhập và mật khẩu cũ" <a href="/switch-acc" class="homepage" >xác nhận chuyển</a><br>
-Sau khi xác nhận bạn có thể đăng nhập vào trang admin để tạo sự kiện</i></p>
+<section id="lemmehaveit" class="lemmehaveit">
+  <div id="cupcake-canvas" class="cupcake-canvas">
+    <div class="cupcake-svg-container">
+      <svg id="cupcake-svg" class="cupcake-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 594 289">
+        <g fill="none" fill-rule="evenodd">
+          <g id="cupcake-cupcake-cupcake" class="cupcake-cupcake-cupcake" transform="translate(221 147)">
+            <polygon fill="#A46D91" points="0 0 150 0 126.118 77 23.882 77" transform="translate(0 65)"/>
+            <g transform="translate(1)">
+              <path fill="#D9B4E1" d="M147,65 C123.473567,32.3476562 123.042443,7.11328125 75.1325742,7.11328125 C27.222705,7.11328125 27.222705,32.3476562 1,65 C-0.851102327,67.3049807 1.7660192,69.8579856 3.1870857,72.013148 C6.73935714,77.4004553 16.084946,68.9072536 26.0901308,72.013148 C31.3734779,73.6532495 32.9551445,82.12837 39.2992966,83.1323032 C44.9367211,84.0244001 62.6215036,77.7331905 68.7159306,78.1229607 C73.896699,78.4542977 89.5299688,78.1546256 94.8015576,78.1229607 C100.338778,78.0897002 106.606709,78.5567275 111.995257,78.1229607 C116.56518,77.7550916 119.180045,78.7788902 123.473567,78.1229607 C127.261922,77.5442066 128.082452,75.8504403 131.541654,75.0474233 C135.985692,74.015787 136.936236,79.5247328 140.63558,78.1229607 C151.98734,73.821501 152.232256,72.2618497 147,65 Z"/>
+              <ellipse cx="75.5" cy="7" fill="#FF0000" rx="8.5" ry="7"/>
+            </g>
+          </g>
+          <rect id="cupcake-box" class="cupcake-box"width="230" height="170" fill="#A78C84" transform="translate(182 119)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div style="text-align: center; margin-top: 100px">
+    <p>Chào bạn! Tài khoản của bạn <b>không có quyền</b> vào trang quản lý.</p>
+    <p>Tuy nhiên nếu bạn muốn đăng bán sự kiện chúng tối sẽ chuyển tài khoản của bạn sang quyền <b>admin</b></p>
+    <a href="/switch-acc">Xác nhận chuyển đổi thành admin</a>
+    <p><b>Sau</b> khi chuyển đổi bạn <b>có thể đăng nhập</b> vào <b>trang quản lý</b> để đăng tải sự kiện với <b>username và mật khẩu như cũ</b>.</p>
+
+    <button class="btn-return" onclick="window.location.href='/'">Trở lại trang mua vé</button>
 </div>
-
-<a class="avatar" href="/" title="Back to home"><img src="/img/logo/logo_1x.png"/></a>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
 <script>
-    var str = document.getElementsByTagName('div')[0].innerHTML.toString();
-var i = 0;
-document.getElementsByTagName('div')[0].innerHTML = "";
+    let mX, mY, distance;
+const cupcakeCanvas = document.getElementById('cupcake-canvas');
+const cupcakeBox = document.getElementById('cupcake-box');
+const cupcakeSVG = document.getElementById('cupcake-svg');
+const cupcakeCupcakeCupcake = document.getElementById('cupcake-cupcake-cupcake');
 
-setTimeout(function() {
-    var se = setInterval(function() {
-        i++;
-        document.getElementsByTagName('div')[0].innerHTML = str.slice(0, i) + "|";
-        if (i == str.length) {
-            clearInterval(se);
-            document.getElementsByTagName('div')[0].innerHTML = str;
-        }
-    }, 1);
-},0);
+// Set rotation origin.
+TweenMax.set(cupcakeBox, {
+  transformOrigin: '0 100%',
+});
 
+// Meh, need to do something else for mobile. Concept doesn't quite work with mobile as-is.
+document.addEventListener('mousemove', (e) => {
+  mX = e.pageX;
+  mY = e.pageY;
+  distance = calculateDistance(cupcakeSVG, mX, mY);
+  
+  // Update box rotation depending on mouse position.
+  // This is done in a not so great way. Slow probs, bad probs.
+  if (distance > 180) {
+    TweenMax.set(cupcakeBox, {
+      rotation: '-90'
+    });
+  } else {
+    TweenMax.set(cupcakeBox, {
+      rotation: `-${Math.max(distance - 90, 0)}`
+    });
+  }
+});
+
+// Hey wait, no.
+cupcakeCupcakeCupcake.addEventListener('click', () => {
+  document.body.classList.add('oh-no');
+  cupcakeCupcakeCupcake.parentNode.removeChild(cupcakeCupcakeCupcake);
+});
+
+// Calculate mouse distance relative to given element.
+function calculateDistance(elem, mouseX, mouseY) {
+  const rect = elem.getBoundingClientRect();
+  const rectTop = rect.top + document.body.scrollTop;
+  const rectLeft = rect.left + document.body.scrollLeft;
+
+  return Math.floor(Math.sqrt(Math.pow(mouseX - (rectLeft + (rect.width / 2)), 2) + Math.pow(mouseY - (rectTop + (rect.height / 2)), 2)));
+}
 </script>

@@ -51,7 +51,7 @@ exports.homePage = async (req, res)=>{
 exports.about = async (req, res)=>{
     var categories = await categoryService.getAllCategories();
     var id =  req.params.id;
-    var organization = await organizationService.findOrganizationById(id);
+    var organization = await organizationService.getOrganizationById(id);
 
     var data = {
         title: 'Tickat - '+organization.name,

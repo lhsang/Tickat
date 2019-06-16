@@ -33,7 +33,6 @@ app.use('/events', require('./routes/event'));
 app.use(function (err, req, res, next) {
     res.status(500);
     res.render("error/500",{
-        title: "Lỗi rồi! - Tickat",
         layout: "none"
     });
 });
@@ -41,7 +40,6 @@ app.use(function (err, req, res, next) {
 app.get('*', function(req, res){
     res.status(404);
     res.render("error/404",{
-        title: "Không tìm thấy trang- Tickat",
         layout: "none"
     });
 });

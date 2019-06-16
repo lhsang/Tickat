@@ -138,10 +138,30 @@ function resetAllData(){
     percentTotalPrice;
 
     daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
-   // dayArr=[];
 }
 
+function handleQueryString(q='', category_id, organization_id, start, end){
+    q = q || "";
+    var queryStr={
+        name:{
+            [Op.like]: "%"+q+"%"
+        }
+    };
+    if(typeof category_id !=='undefined' && category_id != "")
+        queryStr.category_id = category_id;
+    if(typeof organization_id !=='undefined'  && organization_id != "")
+        queryStr.organization_id =  organization_id;
+    if(typeof start !=='undefined' && start != "")
+        queryStr.date= {
+                [Op.gte]: dateFormat(start,"yyyy-mm-dd")
+          };
+    if(typeof end !=='undefined' && end != "")
+        queryStr.date= {
+                  [Op.lte]: dateFormat(end,"yyyy-mm-dd")
+            };
 
+    return queryStr;
+};
 
 exports.dashboard = async (req, res)=>{
     var user_id = req.user.id;
@@ -296,24 +316,30 @@ exports.dashboardevent = async (req, res)=>{
         return obj.id;
     });
 
-    var events = await eventService.getEventByOrganizationId(organizationsIds,limit,(page-1)*limit);
+    //var events = await eventService.getEventByOrganizationId(organizationsIds,limit,(page-1)*limit);
 
-    var tickets = [];
-    for(i=0;i<events.length;i++){
-       var ticket = await ticketService.getTicketsByEventId(events[i].id);
-       if(ticket.length!=0)
-        for(j=0;j<ticket.length;j++)
-            tickets.push(ticket[j]);
-    }
+    var events = await eventService.getAllEvents({
+        attributes: ['id','name','date','address','img'],
+        include: {
+            model: Ticket,
+            attributes: ['price']
+        },
+        where : handleQueryString(q, "", organizationsIds),
+        limit: limit,
+        offset: (page-1)*limit
+    });
 
+    var eventIds =  events.map((obj)=>{
+        return obj.id;
+    });
+    var tickets = await ticketService.getTicketsByEventId(eventIds);
 
-    await resetAllData();
-    await CalculateTotalAndSaleInYear(tickets); 
+    resetAllData();
+    CalculateTotalAndSaleInYear(tickets); 
     
     handleData.addDateArrToEvents(events);
 
     var topticketevents = await ticketService.getTopTicketEventBought();
-    console.log('ticket',JSON.stringify( topticketevents[0].amount));
 
     var data = {
         title: 'Dashboard event',
@@ -470,7 +496,6 @@ exports.costChart = async (req,res)=>{
     });
     
 };
-
 
 exports.saleChart = async (req,res)=>{
     var yearnow = req.query.yearnow;

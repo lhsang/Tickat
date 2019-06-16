@@ -110,12 +110,21 @@ exports.sumaryByEventId = async (event_id)=>{
                     attributes: ['name']
                 }
             },
-            group: ['ticket_id',"ticket.id","ticket->type_of_ticket.id"]
+            group: ["ticket->type_of_ticket.id","ticket.id",'ticket_id']
         });
         
         return order_details;
     } catch (error) {
         console.log(error+"");
+    }
+};
+
+exports.getAllOrders = async (query)=>{
+    try {
+        var orders = await Order.findAll(query);
+        return orders;
+    } catch (error) {
+        throw Error('Can not find order');   
     }
 };
 

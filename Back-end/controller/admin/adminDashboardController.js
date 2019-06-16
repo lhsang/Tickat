@@ -12,6 +12,10 @@ var ticketService = require('../../service/ticketService');
 var orderService = require('../../service/orderService');
 
 var Event = require('../../models/event');
+var Order_detail = require('../../models/order_detail');
+var Ticket = require('../../models/ticket');
+var TypeTicket = require('../../models/type_of_ticket');
+
 var handleData = require('../../utils/handleData');
 
 var sales = [0,0,0,0,0,0,0,0,0,0,0,0];
@@ -340,30 +344,72 @@ exports.orderDetails = async (req, res)=>{
     var eventId = req.params.id;
     var limit = req.query.limit || 10 ;
     var page = req.query.page || 1; page= parseInt(page);
+    var type_of_ticket = req.query.type_of_ticket || "";
 
-    var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
-    var order_details = await orderService.sumaryByEventId(eventId);
-    
-    var temp = JSON.stringify(order_details);
-    var data = {
-        title: 'Dashboard event',
-        layout :'admin',
-        user : req.user,
-    
-        orders: orders,
-        order_details:temp,
+    var event = await eventService.getEventById({
+        where: {
+            id: eventId
+        },
+        attributes:['name','date','address']
+    });
 
-        pagination: {
-            limit : limit,
-            page: page,
-            queryParams:{
-                page: page,
-                limit: limit
+    if(event){
+        handleData.addDateArrToEvent(event);
+        var queryStr = {};
+        if(type_of_ticket !=""&& typeof type_of_ticket !=='undefined'&& type_of_ticket >0)
+            queryStr.type_id = type_of_ticket;
+
+        //var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
+        var orders = await orderService.getAllOrders({
+            where: {               
+                event_id:6,
             },
-            totalRows: await orderService.countOrderDetailsByEventId(eventId)
-        }
-    }; 
-    res.render('admin/order-details',data); 
+            attributes:['date_bought','name'],
+            include: {
+                model: Order_detail,
+                attributes:['amount'],
+                include:{
+                    model: Ticket,
+                    attributes:['price'],
+                    include:{
+                        model: TypeTicket,
+                        attributes: ['name'],
+                    },
+                    where: queryStr
+                }
+            },
+            limit: limit,
+            offset: (page-1)*limit,
+            subQuery:false
+        });
+        var order_details = await orderService.sumaryByEventId(eventId);
+
+        var data = {
+            title: 'Dashboard event',
+            layout :'admin',
+            user : req.user,
+        
+            event: event,
+            orders: orders,
+            order_details: JSON.stringify(order_details),
+
+            pagination: {
+                limit : limit,
+                page: page,
+                queryParams:{
+                    page: page,
+                    limit: limit
+                },
+                totalRows: await orderService.countOrderDetailsByEventId(eventId)
+            }
+        }; 
+        if(type_of_ticket !=""&& typeof type_of_ticket !=='undefined'&& type_of_ticket >0)
+            data.pagination.queryParams.type_of_ticket = type_of_ticket;
+
+        res.status(200);
+        res.render('admin/order-details',data); 
+        
+    }else res.sendStatus(404);
 };
 
 exports.test = async (req, res)=>{

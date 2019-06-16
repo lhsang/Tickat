@@ -17,6 +17,7 @@ const ticketService = require('../service/ticketService');
 const organizationService = require('../service/organizationService');
 const userService =  require('../service/userService');
 const {getDateObjectFromString} = require('../utils/format');
+const orderService = require('../service/orderService');
 
 const fs = require('fs');
 const object_define = require('../utils/object_define');
@@ -218,3 +219,31 @@ const sequelize = require('../configs/db');
 //      group:['event.id'],
 // }).then(result=>console.log(JSON.stringify(result)));
 
+// async function name() {
+//     var x = await orderService.getAllOrders({
+//         where: {               
+//             event_id:6,
+//         },
+//         attributes:['date_bought','name'],
+//         include: {
+//             model: Order_detail,
+//             attributes:['amount'],
+//             include:{
+//                 model: Ticket,
+//                 attributes:['price'],
+//                 include:{
+//                     model: TypeTicket,
+//                     attributes: ['name'],
+//                     where:{
+//                         id: 1
+//                     }
+//                 }
+//             }
+//         },
+//         subQuery:false
+//     });
+
+//     console.log(x);
+// }
+
+// name();

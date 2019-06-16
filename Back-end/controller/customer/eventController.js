@@ -24,39 +24,53 @@ function handleTickets(tickets){
     });
 }
 
-function handleQueryString(q='', category_id = -1, organization_id = -1, start = -1, end = -1){
+function handleQueryString(q='', category_id, organization_id, start, end){
     q = q || "";
     var queryStr={
         name:{
             [Op.like]: "%"+q+"%"
         }
     };
-    if(typeof category_id !=='undefined' && category_id != -1)
+    if(typeof category_id !=='undefined' && category_id != "")
         queryStr.category_id = category_id;
-    if(typeof organization_id !=='undefined' && organization_id != -1)
+    if(typeof organization_id !=='undefined'  && organization_id != "")
         queryStr.organization_id =  organization_id;
-    if(typeof start !=='undefined' && start != -1)
+    if(typeof start !=='undefined' && start != "")
         queryStr.date= {
                 [Op.gte]: dateFormat(start,"yyyy-mm-dd")
           };
-    if(typeof end !=='undefined' && end != -1)
+    if(typeof end !=='undefined' && end != "")
         queryStr.date= {
                   [Op.lte]: dateFormat(end,"yyyy-mm-dd")
             };
+
     return queryStr;
 };
 
-function handlequeryParams(q='', category_id = -1, organization_id = -1, start =-1, end=-1){
+function handleSort(order){
+    var sort = [];
+    if(typeof order !== 'undefined' && order != {} && order!=null){
+        if(order.order_by == "created_at"){
+            sort.push(['created_at',order.order]);
+        }else if(order.order_by == "price"){
+            sort.push([Ticket, 'price', order.order]);
+        }
+    }
+
+    return sort;
+}
+
+function handlequeryParams(q='', category_id , organization_id , start, end){
     var queryParams ={};
     if(typeof q !== 'undefined' && q!="")
         queryParams.q = q;
-    if(typeof category_id !=='undefined' && category_id != -1)
+    if(typeof category_id !=='undefined' && category_id != "")
         queryParams.category_id = category_id;
-    if(typeof organization_id !=='undefined' && organization_id != -1)
+    if(typeof organization_id !=='undefined' && organization_id != "")
         queryParams.organization_id =  organization_id;
-    if(typeof start !=='undefined' && start != -1)
+    if(typeof start !=='undefined' && start != "")
         queryParams.star =  start;
-     if(typeof end !=='undefined' && end != -1)
+     if(typeof end !=='undefined' && end != "")
         queryParams.end =  start;
     return queryParams;
 };
@@ -173,6 +187,7 @@ exports.filter = async (req, res)=>{
     var organization_id = req.query.organization_id;
     var start = req.query.start;
     var end = req.query.end;
+    var order = req.query.order;
     
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
@@ -180,11 +195,12 @@ exports.filter = async (req, res)=>{
             model: Ticket,
             attributes: ['price']
         },
-        where: handleQueryString(q, category_id, organization_id,start,end),
+        where: handleQueryString(q, category_id, organization_id, start, end),
         limit: limit,
-        offset: (page-1)*limit
+        offset: (page-1)*limit,
+        order: handleSort(order)
     });
-    
+
     handleData.addDateArrToEvents(events);
 
     var data = {
@@ -193,9 +209,9 @@ exports.filter = async (req, res)=>{
         pagination: {
             limit : limit,
             page: page,
-            queryParams: handlequeryParams(q, category_id, organization_id),start,end,
+            queryParams: handlequeryParams(q, category_id, organization_id,start,end),
             totalRows: await eventService.countEvent({
-                where:handleQueryString(q, category_id, organization_id,start,end)
+                where:handleQueryString(q, category_id, organization_id, start,end)
             })
         }
     };

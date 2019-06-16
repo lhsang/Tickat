@@ -209,15 +209,24 @@ var dateFormat = require('dateformat');
 //     }
 // }).then(result=>console.log(JSON.stringify(result)));
 
-// ticket = Ticket.findAll({
-//     attributes: [[sequelize.fn('sum', sequelize.col('price')), 'price']],
-//     include: [{
-//         model:Event,
-//         where:{organization_id:3},
-//     }
-//     ],          
-//      group:['event.id'],
-// }).then(result=>console.log(JSON.stringify(result)));
+ticket = Ticket.findAll({
+    attributes: [[sequelize.fn('sum', sequelize.col('amount')), 'amount'],[sequelize.fn('sum', sequelize.col('bought')), 'bought']],
+    include: [{
+        model:Event,
+        where:{organization_id:1},
+        attributes:['name'],
+    }
+    ],          
+     group:['event.id'],
+     order: sequelize.literal('bought desc'),
+     limit:5,
+}).then(result=>console.log(JSON.stringify(result)));
+
+// event= Event.findAll({
+//     attributes:['name','organization_id'],
+
+// }
+// ).then(result=>console.log(JSON.stringify(result)));
 
 var year=2018;
 var s=dateFormat(new Date(year+"-01-01"),"yyyy/mm/dd");
@@ -225,19 +234,36 @@ var e=dateFormat(new Date(year+"-12-31"),"yyyy/mm/dd");
 
 console.log(s,e);
 
-Event.findAll({
-    attributes: ['date'],
-    include:{
-        model: Ticket,
-    },
-    where: {
-        organization_id:3,
-        date:{
-            [Op.gte]: s,
-            [Op.lte]: e,
+// Event.findAll({
+//     attributes: ['date'],
+//     include:{
+//         model: Ticket,
+//     },
+//     where: {
+//         organization_id:3,
+//         date:{
+//             [Op.gte]: s,
+//             [Op.lte]: e,
 
 
-        } 
+//         } 
 
-    },
-}).then(result=>console.log(JSON.stringify(result)));
+//     },
+// }).then(result=>console.log(JSON.stringify(result)));
+
+// Event.findAll({
+//     include:{
+//         model: Ticket,
+//         attributes:['bought','amount'],
+//     },
+//     where:{
+//         date:{
+//             [Op.gte]: s,
+//              [Op.lte]: e,
+//         }
+//     },
+//     attributes: ['name',[sequelize.fn('sum', sequelize.col('tickets.amount')), 'amount'],[sequelize.fn('sum', sequelize.col('tickets.bought')), 'boughts']],
+//     group: ['event.id','event.name'],
+//     order: sequelize.literal('bought DESC')
+
+// }).then(result=>console.log(JSON.stringify(result)));;

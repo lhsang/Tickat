@@ -137,6 +137,8 @@ function resetAllData(){
    // dayArr=[];
 }
 
+
+
 exports.dashboard = async (req, res)=>{
     var user_id = req.user.id;
    
@@ -306,6 +308,9 @@ exports.dashboardevent = async (req, res)=>{
     
     handleData.addDateArrToEvents(events);
 
+    var topticketevents = await ticketService.getTopTicketEventBought();
+    console.log('ticket',JSON.stringify( topticketevents[0].amount));
+
     var data = {
         title: 'Dashboard event',
         layout :'admin',
@@ -316,6 +321,8 @@ exports.dashboardevent = async (req, res)=>{
 
         events: events,
         organizations: organizations,
+
+        topticketevents: topticketevents,
 
         pagination: {
             limit : limit,

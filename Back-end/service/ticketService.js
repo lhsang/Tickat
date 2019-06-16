@@ -103,4 +103,25 @@ exports.getTicketsByMonth = async (organization_id)=>{
 };
 
 
-
+exports.getTopTicketEventBought = async()=>{
+    try {
+        var sum=0;
+        let tickets = await  Ticket.findAll({
+            attributes: [[sequelize.fn('sum', sequelize.col('amount')), 'amount'],[sequelize.fn('sum', sequelize.col('bought')), 'bought']],
+            include: [{
+                model:Event,
+                attributes:['name'],
+            }
+            ],          
+             group:['event.id'],
+             order: sequelize.literal('bought desc'),
+             limit:10,
+        });
+               
+        return tickets;
+        
+    } catch (e) {
+        throw Error('Can not find all tickets');
+    }
+    return {};
+}

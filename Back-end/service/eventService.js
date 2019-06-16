@@ -21,6 +21,8 @@ exports.getAllEvents = async (query)=>{
     }
 };
 
+
+
 exports.getEventsById = async (query)=>{
 
     try {

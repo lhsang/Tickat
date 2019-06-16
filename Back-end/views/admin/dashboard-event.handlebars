@@ -1,4 +1,16 @@
  <style>
+      tbody {
+        counter-reset: rowNumber;
+      }
+      tbody tr {
+        counter-increment: rowNumber;
+      }
+      tbody tr td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+      }
+
       .dashboard-event .card{
         background: rgb(245, 245, 245);
         padding: 4px
@@ -89,8 +101,8 @@
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 border-left" style="text-align: -webkit-center;">
                 <div class="right-box">
                   <div>
-                    <span class="total-event">Total events in year</span>
-                  <p>{{totalTicketInYear}}</p>
+                    <span class="total-event">Total seat sale in year</span>
+                  <p>{{totalTicketInYear}} seats</p>
                   </div>
                   <hr>
                   <div class="row  d-flex justify-content-center">
@@ -116,35 +128,14 @@
                         </tr>
                         </thead>
                         <tbody>
+                          {{#each topticketevents}}
                           <tr>
-                            <td scope="row">1</td>
-                            <td>520</td>
-                            <td>Đêm nhạc phim</td>
+                            <td ></td>
+                            <td>{{bought}} / {{amount}}</td>
+                            <td>{{event.name}}</td>
                           </tr>
-                          <tr>
-                            <td scope="row">2</td>
-                            <td>490</td>
-                            <td>MSI LEAGUE OF LEGEND
-                            </td>
-                          </tr>
-                          <tr>
-                            <td scope="row">3</td>
-                            <td>484</td>
-                            <td>CRAZY Water Festival - V Wave 2019
-                            </td>
-                          </tr>
-                          <tr>
-                            <td scope="row">4</td>
-                            <td>370</td>
-                            <td>Buffet Equatorial
-                            </td>
-                          </tr>
-                          <tr>
-                            <td scope="row">5</td>
-                            <td>200</td>
-                            <td>MSI LEAGUE OF LEGEND
-                            </td>
-                          </tr>
+                          {{/each}}
+                         
                         </tbody>
                     </table>
                   </div>

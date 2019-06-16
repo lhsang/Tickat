@@ -166,9 +166,13 @@
         e.preventDefault();
         var url = window.location.href+"";
         url=url.replace(/type_of_ticket=\d+/,"");
-        if(!url.includes("?"))
-            url+="?";
-        url+="type_of_ticket="+$(this).val();
+
+        if($(this).val()!=-1){
+          if(!url.includes("?"))
+              url+="?";
+          url+="&type_of_ticket="+$(this).val();
+        }
+
         window.location.href = url;
     });
 

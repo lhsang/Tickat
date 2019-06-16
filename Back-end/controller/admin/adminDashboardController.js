@@ -362,7 +362,7 @@ exports.orderDetails = async (req, res)=>{
         //var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
         var orders = await orderService.getAllOrders({
             where: {               
-                event_id:6,
+                event_id: eventId,
             },
             attributes:['date_bought','name'],
             include: {

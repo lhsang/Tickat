@@ -50,8 +50,8 @@ function handleQueryString(q='', category_id, organization_id, start, end){
 function handleSort(order){
     var sort = [];
     if(typeof order !== 'undefined' && order != {} && order!=null){
-        if(order.order_by == "created_at"){
-            sort.push(['created_at',order.order]);
+        if(order.order_by == "date"){
+            sort.push(['date',order.order]);
         }else if(order.order_by == "price"){
             sort.push([Ticket, 'price', order.order]);
         }
@@ -189,6 +189,7 @@ exports.filter = async (req, res)=>{
     var end = req.query.end;
     var order = req.query.order;
     
+    console.log(handleSort(order));
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
         include: {

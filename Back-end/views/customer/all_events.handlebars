@@ -97,8 +97,8 @@
                       <option value="-1">Sắp xếp</option>
                       <option value="1">Giá: cao đến thấp</option>
                       <option value="2">Giá: thấp đến cao</option>
-                      <option value="3">Thời gian: mới nhất</option>
-                      <option value="4">Thời gian: cũ nhất</option>
+                      <option value="4">Thời gian: sắp diễn ra</option>
+                      <option value="3">Thời gian: diễn ra trễ</option>
                     </select>                    
                   </div>
                 </div>
@@ -185,8 +185,8 @@
         switch (orderID) {
             case 1:    order.order_by = "price"; break;
             case 2:     order.order_by = "price", order.order = "asc"; break;
-            case 3:     order.order_by = "created_at"; break;
-            case 4:     order.order_by = "created_at", order.order = "asc"; break;
+            case 3:     order.order_by = "date"; break;
+            case 4:     order.order_by = "date", order.order = "asc"; break;
             default: order = null; break;
         };
 

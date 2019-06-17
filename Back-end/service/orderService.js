@@ -128,3 +128,34 @@ exports.getAllOrders = async (query)=>{
     }
 };
 
+exports.getOrdersByUserId = async (user_id,limit,page)=>{
+  
+    try {
+        var orders = await   Order.findAll({
+            attributes:['name','date_bought'],
+            where:{
+                user_id:user_id,
+            },
+            include:{
+                model: Order_detail,
+                attributes:['amount'],
+                include: {
+                    model: Ticket,
+                    attributes:['price','type_id'],
+                    include: {
+                        model:Event,
+                        attributes:['name']
+                    }
+                },
+                
+                
+            },
+            order: sequelize.literal('date_bought DESC')
+
+           
+        });
+        return orders;
+    } catch (error) {
+        throw Error('Can not find order');   
+    }
+}

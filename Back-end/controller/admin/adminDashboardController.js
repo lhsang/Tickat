@@ -351,6 +351,7 @@ exports.orderDetails = async (req, res)=>{
     var page = req.query.page || 1; page= parseInt(page);
     var type_of_ticket = req.query.type_of_ticket || "";
 
+
     var event = await eventService.getEventById({
         where: {
             id: eventId

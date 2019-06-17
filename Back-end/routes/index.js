@@ -6,6 +6,7 @@ var homeController = require('../controller/customer/homeController');
 var decodeToken = require('../middleware/authenticate').decodeToken;
 var eventService = require('../service/eventService');
 var userController = require('../controller/customer/userController');
+var ticketboughtController = require('../controller/customer/ticketBoughtController');
 
 var handle = require('../utils/handleData');
 
@@ -28,6 +29,8 @@ router.put('/users', uploadAvatar.single('avatar'), decodeToken, userController.
 router.get('/uploads/avatar/:avatar', homeController.getResource);
 
 router.post('/check-username', userController.checkUsername);
+
+router.get('/ticketbought/:username',decodeToken,ticketboughtController.ticketBought);
 
 /* ---------------------------start user router------------------------ */
 

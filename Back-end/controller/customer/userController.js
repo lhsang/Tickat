@@ -144,6 +144,8 @@ exports.forgotPassword = (req, res)=>{
 
 exports.requestChangePassword = async (req, res)=>{
     var email = req.query.email;
+    var href  = req.query.href || "http://localhost:3000/forgot-password";
+
     try {
         var user = await userService.getUser({
             where:{
@@ -152,7 +154,8 @@ exports.requestChangePassword = async (req, res)=>{
         });
 
         var token = genarateToken(user, 7*60);
-        var url = "http://localhost:3000/change-password?token="+token;
+        var url = href.replace("/forgot-password","")+"/change-password?token="+token;
+        
         var mailOptions={
             to : user.mail,
             subject : "Đổi mật khẩu tickat",
@@ -194,7 +197,6 @@ exports.changePasswordPage = async (req, res)=>{
         layout: 'empty',
         token:token
     });
-
 };
 
 exports.changePassword =  async (req, res)=>{

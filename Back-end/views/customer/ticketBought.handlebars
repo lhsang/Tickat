@@ -1,0 +1,111 @@
+ <style>
+     .card{
+         margin:0px
+     }
+     .pag li.active a{
+         background: blue;
+         color: white
+     }
+ </style>
+
+ <!-- body start -->
+    <div class="container detail mt-30" style="margin-top: 5%;margin-bottom:10%">
+     <div class="ticket">
+        <div class="name-ticket">Tickets Bought</div>
+        
+      </div>
+      <div class="feature">
+        <div class="form-group filter">
+            <div class="form-group filter">
+            <div class="type">
+                <label class="title">Type of tickets</label>
+                <select class="form-control form-control-sm" id="typeTicket">
+                <option value="0">All</option>
+                <option value="1">VIP</option>
+                <option value="2">Normal</option>
+                <option value="3">Free</option>
+
+                </select>
+            </div>
+            </div>
+
+          <div class="entry">
+            <label class="title">Show</label>
+            <select class="form-control form-control-sm" name="" id="entry">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+            <label class="title">entries</label>
+          </div>
+        </div>
+      </div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>OrderDate</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Unit price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ticketBoughts}}
+               
+                <tr>
+                    <td>{{eventname}}</td>
+                    <td>{{date_bought}}</td>
+                    <td>{{type_ticket}}</td>
+                    <td>{{amount}}</td>
+                    <td>{{price}} VND</td>
+                    <td>{{total}} VND</td>           
+                </tr>
+               
+            {{/each}}
+    </table>
+   
+        <div class="pag">
+            <nav style="float: right; margin-right:10%">
+                {{{paginate pagination paginationClass="pagination"}}}
+            </nav>
+        </div>
+    </div>
+    
+<script>
+   $('#entry').change(function (e) { 
+        e.preventDefault();
+        var url = window.location.href+"";
+        url=url.replace(/limit=\d+/,"");
+        if(!url.includes("?"))
+            url+="?";
+        url+="&limit="+$(this).val();
+        window.location.href = url;
+    });
+
+    $('#typeTicket').change(function (e) { 
+        e.preventDefault();
+        var url = window.location.href+"";
+        url=url.replace(/type_of_ticket=\d+/,"");
+
+        if($(this).val()!=-1){
+          if(!url.includes("?"))
+              url+="?";
+          url+="&type_of_ticket="+$(this).val();
+        }
+
+        window.location.href = url;
+    });
+
+    $(document).ready(function(e) {
+         
+        var selectedIndex={{pagination.limit}}||10; 
+        $('#entry').val(selectedIndex);
+
+        var selectedIndexType=parseInt(((location.href+"").match(/type_of_ticket=\d+/)+"").match(/\d+/));
+        if(selectedIndexType)
+          $('#typeTicket').val(selectedIndexType);
+    });
+</script>

@@ -210,18 +210,18 @@ var dateFormat = require('dateformat');
 //     }
 // }).then(result=>console.log(JSON.stringify(result)));
 
-ticket = Ticket.findAll({
-    attributes: [[sequelize.fn('sum', sequelize.col('amount')), 'amount'],[sequelize.fn('sum', sequelize.col('bought')), 'bought']],
-    include: [{
-        model:Event,
-        where:{organization_id:1},
-        attributes:['name'],
-    }
-    ],          
-     group:['event.id'],
-     order: sequelize.literal('bought desc'),
-     limit:5,
-}).then(result=>console.log(JSON.stringify(result)));
+// ticket = Ticket.findAll({
+//     attributes: [[sequelize.fn('sum', sequelize.col('amount')), 'amount'],[sequelize.fn('sum', sequelize.col('bought')), 'bought']],
+//     include: [{
+//         model:Event,
+//         where:{organization_id:1},
+//         attributes:['name'],
+//     }
+//     ],          
+//      group:['event.id'],
+//      order: sequelize.literal('bought desc'),
+//      limit:5,
+// }).then(result=>console.log(JSON.stringify(result)));
 
 // event= Event.findAll({
 //     attributes:['name','organization_id'],
@@ -268,3 +268,68 @@ console.log(s,e);
 //     order: sequelize.literal('bought DESC')
 
 // }).then(result=>console.log(JSON.stringify(result)));;
+
+
+    // var ord =  Order_detail.findAll({
+    //     attributes:['amount','ticket_id'],
+    //     include:{
+    //         model: Order,
+    //         attributes: ['name','date_bought'],
+    //         where:{
+    //             user_id:7,
+    //         },
+    //        include:{
+    //         model: Event,
+    //         attributes:['name'],
+            
+    //        }
+    //     },
+       
+    // }).then((result)=>{
+    //     console.log(JSON.stringify(result),result.length,result[0].ticket_id);
+    //     for(i=0;i<result.length;i++)
+    //     {
+    //         result[i].ticket=i;
+    //         // result[i].ticket = (Ticket.findOne({
+    //         //     where:{
+    //         //         id:result[i].ticket_id,
+    //         //     },
+    //         //     include:{
+    //         //         model:TypeTicket,
+    //         //         attributes:['name'],
+    //         //     },
+    //         //     attributes:['price']
+    //         // })).then(x=>console.log(JSON.stringify(x)));
+    //     }
+    //     console.log('r',JSON.stringify(result));
+
+    // });
+    let limit = 2;   // number of records per page
+    let offset = 0;
+
+    Order.findAll({
+        attributes:['name','date_bought'],
+        where:{
+            user_id:7,
+        },
+        include:{
+            model: Order_detail,
+            attributes:['amount'],
+            include: {
+                model: Ticket,
+                attributes:['price','type_id'],
+                include: {
+                    model:Event,
+                    attributes:['name']
+                },
+                limit: limit,
+                offset: offset,
+            },
+           
+           
+        },
+        
+       
+    }).then(resul=>console.log(JSON.stringify(resul)));
+
+

@@ -16,7 +16,6 @@ exports.getAllEvents = async (query)=>{
         let events =  await Event.findAll(query);
         return events;
     } catch (e) {
-        //console.log(e);
         throw Error('Can not find all events');
     }
 };

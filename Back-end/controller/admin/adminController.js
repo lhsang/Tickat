@@ -14,7 +14,6 @@ exports.signUp = (req, res)=>{
     });
 };
 
-
 exports.profile = async (req, res)=>{
     var username = req.user.username;
     var user = await userService.getUserByUsername(username);

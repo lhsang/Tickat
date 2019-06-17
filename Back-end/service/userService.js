@@ -52,5 +52,13 @@ exports.createAccount = async (data)=>{
         console.log(error);
         throw new Error('Error!');
     }
-   
+};
+
+exports.getUser = async (query)=>{
+    try {
+        var user = await User.findOne(query);
+        return user;
+    } catch (error) {
+        return error;
+    }
 };

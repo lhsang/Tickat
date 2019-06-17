@@ -97,9 +97,6 @@ function getDayArr(daystart,dayto){
 }
 
 function getSaleInDay(orders){
-
-  
-
     daySale = new Array();
     for(i=0;i<dayArr.length;i++)
         daySale[i]=0;
@@ -138,10 +135,7 @@ function resetAllData(){
     percentTotalPrice;
 
     daySale =[0,0,0,0,0,0,0,0,0,0,0,0];
-   // dayArr=[];
 }
-
-
 
 exports.dashboard = async (req, res)=>{
     var user_id = req.user.id;
@@ -173,14 +167,14 @@ exports.dashboard = async (req, res)=>{
     }
 
     resetAllData();
-     await CalculateTotalAndSaleInYear(tickets); 
-     var saleInMonthArr = await getSaleInMonthOfYear(orders);
+    CalculateTotalAndSaleInYear(tickets); 
+    var saleInMonthArr = await getSaleInMonthOfYear(orders);
 
-     await getSaleAndSeatInMonth();
+    getSaleAndSeatInMonth();
 
-     dayArr = new Array();
-     dayArr = getDayArr(0,0);
-     daySale = await getSaleInDay(orders);
+    dayArr = new Array();
+    dayArr = getDayArr(0,0);
+    daySale = await getSaleInDay(orders);
 
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
@@ -254,9 +248,6 @@ exports.dashboardchart = async (req, res)=>{
     saleInYear = numeral(saleInYear).format('$0,0');
     saleInMonth = numeral(saleInMonth).format('$0,0');
 
-
-
-    
     try{
         var data = {
             title: 'Dashboard chart',
@@ -282,146 +273,6 @@ exports.dashboardchart = async (req, res)=>{
     } catch (e) {
        console.log(e);
     }
-};
-
-exports.dashboardevent = async (req, res)=>{
-    var user_id = req.user.id;
-    var q = req.query.q || "";
-    var limit = req.query.limit || 9 ;
-    var page = req.query.page || 1; page= parseInt(page);
-
-    var organizations = await organizationService.getOrganizationIdByUserId(user_id);
-
-    var organizationsIds = organizations.map((obj)=>{
-        return obj.id;
-    });
-
-    var events = await eventService.getEventByOrganizationId(organizationsIds,limit,(page-1)*limit);
-
-    var tickets = [];
-    for(i=0;i<events.length;i++){
-       var ticket = await ticketService.getTicketsByEventId(events[i].id);
-       if(ticket.length!=0)
-        for(j=0;j<ticket.length;j++)
-            tickets.push(ticket[j]);
-    }
-
-
-    await resetAllData();
-    await CalculateTotalAndSaleInYear(tickets); 
-    
-    handleData.addDateArrToEvents(events);
-
-    var topticketevents = await ticketService.getTopTicketEventBought();
-    console.log('ticket',JSON.stringify( topticketevents[0].amount));
-
-    var data = {
-        title: 'Dashboard event',
-        layout :'admin',
-        user : req.user,
-    
-        totalTicketInYear: totalTicketInYear,
-        percentTotalPrice: percentTotalPrice,
-
-        events: events,
-        organizations: organizations,
-
-        topticketevents: topticketevents,
-
-        pagination: {
-            limit : limit,
-            page: page,
-            totalRows: await eventService.countEvent({
-                where:{
-                    name:{
-                        [Op.like]: "%"+q+"%"
-                    },
-                    organization_id: organizationsIds
-                }
-            })
-        }
-    }; 
-
-    res.render('admin/dashboard-event',data); 
-};
-
-exports.orderDetails = async (req, res)=>{
-    var eventId = req.params.id;
-    var limit = req.query.limit || 10 ;
-    var page = req.query.page || 1; page= parseInt(page);
-    var type_of_ticket = req.query.type_of_ticket || "";
-
-
-    var event = await eventService.getEventById({
-        where: {
-            id: eventId
-        },
-        attributes:['name','date','address']
-    });
-
-    if(event){
-        handleData.addDateArrToEvent(event);
-        var queryStr = {};
-        if(type_of_ticket !=""&& typeof type_of_ticket !=='undefined'&& type_of_ticket >0)
-            queryStr.type_id = type_of_ticket;
-
-        //var orders = await orderService.getOrdersByEventId(eventId, limit, (page-1)*limit);
-        var orders = await orderService.getAllOrders({
-            where: {               
-                event_id: eventId,
-            },
-            attributes:['date_bought','name'],
-            include: {
-                model: Order_detail,
-                attributes:['amount'],
-                include:{
-                    model: Ticket,
-                    attributes:['price'],
-                    include:{
-                        model: TypeTicket,
-                        attributes: ['name'],
-                    },
-                    where: queryStr
-                }
-            },
-            limit: limit,
-            offset: (page-1)*limit,
-            subQuery:false
-        });
-        var order_details = await orderService.sumaryByEventId(eventId);
-
-        var data = {
-            title: 'Dashboard event',
-            layout :'admin',
-            user : req.user,
-        
-            event: event,
-            orders: orders,
-            order_details: JSON.stringify(order_details),
-
-            pagination: {
-                limit : limit,
-                page: page,
-                queryParams:{
-                    page: page,
-                    limit: limit
-                },
-                totalRows: await orderService.countOrderDetailsByEventId(eventId)
-            }
-        }; 
-        if(type_of_ticket !=""&& typeof type_of_ticket !=='undefined'&& type_of_ticket >0)
-            data.pagination.queryParams.type_of_ticket = type_of_ticket;
-
-        res.status(200);
-        res.render('admin/order-details',data); 
-        
-    }else res.sendStatus(404);
-};
-
-exports.test = async (req, res)=>{
-    var od = await orderService.sumaryByEventId(6);
-
-    res.send(od);
 };
 
 exports.costChart = async (req,res)=>{
@@ -461,17 +312,15 @@ exports.costChart = async (req,res)=>{
 
     dayArr = new Array();
     dayArr = getDayArr(daystart,dayto);
-    console.log('gfdg',dayArr);
+
     daySale = await getSaleInDay(orders);
     
-    console.log('abgg',daystart,dayto,dayArr,daySale);
     res.send({
         dayArr:dayArr,
         daySale:daySale,        
     });
     
 };
-
 
 exports.saleChart = async (req,res)=>{
     var yearnow = req.query.yearnow;

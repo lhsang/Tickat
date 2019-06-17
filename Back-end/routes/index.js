@@ -41,6 +41,14 @@ router.get('/switch-acc', decodeToken, userController.switchAcc);
 
 router.post('/upload-avatar', uploadAvatar.single('avatar'), userController.uploadAvatar);
 
+router.get('/forgot-password', userController.forgotPassword);
+
+router.get('/request-change-password', userController.requestChangePassword);
+
+router.get('/change-password', userController.changePasswordPage);
+
+router.put('/change-password', userController.changePassword);
+
 /* ---------------------------end user router------------------------ */
 
 module.exports = router;

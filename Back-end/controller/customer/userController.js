@@ -6,9 +6,11 @@ var dateFormat = require('dateformat');
 var userService = require('../../service/userService');
 
 var {hash_password,check_password} = require('../../utils/bcrypt');
-var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
 
-function genarateToken(user) {
+var privateKey  = fs.readFileSync(path.join(__dirname,'../../configs/private.key'), 'utf8');
+var publicKey  =  fs.readFileSync(path.join(__dirname,'../../configs/public.key'), 'utf8');
+
+function genarateToken(user, expiresIn = '1h') {
     var payload = {
         username: user.username,
         full_name: user.full_name,
@@ -17,7 +19,7 @@ function genarateToken(user) {
         id: user.id
     };
 
-    var token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: '1h'});
+    var token = jwt.sign(payload, privateKey, { algorithm: 'RS256', expiresIn: expiresIn});
 
     return token;
 }
@@ -126,4 +128,109 @@ exports.changeProfile = async (req,res)=>{
 
     }else res.sendStatus(500);
 
+};
+
+exports.forgotPassword = (req, res)=>{
+    var error = "";
+    if(req.query.error == 'email')
+        error = "Email is not registered !";
+
+    res.render('customer/forgotPassword',{
+        title : 'Tickat - Forgot password',
+        layout: 'empty',
+        error: error
+    });
+};
+
+exports.requestChangePassword = async (req, res)=>{
+    var email = req.query.email;
+    try {
+        var user = await userService.getUser({
+            where:{
+                mail: email
+            }
+        });
+
+        var token = genarateToken(user, 7*60);
+        var url = "http://localhost:3000/change-password?token="+token;
+        var mailOptions={
+            to : user.mail,
+            subject : "Đổi mật khẩu tickat",
+            html : `
+            <b>Chào ${user.full_name},</b><br>
+            Chúng tôi nhận được yêu cầu đổi mật khẩu từ tài khoản của bạn.
+            <br> <br> <br>
+            <b><a href="${url}"forgot-pass">Click vào đây để đổi mật khẩu</a> </b>
+            <br><br>
+            Email đổi mật khẩu chỉ có thời hạn trong 7 phút.
+            <br>
+            ------------------------------------------------------------------------------ <br>
+            Mail was sent by Tickat.vn <br>
+            ${new Date()}
+            `
+        };
+        smtpTransport.sendMail(mailOptions, function(error, response){
+                if(error){
+                    res.redirect('/forgot-password?error=email');
+                }
+        });
+    } catch (error) {
+        res.redirect('/forgot-password?error=email');
+    }
+
+    res.send(`
+    <div style="width:40%; margin: 20% auto; text-align:center">
+        <h3>A confirmation email has been sent to your email</h3> <br>
+        <i>Please check inbox or spam.</i>
+    </div>
+    `);
+};
+
+exports.changePasswordPage = async (req, res)=>{
+    var token = req.query.token;
+    
+    res.render('customer/changePassword',{
+        title : 'Tickat - Change password',
+        layout: 'empty',
+        token:token
+    });
+
+};
+
+exports.changePassword =  async (req, res)=>{
+    var token  = req.body.token;
+    var password = req.body.password;
+    if(password=="" || typeof password =='undefined'){
+        res.send({
+            status: 500,
+            message: "Password is required !"
+        });  
+    }
+    try {
+        var decoded = jwt.verify(token, publicKey, { algorithms: ['RS256'] });
+
+        if(decoded){
+            var username = decoded.username;
+            var user  = await userService.getUserByUsername(username);
+
+            if(user){
+                user.password = hash_password(password);
+                user.save();
+                res.send({
+                    status: 200,
+                    message: "Password was changed."
+                });
+            }
+        }
+    } catch (error) {
+        res.send({
+            status: 500,
+            message: "Token incorrect or timeout. Please request again"
+        });  
+    }
+
+    res.send({
+        status: 500,
+        message: "Token incorrect or timeout. Please request again. <a href='/'>Back home</a>"
+    });    
 };

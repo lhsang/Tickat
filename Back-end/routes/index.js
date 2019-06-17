@@ -30,7 +30,7 @@ router.get('/uploads/avatar/:avatar', homeController.getResource);
 
 router.post('/check-username', userController.checkUsername);
 
-router.get('/ticketbought/:username',decodeToken,ticketboughtController.ticketBought);
+router.get('/ticket-bought', decodeToken, ticketboughtController.ticketBought);
 
 /* ---------------------------start user router------------------------ */
 

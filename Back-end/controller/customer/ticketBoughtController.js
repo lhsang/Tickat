@@ -54,27 +54,42 @@ function handleOrderObject(orders,limit,page,type_of_ticket){
 }
 
 exports.ticketBought = async (req, res)=>{
+    if(typeof req.user == 'undefined')
+        res.redirect("/");
+
     var user_id = req.user.id;
-   
-    var limit = req.query.limit || 5 ;
+    
+    var limit = req.query.limit || 10 ;
     var page =  req.query.page || 1; page= parseInt(page);
     var type_of_ticket = req.query.type_of_ticket || 0;
 
-
+    var categories = await categoryService.getAllCategories();
     var orders = await orderService.getOrdersByUserId(user_id);
     var ticketBoughts=handleOrderObject(orders,limit,page,type_of_ticket);
     
     var data={
-        title: 'Vé đã mua',
+        title: 'Tickat - Vé đã mua',
         layout :'main',
-        user : req.user,
+        logged: false,
+        categories:  categories,
         ticketBoughts: ticketBoughts,
         pagination: {
             limit : limit,
             page: page,
+            queryParams:{
+                limit: limit
+            },
             totalRows: lengthOfTicketBoughts,
         }
     };
+    if(type_of_ticket !=""&& typeof type_of_ticket !=='undefined'&& type_of_ticket >0)
+            data.pagination.queryParams.type_of_ticket = type_of_ticket;
+
+    if(typeof req.user !== 'undefined'){
+        data.logged = true;
+        data.user = req.user;
+    }    
+
     res.render("customer/ticketBought",data);
 
 };

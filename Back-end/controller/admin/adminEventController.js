@@ -286,3 +286,10 @@ exports.filter = async (req, res)=>{
     res.render("admin/filterEvents",data); 
 };
 
+exports.createEventPage  = async (req, res)=>{
+
+    var data = {
+        layout: 'admin',
+    };
+    res.render("admin/createEvent", data);
+};

@@ -1,0 +1,17 @@
+
+
+/* start create event page */
+label.title{
+    font-weight: 650
+}
+#createevent {
+    margin-bottom: 100px
+}
+#createevent .card{
+    padding-bottom: 50px;
+}
+
+.mt-20{
+    margin-top: 20px
+}
+/* end create event page */

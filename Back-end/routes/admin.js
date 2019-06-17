@@ -28,6 +28,8 @@ router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
 router.get('/events', decodeToken, adminEventController.dashboardevent);
 
+router.get('/new-event', decodeToken, adminEventController.createEventPage);
+
 router.get('/events/:id([0-9]+)', decodeToken, adminEventController.orderDetails);
 
 router.get('/events/filter', decodeToken, adminEventController.filter);

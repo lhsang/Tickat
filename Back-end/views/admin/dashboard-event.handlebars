@@ -37,23 +37,54 @@
       li.active .page-link{
         color: white; background: blue;
       }
+      .filter{
+        margin-top: 0px;
+        margin-right: 10px;
+        background: #fbfbfb;
+        padding: 30px;
+        border-radius: 15px;
+      }
  </style> 
        <div class="row event dashboard-event">
               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-9" style="padding-left:60px;">
                 <div class="filter">
                   <div style="text-align: -webkit-right; margin-right:10px; ">
-                    <span class="filter-box" title="Filter" data-toggle="modal" data-target="#modalFilter"><i class="fa fa-filter" aria-hidden="true"></i></span>
-
-                    <select name="" id="input" class="form-control sort" required="required">
-                      <option value="">Sort by</option>
-                      <option value="">Price: Low to high</option>
-                      <option value="">Price: High to low</option>
-                      <option value="">Time: Newest</option>
-                      <option value="">Time: Oldest</option>
+                    <select id="orderBy" class="form-control sort" required="required">
+                      <option value="-1">Sort by</option>
+                      <option value="1">Price: High to low</option>
+                      <option value="2">Price: Low to high</option>
+                      <option value="3">Time: Oldest</option>
+                      <option value="4">Time: Newest</option>
                     </select>                    
                   </div>
+                       <div class="form-group" style="display: -webkit-inline-box;">
+                    <label for="input" class="col-sm-2 control-label label-datepicker">Start:</label>
+                    <div class="col-sm-10">
+                      <input type="date" id="start" class="form-control" value="" required="required" title="">
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="display: -webkit-inline-box;margin-left: 30px;">
+                      <label for="input" class="col-sm-2 control-label label-datepicker">End:</label>
+                      <div class="col-sm-10">
+                        <input type="date" id="end" class="form-control" value="" required="required" title="">
+                      </div>
+                  </div>
+
+                  
+                   <div class="form-group" style="display: -webkit-inline-box;margin-left: 30px;">
+                    <label class="label-datepicker">Status</label>
+                    <select class="custom-select ml-20" id="status" style="width: fit-content;">
+                      <option value="-1">All</option>
+                      <option value="1">Active</option>
+                      <option value="0">Stopped</option>
+                    </select>
+                  </div>
+
+                  <button type="button" class="btn btn-warning bg-primary color-white ml-30" id="filter">Filter</button>
                 </div>
-                <div class="row">
+                <hr>
+                <div class="row"  id="all-event">
 
                   
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -156,61 +187,78 @@
 
     <!-- body end -->
 
-    <!-- modal filter start-->
-    <!-- Button trigger modal -->    
-    <!-- Modal -->
-    <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Filter events</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              
-              
-              <div class="form-group" style="display: -webkit-inline-box;">
-                <label for="input" class="col-sm-2 control-label label-datepicker">Start:</label>
-                <div class="col-sm-10">
-                  <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
-                </div>
-              </div>
+<script>
 
-              <div class="form-group" style="display: -webkit-inline-box;margin-left: 30px;">
-                  <label for="input" class="col-sm-2 control-label label-datepicker">End:</label>
-                  <div class="col-sm-10">
-                    <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
-                  </div>
-              </div>
-              
-              <div class="form-check form-check-inline ml-100" >
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="by" id="" value="checkedValue" checked> By time occurs
-                  </label>
-                <label class="form-check-label ml-30">
-                  <input class="form-check-input" type="radio" name="by" id="" value="checkedValue"> By time created
-                </label>
-              </div>
-              
-              <div class="form-group mt-20 ml-20">
-                <label class="label-datepicker">Status</label>
-                <select class="custom-select ml-20" name="" id="" style="width: fit-content;">
-                  <option value="">All</option>
-                  <option value="">Active</option>
-                  <option value="">Stopped</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-warning bg-primary color-white">Confirm</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-     <!-- modal filter end-->
+  $('#filter').click((e)=>{
+    e.preventDefault();
+  filter();
+  });
+  $('#orderBy').change(function (e) { 
+        e.preventDefault();
+        var orderID = parseInt($(this).val());
+        var order = {
+            order_by : "",
+            order: "desc"
+        };
+        switch (orderID) {
+            case 1:    order.order_by = "price"; break;
+            case 2:     order.order_by = "price", order.order = "asc"; break;
+            case 3:     order.order_by = "date"; break;
+            case 4:     order.order_by = "date", order.order = "asc"; break;
+            default: order = null; break;
+        };
+
+        filter(order);
+    });
+
+function filter(order=null){
+  var data = {};
+  if(order!=null && typeof order != 'undefined')
+    data.order = order;
+
+  var status = $('#status').val();
+  var start = $('#start').val();
+  var end = $('#end').val();
+  var validate = true;
+
+    if(start != "" && end){
+       var x = new Date(start);
+       var y = new Date(end);
+       if(x.getTime()>y.getTime())
+          validate=false;
+    }
+
+    if(validate==true){
+      if(status !=-1){
+        var z = new Date();
+      
+      if(status==1){
+        if(start != ""){
+          var x = new Date(start);
+          if(x.getTime()<z.getTime())
+            start = z.toDateString();
+        }else start = z.toDateString(); 
+      }else if(status==0){
+        if(end != ""){
+          var y = new Date(end);
+          if(y.getTime()>z.getTime())
+            end = z.toDateString();
+        }else end = z.toDateString(); 
+      }
+      }
+      if(start !=="")
+        data.start = start;
+      if(end !=="")
+        data.end = end;
+
+      $.ajax({
+          type: "GET",
+          url: "/admin/events/filter",
+          data: data,
+          success: function (response) {
+              $('#all-event').html(response);
+          }
+      });
+    }else alert("Start date can not greater than end date");
+}
+</script>

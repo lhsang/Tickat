@@ -35,14 +35,22 @@ function handleQueryString(q='', category_id, organization_id, start, end){
         queryStr.category_id = category_id;
     if(typeof organization_id !=='undefined'  && organization_id != "")
         queryStr.organization_id =  organization_id;
-    if(typeof start !=='undefined' && start != "")
-        queryStr.date= {
-                [Op.gte]: dateFormat(start,"yyyy-mm-dd")
-          };
-    if(typeof end !=='undefined' && end != "")
-        queryStr.date= {
-                  [Op.lte]: dateFormat(end,"yyyy-mm-dd")
+        
+    if(typeof start !=='undefined' && start != ""&& typeof end !=='undefined' && end != ""){
+        queryStr.date = {
+            [Op.gte]: dateFormat(start,"yyyy-mm-dd"),
+            [Op.lte]: dateFormat(end,"yyyy-mm-dd")
+        };
+    }else{
+        if(typeof start !=='undefined' && start != "")
+            queryStr.date= {
+                    [Op.gte]: dateFormat(start,"yyyy-mm-dd")
             };
+        if(typeof end !=='undefined' && end != "")
+            queryStr.date= {
+                    [Op.lte]: dateFormat(end,"yyyy-mm-dd")
+                };
+    }
 
     return queryStr;
 };
@@ -69,9 +77,9 @@ function handlequeryParams(q='', category_id , organization_id , start, end){
     if(typeof organization_id !=='undefined' && organization_id != "")
         queryParams.organization_id =  organization_id;
     if(typeof start !=='undefined' && start != "")
-        queryParams.star =  start;
+        queryParams.start =  start;
      if(typeof end !=='undefined' && end != "")
-        queryParams.end =  start;
+        queryParams.end =  end;
     return queryParams;
 };
 
@@ -189,7 +197,6 @@ exports.filter = async (req, res)=>{
     var end = req.query.end;
     var order = req.query.order;
     
-    console.log(handleSort(order));
     var events = await eventService.getAllEvents({
         attributes: ['id','name','date','address','img'],
         include: {

@@ -304,32 +304,14 @@ console.log(s,e);
     //     console.log('r',JSON.stringify(result));
 
     // });
-    let limit = 2;   // number of records per page
-    let offset = 0;
+   
 
-    Order.findAll({
-        attributes:['name','date_bought'],
-        where:{
-            user_id:7,
-        },
-        include:{
-            model: Order_detail,
-            attributes:['amount'],
-            include: {
-                model: Ticket,
-                attributes:['price','type_id'],
-                include: {
-                    model:Event,
-                    attributes:['name']
-                },
-                limit: limit,
-                offset: offset,
-            },
-           
-           
-        },
-        
-       
-    }).then(resul=>console.log(JSON.stringify(resul)));
-
-
+//    Order.destroy({
+//     where: {
+//         id:{
+//             [Op.gt]: 0, 
+//             [Op.lt]:44,
+//         }
+//     },
+ 
+//    })

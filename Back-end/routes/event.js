@@ -12,6 +12,10 @@ router.get('/', decodeToken, eventController.allEvents);
 
 router.get('/:event_id/booking',decodeToken, eventController.bookingPage);
 
+router.post('/:event_id/booking', decodeToken, eventController.checkoutform);
+
+router.get('/:event_id/booking/buysuccess', decodeToken, eventController.buySuccess);
+
 router.get('/:id([0-9]+)',decodeToken, eventController.eventDetail);
 
 router.get('/filter', eventController.filter);

@@ -56,7 +56,7 @@ function handleOrderObject(orders,limit,page,type_of_ticket){
 exports.ticketBought = async (req, res)=>{
     var user_id = req.user.id;
    
-    var limit = req.query.limit || 5 ;
+    var limit = req.query.limit || 1 ;
     var page =  req.query.page || 1; page= parseInt(page);
     var type_of_ticket = req.query.type_of_ticket || 0;
 

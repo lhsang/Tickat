@@ -165,6 +165,7 @@
     formData.append("mail",$('#mailProfile').val());
     formData.append("description",$('#descriptionProfile').val());
     formData.append("avatar",$('#avatarProfile').prop('files')[0]);
+    
 
     $.ajax({
       type: "PUT",

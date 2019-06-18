@@ -153,3 +153,11 @@ exports.getTicketsByEventIdAndTypeId = async (event_id,type_of_ticket)=>{
     return {};
 };
 
+exports.createTicket = async (ticket)=>{
+    var result = await Ticket.create(ticket).then((obj)=>{
+        return obj;
+    }).catch((error)=>{
+        return error;
+    });
+    return result;
+};

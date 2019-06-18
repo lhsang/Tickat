@@ -11,7 +11,7 @@ var decodeToken = require('../middleware/authenticate').decodeToken;
 var organizationService = require('../service/organizationService');
 var ticketService = require('../service/ticketService');
 
-var uploadAvatar = require('../configs/upload').uploadAvatar;
+var upload= require('../configs/upload');
 var userController = require('../controller/customer/userController');
 
 router.all('*',ensureAuthenticated, (req, res, next)=>{
@@ -28,13 +28,17 @@ router.get('/statistics', decodeToken, adminDasboardController.dashboardchart);
 
 router.get('/events', decodeToken, adminEventController.dashboardevent);
 
+router.post('/events', decodeToken, upload.uploadImgEvent.single('img'), adminEventController.createEvent);
+
+router.get('/new-event', decodeToken, adminEventController.createEventPage);
+
 router.get('/events/:id([0-9]+)', decodeToken, adminEventController.orderDetails);
 
 router.get('/events/filter', decodeToken, adminEventController.filter);
 
 router.get('/setting', decodeToken, adminController.profile);
 
-router.put('/setting', uploadAvatar.single('avatar'), decodeToken, userController.changeProfile);
+router.put('/setting', upload.uploadAvatar.single('avatar'), decodeToken, userController.changeProfile);
 
 router.get('/costchart',decodeToken,adminDasboardController.costChart);
 

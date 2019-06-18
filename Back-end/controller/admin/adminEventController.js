@@ -3,6 +3,7 @@ var moment = require('moment');
 var numeral = require('numeral');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+var dateFormat = require('dateformat');
 
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
@@ -286,3 +287,66 @@ exports.filter = async (req, res)=>{
     res.render("admin/filterEvents",data); 
 };
 
+exports.createEventPage  = async (req, res)=>{
+    var categories = await categoryService.getAllCategories();
+    var organizations = await  organizationService.getOrganizationIdByUserId(req.user.id);
+
+    var data = {
+        title: 'Tickat - Create an event',
+        layout: 'admin',
+        user : req.user,
+
+        categories: categories,
+        organizations: organizations
+    };
+    res.render("admin/createEvent", data);
+};
+
+exports.createEvent = async (req, res)=>{
+
+    try {
+        var newEvent = {
+            name: req.body.name,
+            date: req.body.date,
+            address: req.body.address,
+            img: req.img,
+            description: req.body.description,
+            organization_id: req.body.organization_id,
+            category_id: req.body.category_id
+        };
+        
+        console.log(newEvent);
+        var event = await eventService.createEvent(newEvent);
+
+        var temp = JSON.parse(req.body.tickets);
+        var tickets = [];
+    
+        temp.map((obj)=>{
+            tickets.push(JSON.parse(obj));
+        });
+    
+        tickets.map((obj)=>{
+            ticketService.createTicket({
+                event_id: event.id,
+                type_id: parseInt(obj.type_id),
+                price: parseInt(obj.price),
+                amount: parseInt(obj.amount),
+                description: obj.description
+            });
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500);
+        res.send({
+            status: 500,
+            message: "Something wrong :( Try again"
+        });
+    }
+
+    res.status(200);
+    res.send({
+        status: 200,
+        message: "Created event"
+    });
+};

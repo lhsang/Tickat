@@ -163,3 +163,13 @@ exports.getEventByOrganizationIdAndYear = async (organization_id,yearnow,limit =
         return new Error('Some thing is wrong');
     }
 };
+
+exports.createEvent =  async (event)=>{
+    var result = await Event.create(event).then((obj)=>{
+        return obj;
+    }).catch((error)=>{
+        console.log(error);
+        return error;
+    });
+    return result;
+};

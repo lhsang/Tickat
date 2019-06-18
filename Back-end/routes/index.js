@@ -26,11 +26,11 @@ router.get('/users/:username', decodeToken, homeController.profile);
 
 router.put('/users', uploadAvatar.single('avatar'), decodeToken, userController.changeProfile);
 
-router.get('/uploads/avatar/:avatar', homeController.getResource);
+router.get('/uploads/:name/:file', homeController.getResource);
 
 router.post('/check-username', userController.checkUsername);
 
-router.get('/ticketbought/:username',decodeToken,ticketboughtController.ticketBought);
+router.get('/ticket-bought', decodeToken, ticketboughtController.ticketBought);
 
 /* ---------------------------start user router------------------------ */
 
@@ -53,6 +53,5 @@ router.get('/change-password', userController.changePasswordPage);
 router.put('/change-password', userController.changePassword);
 
 /* ---------------------------end user router------------------------ */
-
 module.exports = router;
 

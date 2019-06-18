@@ -1,17 +1,117 @@
 
-
+@media (min-width: 1200px)
+{
+    .container {
+        max-width: 1540px;
+    }
+}
+.btn-create{
+    margin-top: 10%;
+    padding: 10px 25px;
+    margin-bottom: 200px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 22px;
+    
+}
 /* start create event page */
 label.title{
     font-weight: 650
 }
 #createevent {
-    margin-bottom: 100px
-}
-#createevent .card{
-    padding-bottom: 50px;
+    margin-bottom: 200px
 }
 
 .mt-20{
     margin-top: 20px
 }
+.mb-200{
+    margin-bottom: 200px;
+}
+.mb-50{
+    margin-bottom: 50px;
+}
+.mb-100{
+    margin-bottom: 100px
+}
+#editor {
+    display: none;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.tickets .card{
+    background: #fbfbfb;
+}
+.tickets .card .card-title{
+    font-weight: 700
+}
+.tickets .card .card-subtitle{
+    color: #d85011 !important;
+    float: right;
+    font-weight: 600
+}
+.tickets .card .card-text{
+    margin-top: 20px;
+    color: #909090;
+    font-style: italic;
+}
+.tickets .card .delete{
+    background: transparent;
+    border: none;
+    color: red;
+    float: right;
+}
+#editor .card .price{
+    width: 400px;
+    margin-right: 5%
+}
 /* end create event page */
+
+
+
+nav > .nav.nav-tabs{
+
+    border: none;
+      color:#fff;
+      background:#272e38;
+      border-radius:0;
+  
+  }
+  nav > div a.nav-item.nav-link,
+  nav > div a.nav-item.nav-link.active
+  {
+    border: none;
+      padding: 18px 25px;
+      color:#fff;
+      background:#272e38;
+      border-radius:0;
+  }
+  
+  nav > div a.nav-item.nav-link.active:after
+   {
+    content: "";
+    position: relative;
+    bottom: -60px;
+    left: -10%;
+    border: 15px solid transparent;
+    border-top-color: #e74c3c ;
+  }
+  .tab-content{
+    background: #fdfdfd;
+      line-height: 25px;
+      border: 1px solid #ddd;
+      border-top:5px solid #e74c3c;
+      border-bottom:5px solid #e74c3c;
+      padding:30px 25px;
+  }
+  
+  nav > div a.nav-item.nav-link:hover,
+  nav > div a.nav-item.nav-link:focus
+  {
+    border: none;
+      background: #e74c3c;
+      color:#fff;
+      border-radius:0;
+      transition:background 0.20s linear;
+  }

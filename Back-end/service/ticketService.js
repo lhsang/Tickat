@@ -125,3 +125,12 @@ exports.getTopTicketEventBought = async()=>{
     }
     return {};
 }
+
+exports.createTicket = async (ticket)=>{
+    var result = await Ticket.create(ticket).then((obj)=>{
+        return obj;
+    }).catch((error)=>{
+        return error;
+    });
+    return result;
+};

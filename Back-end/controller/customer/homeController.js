@@ -121,7 +121,9 @@ exports.profile = async (req, res)=>{
 };
 
 exports.getResource =  (req, res)=>{
-    var dir = "uploads/avatar/"+req.params.avatar; 
+
+    var dir = `uploads/${req.params.name}/${req.params.file}`;
+
     fs.readFile(dir, (error, imgData)=>{
         if(error){
             res.sendStatus(404);

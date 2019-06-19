@@ -7,10 +7,17 @@ var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
 var ticketService = require('../../service/ticketService');
 var organizationService = require('../../service/organizationService');
+var userService = require('../../service/userService');
+var orderService = require('../../service/orderService');
+var orderDetailService = require('../../service/orderDetailService');
+
 
 var Organization = require('../../models/organization');
 var Ticket = require('../../models/ticket');
 var Event = require('../../models/event');
+var Order = require('../../models/order');
+var Order_detail = require('../../models/order_detail');
+
 
 var objectDefined = require('../../utils/object_define');
 var handleData = require('../../utils/handleData');
@@ -83,6 +90,8 @@ function handlequeryParams(q='', category_id , organization_id , start, end){
     return queryParams;
 };
 
+
+
 exports.bookingPage = async (req, res, next)=>{
     var categories = await categoryService.getAllCategories();
     var id = req.params.event_id;
@@ -92,12 +101,15 @@ exports.bookingPage = async (req, res, next)=>{
     //     next();
 
     handleTickets(tickets);
+
+    console.log('ticket',JSON.stringify(tickets[0].event_id));
     
     var data = {
         title: 'Thông tin vé - Tickat: Mua bán vé sự kiện',
         layout: 'main',
         categories:  categories,
         tickets: tickets,
+        event_id: id,
         logged: false
     };
     if(typeof req.user !== 'undefined'){
@@ -227,3 +239,59 @@ exports.filter = async (req, res)=>{
 };
 
 
+exports.checkoutform = async (req,res)=>{
+    var event_id = req.params.event_id;
+    var user= req.user;
+
+    var checkoutData ={
+        fullname: req.body.fullname,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.email,
+        username: req.body.username,
+        ticketOrders: JSON.parse(req.body.ticketOrders),
+    }
+
+    var order={
+        event_id: event_id,
+        name :checkoutData.fullname,
+        tel : checkoutData.phone,
+        mail : checkoutData.email,
+        address : checkoutData.address,
+        user_id: null,
+        date_bought : dateFormat(new Date(),"yyyy-mm-dd"),
+    };
+
+    if(typeof user !=='undefined')
+        order.user_id= user.id;
+    
+
+    orderResult = await orderService.createOrder(order);
+    
+    checkoutData.ticketOrders.map(async function(item){
+        try{
+            var ticket = await ticketService.getTicketsByEventIdAndTypeId(event_id,item.ticketname);
+            var detail={
+                order_id: orderResult.id,
+                ticket_id: ticket.id,
+                amount: item.ticketamount,
+            };
+    
+           orderdetailResult = await orderDetailService.createOrderDetail(detail);
+    
+            ticket.bought=parseInt(ticket.bought)+parseInt(item.ticketamount);
+           ticket.save();
+        } catch (error) {
+           console.log(error);  
+        }
+
+    });
+
+    res.sendStatus(200);
+   
+}
+
+
+exports.buySuccess = async (req,res) =>{
+    res.render("customer/buyTicketSuccess");
+}

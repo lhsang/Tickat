@@ -7,6 +7,9 @@ const sequelize = require('../configs/db');
 
 const {setDefaultQueryStr} =  require('../utils/default_query_string');
 
+
+
+
 exports.getTicketsByEventId = async (event_id)=>{
 
     try {
@@ -125,6 +128,30 @@ exports.getTopTicketEventBought = async()=>{
     }
     return {};
 }
+
+exports.getTicketsByEventIdAndTypeId = async (event_id,type_of_ticket)=>{
+
+    try {
+        var typeid=0;
+        if(type_of_ticket=='VIP')
+            typeid=1;
+        else if(type_of_ticket=='Normal')
+                typeid=2;
+            else typeid=3;
+
+        let tickets = Ticket.findOne({
+          
+            where: {
+                event_id: event_id,
+                type_id: typeid
+            },
+        });
+        return tickets;
+    } catch (e) {
+        throw Error('Can not find all tickets');
+    }
+    return {};
+};
 
 exports.createTicket = async (ticket)=>{
     var result = await Ticket.create(ticket).then((obj)=>{

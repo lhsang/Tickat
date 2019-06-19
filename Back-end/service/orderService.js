@@ -159,3 +159,13 @@ exports.getOrdersByUserId = async (user_id,limit,page)=>{
         throw Error('Can not find order');   
     }
 }
+
+exports.createOrder = async(order)=>{
+    var result = await Order.create(order).then((obj)=>{
+        return obj;
+    }).catch((err)=>{
+        console.log(err);
+        return err;
+    });
+    return result;
+}

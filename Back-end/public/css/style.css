@@ -1087,6 +1087,10 @@ background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)
     background: #e95252;
 }
 
+#booking .null-class .card-header{
+    background: #202090;
+}
+
 #booking .normal .card-header,#booking .Normal .card-header,#booking .NORMAL .card-header{
     background: rgba(118, 80, 175, 0.9);
 }
@@ -1209,3 +1213,7 @@ body.loading .modal-loading {
     }
 }
 /* snackbar end */
+
+#des img{
+    max-width: 100%;
+}

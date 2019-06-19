@@ -44,4 +44,10 @@ router.get('/costchart',decodeToken,adminDasboardController.costChart);
 
 router.get('/salechart',decodeToken,adminDasboardController.saleChart);
 
+router.post('/categories', adminController.createCategory);
+
+router.post('/organizations', decodeToken, adminController.createOrganization);
+
+router.post('/type-of-tickets', adminController.createTypeTicket);
+
 module.exports = router;

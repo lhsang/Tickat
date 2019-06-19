@@ -118,7 +118,7 @@ exports.getTopTicketEventBought = async()=>{
             ],          
              group:['event.id'],
              order: sequelize.literal('bought desc'),
-             limit:10,
+             limit:6,
         });
                
         return tickets;

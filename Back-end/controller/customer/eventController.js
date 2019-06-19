@@ -28,6 +28,8 @@ function handleTickets(tickets){
     tickets.forEach((element,index) => {
         element.remaining = element.amount - element.bought;
         element.className = className[index];
+        if(typeof element.className == 'undefined' || element.className==""||element.className==null)
+            element.className = "null-class";
     });
 }
 

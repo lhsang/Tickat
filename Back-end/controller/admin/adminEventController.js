@@ -119,7 +119,7 @@ exports.dashboardevent = async (req, res)=>{
         attributes: ['id','name','date','address','img'],
         include: {
             model: Ticket,
-            attributes: ['price']
+            attributes: ['price','bought','amount']
         },
         where : handleQueryString(q,organizationsIds),
         limit: limit,
@@ -127,6 +127,11 @@ exports.dashboardevent = async (req, res)=>{
     });
 
     var eventIds =  events.map((obj)=>{
+        var bought = 0, amount =0;
+        obj.tickets.map((obj)=>{
+            bought+=parseInt(obj.bought); amount+=parseInt(obj.amount);
+        });
+        obj.bought = bought+"/"+amount;
         return obj.id;
     });
     var tickets = await ticketService.getTicketsByEventId(eventIds);
@@ -167,7 +172,6 @@ exports.dashboardevent = async (req, res)=>{
 
     res.render('admin/dashboard-event',data); 
 };
-
 
 exports.orderDetails = async (req, res)=>{
     var eventId = req.params.id;
@@ -290,6 +294,7 @@ exports.filter = async (req, res)=>{
 exports.createEventPage  = async (req, res)=>{
     var categories = await categoryService.getAllCategories();
     var organizations = await  organizationService.getOrganizationIdByUserId(req.user.id);
+    var type_of_tickets = await TypeTicket.findAll();
 
     var data = {
         title: 'Tickat - Create an event',
@@ -297,7 +302,8 @@ exports.createEventPage  = async (req, res)=>{
         user : req.user,
 
         categories: categories,
-        organizations: organizations
+        organizations: organizations,
+        type_of_tickets: type_of_tickets
     };
     res.render("admin/createEvent", data);
 };
@@ -315,7 +321,6 @@ exports.createEvent = async (req, res)=>{
             category_id: req.body.category_id
         };
         
-        console.log(newEvent);
         var event = await eventService.createEvent(newEvent);
 
         var temp = JSON.parse(req.body.tickets);

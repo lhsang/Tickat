@@ -128,7 +128,7 @@
   });
 
 $(document).ready(function() {
-    $('textarea').summernote({
+    $('#txtEditor').summernote({
         height: 300,   //set editable area's height
     });
 });
@@ -254,7 +254,13 @@ $("#profile-img").change(function(){
           processData: false,
           contentType: false,
           success: function (res) {
-            alert(res.message);
+             if(res.status==200){
+              showSnackbar(res.message);
+              setTimeout(function () {
+                  location.href = "/admin/events";
+              }, 1000);
+            }
+            else alert(res.message);
           }
       });
   });

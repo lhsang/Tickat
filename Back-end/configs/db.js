@@ -24,6 +24,7 @@ module.exports = new Sequelize({
         timestamps: false,
         underscored: true
     },
+    timezone: '+07:00',
     pool: {
         max: 20,
         min: 0,

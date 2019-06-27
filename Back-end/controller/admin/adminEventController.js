@@ -17,6 +17,7 @@ var Order_detail = require('../../models/order_detail');
 var Ticket = require('../../models/ticket');
 var TypeTicket = require('../../models/type_of_ticket');
 
+var format = require('../../utils/format');
 var handleData = require('../../utils/handleData');
 
 var percentTotalPrice;
@@ -55,9 +56,18 @@ function CalculateTotalAndSaleInYear(tickets){
 function handleQueryString(q='', organization_id, start, end){
     q = q || "";
     var queryStr={
-        name:{
-            [Op.like]: "%"+q+"%"
-        }
+        [Op.or]: [
+            {
+              name: {
+                [Op.like]: "%"+q+"%"
+              }
+            },
+            {
+              name_unsigned: {
+                [Op.like]: "%"+format.remove_vietnamese(q)+"%"
+              }
+            }
+        ]
     };
     if(typeof organization_id !=='undefined'  && organization_id != "")
         queryStr.organization_id =  organization_id;
@@ -105,7 +115,8 @@ function handleSort(order){
 
 exports.dashboardevent = async (req, res)=>{
     var user_id = req.user.id;
-    var q = req.query.q || "";
+    var q = req.query.q || ""; 
+    q = (q+"").toUpperCase();
     var limit = req.query.limit || 9 ;
     var page = req.query.page || 1; page= parseInt(page);
 
@@ -247,7 +258,7 @@ exports.orderDetails = async (req, res)=>{
 exports.filter = async (req, res)=>{
     var user_id = req.user.id;
 
-    var q = req.query.q || "";
+    var q = req.query.q || "";q = (q+"").toUpperCase();
     var limit = req.query.limit || 9 ;
     var page = req.query.page || 1; page= parseInt(page);
     var start = req.query.start;
@@ -312,7 +323,8 @@ exports.createEvent = async (req, res)=>{
 
     try {
         var newEvent = {
-            name: req.body.name,
+            name: (req.body.name+"").toUpperCase(),
+            name_unsigned: format.remove_vietnamese((req.body.name+"").toUpperCase()),
             date: req.body.date,
             address: req.body.address,
             img: req.img,
@@ -320,6 +332,7 @@ exports.createEvent = async (req, res)=>{
             organization_id: req.body.organization_id,
             category_id: req.body.category_id
         };
+        console.log(newEvent);
         
         var event = await eventService.createEvent(newEvent);
 

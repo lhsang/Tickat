@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 var dateFormat = require('dateformat');
 const sequelize = require('../../configs/db');
+var smtpTransport = require('../../utils/mail');
 
 var eventService = require('../../service/eventService');
 var categoryService = require('../../service/categoryService');
@@ -18,7 +19,7 @@ var Event = require('../../models/event');
 var Order = require('../../models/order');
 var Order_detail = require('../../models/order_detail');
 
-
+var format = require('../../utils/format');
 var objectDefined = require('../../utils/object_define');
 var handleData = require('../../utils/handleData');
 
@@ -36,9 +37,18 @@ function handleTickets(tickets){
 function handleQueryString(q='', category_id, organization_id, start, end){
     q = q || "";
     var queryStr={
-        name:{
-            [Op.like]: "%"+q+"%"
-        }
+        [Op.or]: [
+            {
+              name: {
+                [Op.like]: "%"+q+"%"
+              }
+            },
+            {
+              name_unsigned: {
+                [Op.like]: "%"+format.remove_vietnamese(q)+"%"
+              }
+            }
+        ]
     };
     if(typeof category_id !=='undefined' && category_id != "")
         queryStr.category_id = category_id;
@@ -99,9 +109,6 @@ exports.bookingPage = async (req, res, next)=>{
     var id = req.params.event_id;
     var tickets = await ticketService.getTicketsByEventId(id);
 
-    // if(typeof tickets === 'undefined' || tickets==null ||tickets =={})
-    //     next();
-
     handleTickets(tickets);
 
     console.log('ticket',JSON.stringify(tickets[0].event_id));
@@ -139,6 +146,8 @@ exports.eventDetail = async (req, res)=>{
     });
     var categories = await categoryService.getAllCategories();
     handleData.addDateArrToEvent(event);
+    //max price to bought
+    event.bought = event.tickets[event.tickets.length-1].price;
 
     var data = {
         title: 'Tickat - '+event.name,
@@ -156,7 +165,7 @@ exports.eventDetail = async (req, res)=>{
 
 exports.allEvents = async (req, res) =>{
     var categories = await categoryService.getAllCategories();
-    var q = req.query.q || "";
+    var q = req.query.q || ""; q = (q+"").toUpperCase();
     var limit = req.query.limit || 6 ;
     var page = req.query.page || 1; page= parseInt(page);
     var category_id = req.query.category_id;
@@ -202,7 +211,7 @@ exports.allEvents = async (req, res) =>{
 };
 
 exports.filter = async (req, res)=>{
-    var q = req.query.q || "";
+    var q = req.query.q || ""; q = (q+"").toUpperCase();
     var limit = req.query.limit || 6 ;
     var page = req.query.page || 1; page= parseInt(page);
     var category_id = req.query.category_id;
@@ -240,7 +249,6 @@ exports.filter = async (req, res)=>{
     res.render("customer/filterEvents",data);
 };
 
-
 exports.checkoutform = async (req,res)=>{
     var event_id = req.params.event_id;
     var user= req.user;
@@ -251,8 +259,8 @@ exports.checkoutform = async (req,res)=>{
         phone: req.body.phone,
         email: req.body.email,
         username: req.body.username,
-        ticketOrders: JSON.parse(req.body.ticketOrders),
-    }
+        ticketOrders: JSON.parse(req.body.ticketOrders)
+    };
 
     var order={
         event_id: event_id,
@@ -260,8 +268,7 @@ exports.checkoutform = async (req,res)=>{
         tel : checkoutData.phone,
         mail : checkoutData.email,
         address : checkoutData.address,
-        user_id: null,
-        date_bought : dateFormat(new Date(),"yyyy-mm-dd"),
+        user_id: null
     };
 
     if(typeof user !=='undefined')
@@ -272,28 +279,63 @@ exports.checkoutform = async (req,res)=>{
     
     checkoutData.ticketOrders.map(async function(item){
         try{
-            var ticket = await ticketService.getTicketsByEventIdAndTypeId(event_id,item.ticketname);
+            var ticket = await ticketService.getTicketById(item.ticketId);
             var detail={
                 order_id: orderResult.id,
                 ticket_id: ticket.id,
                 amount: item.ticketamount,
             };
     
-           orderdetailResult = await orderDetailService.createOrderDetail(detail);
+            orderdetailResult = await orderDetailService.createOrderDetail(detail);
     
             ticket.bought=parseInt(ticket.bought)+parseInt(item.ticketamount);
-           ticket.save();
+            ticket.save();
         } catch (error) {
-           console.log(error);  
+            console.log(error);
+            
+            res.status(500);
+            res.send({
+                status: 500,
+                message: `
+                    Lỗi rồi :( Làm ơn thử lại.
+                `
+            });
         }
 
     });
 
-    res.sendStatus(200);
-   
-}
+    var mailOptions={
+        to : req.body.email,
+        subject : "[Tickat] Mua vé",
+        text : `
+        Chào ${req.body.fullname},
 
+        Đơn đặt hàng: #DHEV${orderResult.id} đã được ghi lại.
 
-exports.buySuccess = async (req,res) =>{
-    res.render("customer/buyTicketSuccess");
-}
+        Cảm ơn bạn đã đặt mua vé tại Tickat !
+        ------------------------------------------------------------------------------
+        Mail was sent by Tickat.vn
+        ${new Date()}
+        `
+    };
+    smtpTransport.sendMail(mailOptions, function(error, response){
+            if(error){
+                res.send({
+                    status: 500,
+                    message: `
+                        Lỗi rồi :( Làm ơn thử lại.
+                    `
+                });
+            }else{
+                res.status(200);
+                res.send({
+                    status: 200,
+                    message: `
+                        Mua vé thành công.
+                        Mã vé đã được gởi vào email của bạn, vui lòng check inbox hoặc mục thư spam.
+                    `
+                });
+            }
+    });
+
+};

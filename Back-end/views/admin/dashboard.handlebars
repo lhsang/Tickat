@@ -1,4 +1,8 @@
-
+<style>
+  .filter-time{
+    width: 100%; text-align: center;
+  }
+</style>
 
 <body > 
 
@@ -7,7 +11,7 @@
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">                 
         <div class="row d-flex justify-content-center">
             <div class="row">
-                    <form  >
+                    <form  class="filter-time">
                             <b>Cost from day:</b> 
                             <input type="date" value="31/3/2019" id="daystart" required>
                             
@@ -16,23 +20,22 @@
                             
                             <input type="button" value="Submit" id="dayform" class="btndashboard" >
                           </form> 
-            </div>
-                
-            <div class="row">
-                    <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
-
-
+                           <div id="lineChart"style="width: 1100px; height: 500px;" ></div>
                     <hr>
             </div>
-
-            <div class="row">
-                    <form action="" class="formchart">
+                
+            {{!-- <div class="row">
+                   
+            </div> --}}
+            <hr style="width: 100%">
+          <br>
+                    <form action="" class="formchart filter-time mt-50">
                             <b>Sales in:</b> 
                            <input type="number" min="1900" max="2099" step="1" value="2019" id="yearnow">
                         
                            <input type="button" value="Submit" id="yearform" class="btndashboard">
                          </form> 
-            </div>
+
             <div class="row">
                     <div id="columnchart_values" style="width: 1100px; height: 300px;margin-left:3%" ></div>
 
@@ -126,7 +129,7 @@ $( document ).ready(function() {
 
 $("#dayform").click(function (e) { 
     e.preventDefault();
-    console.log($('#daystart').val());
+    //console.log($('#daystart').val());
     $.ajax({
         type: "GET",
         url: "/admin/costchart",
@@ -135,7 +138,7 @@ $("#dayform").click(function (e) {
           dayto : $('#dayto').val(),
         },
         success: function (response) {
-          console.log('ab',response.daySale,response.dayArr);
+          //console.log('ab',response.daySale,response.dayArr);
           loadLineChart(response.daySale,response.dayArr);
         }
   });
@@ -144,7 +147,7 @@ $("#dayform").click(function (e) {
 
 $("#yearform").click(function (e) { 
     e.preventDefault();
-    console.log($('#yearnow').val());
+    //console.log($('#yearnow').val());
     $.ajax({
         type: "GET",
         url: "/admin/salechart",
@@ -152,7 +155,7 @@ $("#yearform").click(function (e) {
           yearnow : $('#yearnow').val(),
         },
         success: function (response) {
-          console.log('ab',response.saleInMonthArr);
+         // console.log('ab',response.saleInMonthArr);
           loadColumChart(response.saleInMonthArr);
         }
   });
@@ -195,15 +198,6 @@ function loadColumChart(saleInMonthArr){
 
           ]);
 
-      /*    var data = new google.visualization.DataTable();
-          data.addColumn('string','Month');
-          data.addColumn('number','Sales');
-          data.addRows([
-            ["Jan", {{saleInMonthArr}}, { role: "#F85D2C" }],
-            ["Jan", {{saleInMonthArr}},{ role: "#F85D2C" }],
-
-          ])*/
-    
           var view = new google.visualization.DataView(data);
           view.setColumns([0, 1,
                            { calc: "stringify",
@@ -257,8 +251,6 @@ function loadLineChart(daySale,dayArray){
         max=Math.max(...saleInDay)*1.25;
 
         if(max==0) max=10000000;
-
-        console.log('a',max,saleInDay);
 
         data.addColumn('date', 'Day');
         data.addColumn('number', 'Cost');

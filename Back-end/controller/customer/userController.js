@@ -153,19 +153,19 @@ exports.requestChangePassword = async (req, res)=>{
             }
         });
 
-        var token = genarateToken(user, 7*60);
+        var token = genarateToken(user, 5*60);
         var url = href.replace("/forgot-password","")+"/change-password?token="+token;
         
         var mailOptions={
             to : user.mail,
-            subject : "Đổi mật khẩu tickat",
+            subject : "Quên mật khẩu tickat",
             html : `
             <b>Chào ${user.full_name},</b><br>
             Chúng tôi nhận được yêu cầu đổi mật khẩu từ tài khoản của bạn.
             <br> <br> <br>
             <b><a href="${url}"forgot-pass">Click vào đây để đổi mật khẩu</a> </b>
             <br><br>
-            Email đổi mật khẩu chỉ có thời hạn trong 7 phút.
+            Email đổi mật khẩu chỉ có thời hạn trong 5 phút.
             <br>
             ------------------------------------------------------------------------------ <br>
             Mail was sent by Tickat.vn <br>

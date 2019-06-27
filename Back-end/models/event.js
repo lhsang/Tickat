@@ -13,6 +13,9 @@ Event.init({
     name: {
         type: Sequelize.STRING
     },
+    name_unsigned: {
+        type: Sequelize.STRING
+    },
     created_at: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW

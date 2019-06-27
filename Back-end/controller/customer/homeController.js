@@ -30,6 +30,14 @@ exports.homePage = async (req, res)=>{
     });
 
     handleData.addDateArrToEvents(comming_events);
+
+    //add animate
+    for(var i=0;i<comming_events.length;i++){
+        if(i%2==0)
+            comming_events[i].bought = "bounceInLeft";
+        else comming_events[i].bought = "bounceInRight";
+    }
+
     handleData.addDateArrToEvents(suggest_events);
     var data = {
         title: 'Tickat - Mua bán vé sự kiện',
@@ -73,7 +81,7 @@ exports.send_email = async (req, res)=>{
         email = req.body.email,
         content = req.body.content,
         id = req.params.id;
-    var organization = await organizationService.findOrganizationById(id);
+    var organization = await organizationService.getOrganizationById(id);
     
     var mailOptions={
         to : organization.mail,

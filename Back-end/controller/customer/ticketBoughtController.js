@@ -5,6 +5,8 @@ var categoryService = require('../../service/categoryService');
 var organizationService = require('../../service/organizationService');
 var userService = require('../../service/userService');
 var orderService = require('../../service/orderService');
+var TypeTicket = require('../../models/type_of_ticket');
+
 var dateFormat = require('dateformat');
 var numeral = require('numeral');
 
@@ -66,13 +68,14 @@ exports.ticketBought = async (req, res)=>{
     var categories = await categoryService.getAllCategories();
     var orders = await orderService.getOrdersByUserId(user_id);
     var ticketBoughts=handleOrderObject(orders,limit,page,type_of_ticket);
-    
+    var types = await TypeTicket.findAll();
     var data={
         title: 'Tickat - Vé đã mua',
         layout :'main',
         logged: false,
         categories:  categories,
         ticketBoughts: ticketBoughts,
+        types: types,
         pagination: {
             limit : limit,
             page: page,

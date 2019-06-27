@@ -1,3 +1,4 @@
+
 <!-- nav start --> 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-admin"> 
             <a class="navbar-brand" href="/admin"> 
@@ -17,11 +18,27 @@
                 </div> 
               </form> 
               <div class="feature"> 
-                  <img src="{{user.avatar}}" class="avatar"> 
+                  <img src="{{user.avatar}}" class="avatar" onclick="location.href='/admin/setting'" style="cursor: pointer"> 
                   <a href="/logout" class="logout">Logout</a> 
                   <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
                   <a href="/admin/new-event" class="logout">Create event</a>
+                  <span class="logout" style="margin-left:0.5%;margin-right:0.5%">|</span>
+                  <button type="button" class="btn btn-secondary" id="btn-hide-tab">Hide tab option</button>
+                  <button type="button" class="btn btn-secondary" id="btn-show-tab" style="display: none">Show tab option</button>
               </div> 
             </div> 
           </nav> 
           <!-- nav end --> 
+<script>
+  $("#btn-hide-tab").click(()=>{
+    $("#tab-option").hide();
+    $("#btn-show-tab").show();
+    $("#btn-hide-tab").hide();
+  });
+
+$("#btn-show-tab").click(()=>{
+  $("#tab-option").show();
+  $("#btn-hide-tab").show();
+  $("#btn-show-tab").hide();
+});
+</script>

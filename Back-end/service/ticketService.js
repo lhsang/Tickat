@@ -34,6 +34,19 @@ exports.getTicketsByEventId = async (event_id)=>{
     return {};
 };
 
+exports.getTicketById = async (id)=>{
+    try {
+        let ticket = await Ticket.findOne({
+            where: {
+                id: id
+            },
+        });
+        return ticket;
+    } catch (e) {
+        throw Error('Can not find all tickets');
+    }
+};
+
 exports.getTotalPriceTicketsByOrganizationId = async (organization_id)=>{
 
     try {
@@ -133,11 +146,21 @@ exports.getTicketsByEventIdAndTypeId = async (event_id,type_of_ticket)=>{
 
     try {
         var typeid=0;
-        if(type_of_ticket=='VIP')
-            typeid=1;
-        else if(type_of_ticket=='Normal')
-                typeid=2;
-            else typeid=3;
+        var temp = await Ticket.findAll({
+            attributes: ["type_id"],
+            where:{
+                event_id:event_id,
+            },
+            include:{
+                model: TypeTicket,
+                where:{
+                    name: type_of_ticket
+                }
+            }
+        });
+
+        if(typeof temp !='undefined')
+            typeid = temp[0].type_id;
 
         let tickets = Ticket.findOne({
           

@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.11/dist/summernote-bs4.min.css">
 
-   
+   <style>
+     .tab-pane{
+       margin-bottom: 100px
+     }
+   </style>
    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
    
 </head>
@@ -85,6 +89,8 @@
 
                         </div>
                       
+                      <button type="button" class="btn btn-success" style="float: right;margin-right:20px;margin-top:50px">Next <i class="fas fa-chevron-right"></i></button>
+                      
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="card-body">
@@ -120,8 +126,11 @@
                           <button type="button" class="btn btn-primary btn-save" style="float: right; margin:40px 10px; display: none">Save</button>
                           <button type="button" class="btn btn-primary btn-editor" style="float: right; margin:40px auto">Add new ticket</button>
                     </div>
-                       
-                </div>
+                    <div class="btn-group" role="group" aria-label="Basic example" style="float: right">
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-chevron-left"></i> Pre</button>
+                        <button type="button" class="btn btn-secondary">Next <i class="fas fa-chevron-right"></i></button>
+                      </div>
+                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                   Et et consectet
                 </div>

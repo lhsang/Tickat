@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "node test_module/test.js"
   },
+  "repository": "https://github.com/1612554/Tickat",
   "dependencies": {
     "@types/validator": "^10.11.0",
     "bcrypt": "^3.0.6",
@@ -31,7 +33,9 @@
   },
   "main": "app.js",
   "devDependencies": {},
-  "author": "",
+  "author": {
+    "name": "Le Hoang Sang - Dang Huyen Tram"
+  },
   "license": "ISC",
-  "description": ""
+  "description": "Tickat - Sell and buy tickets"
 }

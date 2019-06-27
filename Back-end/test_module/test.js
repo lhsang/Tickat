@@ -17,6 +17,8 @@ const ticketService = require('../service/ticketService');
 const organizationService = require('../service/organizationService');
 const userService =  require('../service/userService');
 const {getDateObjectFromString} = require('../utils/format');
+const format =  require('../utils/format');
+
 const orderService = require('../service/orderService');
 
 const fs = require('fs');
@@ -315,3 +317,14 @@ console.log(s,e);
 //     },
  
 //    })
+
+// async function test() { 
+//     var events = await eventService.getAllEvents({});
+//     events.map((obj)=>{
+//         obj.name_unsigned = format.remove_vietnamese((obj.name).toUpperCase());
+//         obj.save();
+//     });
+//     console.log("finished");
+//  }
+
+//  test();

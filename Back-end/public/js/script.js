@@ -16,25 +16,28 @@ function showSnackbar(content) {
 }
 
 //login validate
-$("#txtusername").focusout(function() { 
-  var username=$('#txtusername').val();
-  if(username != "" && typeof username != 'undefined'){
-    $.ajax({
-      type: "POST",
-      url:  "/check-username",
-      data: {username:username},
-      success: function (response) {
-          if(response.status===200){
-               $("#signup :submit").attr("disabled", true);
-                $("#txtusername").addClass('is-invalid');   
-          }else{
-                $("#signup :submit").removeAttr("disabled");
-                $("#txtusername").removeClass('is-invalid');
-          }
-      }
-    });
-  }
+$('#modal-login').on('shown.bs.modal', function () {
+  $("#txtusername").focusout(function() { 
+    var username=$('#txtusername').val();
+    if(username != "" && typeof username != 'undefined'){
+      $.ajax({
+        type: "POST",
+        url:  "/check-username",
+        data: {username:username},
+        success: function (response) {
+            if(response.status===200){
+                 $("#signup :submit").attr("disabled", true);
+                  $("#txtusername").addClass('is-invalid');   
+            }else{
+                  $("#signup :submit").removeAttr("disabled");
+                  $("#txtusername").removeClass('is-invalid');
+            }
+        }
+      });
+    }
+  });
 });
+
 
 $("#repassword").focusout(function() { 
   var repass=$('#repassword').val();

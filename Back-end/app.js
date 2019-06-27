@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', require('./routes/index'));
 app.use('/admin',require('./routes/admin'));
 app.use('/events', require('./routes/event'));
+
 app.use(function (err, req, res, next) {
     res.status(500);
     res.render("error/500",{

@@ -32,7 +32,7 @@
                 <div class="row">
                     <p class="text-header2">
                         <script>
-                            var min = parseInt({{event.tickets.[0].price}}), max = parseInt({{event.tickets.[2].price}});
+                            var min = parseInt({{event.tickets.[0].price}}), max = parseInt({{event.bought}});
                             document.write(min.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) +" - " + max.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
                         </script>
                         </p>
@@ -151,12 +151,10 @@
             <p class="text-header2">{{event.address}}</p>
         </div>
 
-        <div class="fb-comments" data-href="https://ptudw-cntn2016-nhom05.herokuapp.com/events/{{event.id}}" data-width="700" data-numposts="5"></div>
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=811310765625308&autoLogAppEvents=1"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=845465725827033&autoLogAppEvents=1"></script>
 
-
-
+<div class="fb-comments" data-href="https://ptudw-cntn2016-nhom05.herokuapp.com/events/{{event.id}}" data-width="90%" data-numposts="5"></div>
 
     </div>
 
@@ -177,11 +175,18 @@
                 type: "get",
                 url: "https://maps.googleapis.com/maps/api/geocode/json",
                 data: {
-                    address: "799+Nguyễn+Văn Linh,+Quận 7,+Thành+Phố+Hồ+Chí+Minh",
-                    key: "AIzaSyAqTCmGrK4J42n7pDMy1yAl9JYNiDTdeaQ"
+                    address: address,
+                    key: "AIzaSyCyNHZkYQN8-3BQWDmDFADQZeqLmBWvWcY"
                 },
                 success: function (response) {
-                    var pos = response.results[0].geometry.location || {lat:10.762940, lng: 106.682257};
+                    var pos =  {lat:10.762940, lng: 106.682257};
+                    try{
+                        if(typeof response.results[0].geometry.location !== 'undefined')
+                             pos=response.results[0].geometry.location;
+                    }catch(err) {
+                        console.log(err);
+                    }
+                    console.log({pos});
                     pos = new google.maps.LatLng(pos.lat, pos.lng);
                     var mapProp= {
                         center: pos,
@@ -191,7 +196,7 @@
                     var marker = new google.maps.Marker({
                         position: pos
                     });
-                    console.log(pos);
+
                     marker.setMap(map);
                 }
             });
@@ -200,5 +205,5 @@
 
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqTCmGrK4J42n7pDMy1yAl9JYNiDTdeaQ&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyNHZkYQN8-3BQWDmDFADQZeqLmBWvWcY&callback=myMap"></script>
     <!--end map script -->
